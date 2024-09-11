@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages class="" active="true">
+    <message id="component-home" class="" height="500px">
+        <div class="">
+            <div class="">
+                <div class="dark:bg-sky-500 flex flex-row flex-nowrap bg-lime-200 ">
+                    <div class="bg-amber-300 m-2.5 ml-2 p-2.5 space-x-reverse space-y-reverse border-solid border "/>
+                    <div class=" p-3 m-3 bg-lime-300 border border-solid "/>
+                    <div class="max-w-20 bg-teal-300 m-4 p-4 border-solid border "/>
+                </div>
+                <div class=" ">
+                    <div class=" ">1</div>
+                    <div class=" ">2</div>
+                    <div class=" ">3</div>
+                    <div class="">5</div>
+                    <div class="">1</div>
+                    <div class="  ">2</div>
+                    <div class=" ">3</div>
+                    <div class=" ">5</div>
+                </div>
+                <div class="flex relative min-h-fit m-1.5 p-[20px] ">
+                    <div class="bg-red-300 border-solid border h-24 w-10 content-evenly items-center self-center basis-1/2 flex-col gap-8 gap-x-8 gap-y-8 auto-cols-auto grid-flow-col auto-rows-auto col-end-5 col-span-5 col-start-5 row-end-5 row-span-5 row-start-5 grid-cols-5 grid-rows-5 grow flex-initial justify-evenly justify-items-center justify-self-center order-2 place-content-start place-items-baseline place-self-stretch shrink-0 "/>
+                    <div class="h-10 w-10 border-solid border "/>
+                    <div class="h-10 w-10 bg-[!bg-yellow-300] border-solid border "/>
+                    <div class="h-10 w-10 bg-[#32a852] border-solid border "/>
+                    <div class="h-10 w-10 !bg-[#32a852] border-solid border "/>
+                    <div class="w-10 h-10 bg-red-300 border border-solid "/>
+                    <div class="w-10 h-10 bg-red-300 border border-solid "/>
+                    <div class="w-10 h-10 bg-red-300 border border-solid "/>
+                    <div class=" w-12 h-12 bg-orange-300 border border-solid "/>
+                    <div class=" w-6 h-6 bg-amber-300 border border-solid "/>
+                    <div class=" w-8 h-7 bg-lime-300 border border-solid "/>
+                    <div class="h-16 w-20 bg-green-300 m-12 border-solid border -m-12"/>
+                </div>
+            </div>
+            <div class="p-5 border border-solid border-gray-200">${user-info class=" " implementation="template:component-home-user-info"}</div>
+            <div class=" bg-red-100">${temp-1 class="p-2" implementation="template:component-home-temp-test"}</div>
+            <div class="bg-blue-100">${temp-2 class="p-2" implementation="template:component-home-temp-test"}</div>
+            <div class="bg-yellow-100">${temp-3 class="p-2" implementation="template:component-home-temp-test"}</div>
+            <div class="bg-green-200">${temp-4 class="p-2" implementation="template:component-home-temp-test"}</div>
+            <div class="bg-purple-200 ">${temp-5 class="p-2" implementation="template:component-home-temp-test"}</div>
+        </div>
+    </message>
+    <message id="component-home-temp-test" class="" height="300px">
+        <div class="flex flex-wrap">
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">1</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">2</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">3</div>
+            <div class="h-12 w-12 border-gray-300 rounded-lg border-dashed border-2 ">4</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">5</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">6</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 w-12 h-12">7</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">8</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">9</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">10</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">11</div>
+            <div class="border-2 border-dashed rounded-lg border-gray-300 h-12 w-12">12</div>
+        </div>
+    </message>
+    <message id="component-home-user-info" class="" height="300px">
+        <div class=" flex space-x-4 ">
+            <div class=" ">name</div>
+            <div class="">${username class="" implementation="text:username"}</div>
+        </div>
+        <div class=" flex space-x-4 ">
+            <div class="">Phone</div>
+            <div class="">${phone class="" implementation="text:phone"}</div>
+        </div>
+        <div class="flex space-x-4">
+            <div class="">Email</div>
+            <div class="">${email class="" implementation="text:email"}</div>
+        </div>
+        <div class="flex ">
+            <div class="">Role</div>
+            <div class="">${role class="" implementation="text:role"}</div>
+        </div>
+    </message>
+</messages>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages active="true">
+    <message id="starter.app">
+        <div class="relative container mx-auto">
+            <div class="">${navigation class="" implementation="text:app navigation"}</div>
+            <div class="sm:mb-0 min-h-[150vh]">${content class="" implementation="text:app content"}</div>
+        </div>
+    </message>
+    <message id="starter.app.navigation">
+        <div class="fixed bottom-0 left-0 right-0 border-t border-solid border-gray-200 shadow-md flex items-center min-h-[50px]
+                    sm:!relative sm:border sm:rounded-md">
+            <div class="">${menu class="" implementation="text:app menu"}</div>
+            <div class="ml-auto mr-4">
+                <!-- ${<if-dropdown>}  -->
+                <div class="">${dropdown-menu class="flex items-center justify-center " implementation="text:app menu"}</div>
+                <!-- ${</if-dropdown>} -->
+                <!-- ${<if-auth>}  -->
+                <div class="">${auth-dropdown-menu class="flex items-center justify-center " implementation="text:app menu"}</div>
+                <!-- ${</if-auth>} -->
+            </div>
+        </div>
+    </message>
+    <message id="starter.app.content">
+        <div class="mt-24">
+            <div>Content</div>
+        </div>
+    </message>
+</messages>

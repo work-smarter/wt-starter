@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages active="false" deleted="" hidden="">
+    <message id="stylus-plan" height="400px">
+        <div class="flex items-center mb-4 ">
+            <div class="">${stylus-status-panel class="" implementation="template:stylus-status-panel"}</div>
+            <div class="text-2xl text-center font-bold  ">Stylus Tools</div>
+        </div>
+        <div class="p-2 ">
+            <div class="flex space-x-3">
+                <div class="w-1/3 border border-solid border-gray-200 shadow-md">
+                    <div class="ml-4 text-lg text-center font-semibold">Stylus Brain</div>
+                    <div class="p-2 space-y-1"/>
+                </div>
+                <div class="w-1/3 border border-solid border-gray-200 shadow-md">
+                    <div class="ml-4 text-lg text-center font-semibold">Right Panel</div>
+                    <div class="p-2 space-y-1">
+                        <div class="bg-yellow-100 rounded-lg px-2">change mods to make more sense like :</div>
+                        <div class="bg-yellow-100 rounded-lg px-2"> - NORMAL = every class should be a InlineEdit ( no darkmode )</div>
+                        <div class="bg-yellow-100 rounded-lg px-2"> - TAILWIND_NORMAL = classes are presented in widgets in category panels</div>
+                        <div class="bg-yellow-100 rounded-lg px-2"> - TAILWIND_SIMPLIFIED = every valid tailwind class has has a widget and only the widgets are presented </div>
+                        <div class="bg-yellow-100 rounded-lg px-2"> - TAILWIND_SIMPLIFIED_NORMAL = presents both the TAILWIND_NORMAL and SIMPLIFIED ui's</div>
+                    </div>
+                </div>
+                <div class="w-1/3 border border-solid border-gray-200 shadow-md">
+                    <div class="ml-4 text-lg text-center font-semibold">Files Manager</div>
+                    <div class="p-2 space-y-1">
+                        <div class="bg-yellow-100 rounded-lg px-2"> - Folder and file Structure open/close toggle save state in xml file </div>
+                        <div class="bg-yellow-100 rounded-lg px-2"> - create tabs for open templates in top bar where the toggle is</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex p-2 space-x-4 ">
+            <div class="grow border border-solid border-gray-200 p-2 shadow-md">
+                <div class="text-xl text-center">Wt C++ Comunity</div>
+            </div>
+            <div class="grow border border-solid border-gray-200 p-2 shadow-md">
+                <div class="text-xl text-center">Web dev Comunity</div>
+            </div>
+        </div>
+    </message>
+    <message id="stylus-project-page-templates" height="300px">
+        <div class="flex space-x-2">
+            <div class="">${stylus-status-panel class="" implementation="template:stylus-status-panel"}</div>
+            <div class="w-1/3 border border-solid border-gray-200 shadow-md">
+                <div class="ml-4 text-lg text-center font-semibold">Title</div>
+                <div class="p-2 space-y-1">
+                    <div class="bg-green-100 rounded-lg px-2"> - Task</div>
+                    <div class="bg-yellow-100 rounded-lg px-2"> - Task</div>
+                    <div class="bg-red-100 rounded-lg px-2"> - Task</div>
+                    <div class="bg-blue-100 rounded-lg px-2"> - Task</div>
+                </div>
+            </div>
+        </div>
+    </message>
+    <message id="stylus-status-panel" height="300px">
+        <div class="p-2 max-w-[200px] space-y-1">
+            <div class="bg-green-100 rounded-lg px-2"> - Done</div>
+            <div class="bg-yellow-100 rounded-lg px-2"> - just do it </div>
+            <div class="bg-blue-100 rounded-lg px-2"> - Progress</div>
+            <div class="bg-red-100 rounded-lg px-2"> - Still Thinking</div>
+        </div>
+    </message>
+</messages>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages active="true">
+    <message id="data-visualization-example-form">
+        <div class="mb-2 text-center underline">Form for submiting data to the table</div>
+        <form class="border items-center flex justify-center">
+            <div class="px-3 ">
+                <div class="text-center">string data</div>
+                <div>${string-input}</div>
+            </div>
+            <div class="px-3 ">
+                <div class="text-center">selection data</div>
+                <div>${selection-input}</div>
+            </div>
+            <div class="px-3 ">
+                <div class="text-center">double data</div>
+                <div>${double-input}</div>
+            </div>
+            <div class="px-3 ">
+                <div class="text-center">bool data</div>
+                <div>${bool-input class="d-block m-auto mt-2"}</div>
+            </div>
+            <div class="px-3 ">
+                <div class="text-center">point in time </div>
+                <div class=" flex">
+                    <div>${date-input}</div>
+                    <div>${time-input}</div>
+                </div>
+            </div>
+            <div class="">${submit-btn class="btn btn-success"}</div>
+        </form>
+        <div>${submit-info class="text-danger"}</div>
+    </message>
+</messages>

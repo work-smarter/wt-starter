@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages active="true">
+    <message id="test-test">
+        <div>${tr:test-string}</div>
+    </message>
+    <message id="test-string">some random string</message>
+</messages>
