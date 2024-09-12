@@ -13,7 +13,7 @@ pipeline {
         echo 'Removing wt_starter container'
         sh 'docker rm -f wt_starter || true'
         echo 'Running wt_starter container'
-        sh 'docker run -p 9010:9010 --name wt_starter wt_starter_build:latest'
+        sh 'docker run --rm -d -p 9010:9010 --name wt_starter wt_starter:latest'
       }
     }
   }
