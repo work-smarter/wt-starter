@@ -5,6 +5,7 @@ pipeline {
       steps {
         echo 'Building wt_starter_build image'
         sh 'docker build -t wt_starter_build -f dockerfiles/Dockerfile_build .'
+        sh 'docker build -t wt_starter -f dockerfiles/Dockerfile_deploy .'
       }
     }
     
