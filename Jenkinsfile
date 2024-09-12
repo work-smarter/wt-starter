@@ -6,15 +6,15 @@ pipeline {
         echo 'Building wt_starter_build image'
         sh 'docker build -t wt_starter_build -f dockerfiles/Dockerfile_build .'
       }
-      stage('deploy') {
-        steps {
-          echo 'Removing wt_starter container'
-          sh 'docker rm -f wt_starter || true'
-          echo 'Running wt_starter container'
-          sh 'docker run -p 9010:9010 --name wt_starter wt_starter:latest'
-        }
+    }
+    
+    stage('deploy') {
+      steps {
+        echo 'Removing wt_starter container'
+        sh 'docker rm -f wt_starter || true'
+        echo 'Running wt_starter container'
+        sh 'docker run -p 9010:9010 --name wt_starter wt_starter_build:latest'
       }
     }
-  
   }
 }
