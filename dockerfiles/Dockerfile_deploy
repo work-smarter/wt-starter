@@ -1,0 +1,16 @@
+FROM ubuntu
+
+COPY --from=wt_starter_build /usr/lib/libwt*.so.* /usr/lib/
+COPY --from=wt_starter_build /usr/lib/x86_64-linux-gnu/libIce++11.so.37 /usr/lib/x86_64-linux-gnu/
+COPY --from=wt_starter_build /usr/include/boost/* /usr/include/boost/
+COPY --from=wt_starter_build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib/x86_64-linux-gnu/
+
+COPY --from=wt_starter_build ./app/build /app/build/
+COPY --from=wt_starter_build ./app/xml-templates /app/xml-templates/
+COPY --from=wt_starter_build ./app/wt_config.xml /app/
+COPY --from=wt_starter_build ./app/static /app/static/
+COPY --from=wt_starter_build ./app/resources /app/resources/
+
+WORKDIR /app/build
+
+CMD ./app --docroot ../ -c ../wt_config.xml --http-address 0.0.0.0 --http-port 9010

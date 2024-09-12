@@ -1,0 +1,7 @@
+FROM wt_builder
+
+COPY ./ ./app
+WORKDIR ./app
+
+RUN mkdir build && cd build && cmake .. && make
+

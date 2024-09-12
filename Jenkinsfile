@@ -3,35 +3,18 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'Building frontend'
-        sh 'chmod +x scripts/build.sh'
-        sh 'scripts/build.sh'
+        echo 'Building wt_starter_build image'
+        sh 'docker build -t wt_starter_build -f dockerfiles/Dockerfile_build .'
+      }
+      stage('deploy') {
+        steps {
+          echo 'Removing wt_starter container'
+          sh 'docker rm -f wt_starter || true'
+          echo 'Running wt_starter container'
+          sh 'docker run -p 9010:9010 --name wt_starter wt_starter:latest'
+        }
       }
     }
-
-    stage('test') {
-      steps {
-        echo 'Testing frontend'
-        sh 'chmod +x scripts/test.sh'
-        sh 'scripts/test.sh'
-      }
-    }
-
-    stage('deploy') {
-      steps {
-        echo 'Deploy frontend'
-         sh 'chmod +x scripts/deploy.sh'
-        sh 'scripts/deploy.sh'
-      }
-    }
-  }
-  post {
-    success {
-      sh 'ls'
-      archiveArtifacts artifacts: 'frontend',
-      allowEmptyArchive: true,
-      fingerprint: true,
-      onlyIfSuccessful: true
-    }
+  
   }
 }
