@@ -1,4 +1,6 @@
 #include "App.h"
+#include <Wt/WText.h>
+#include <Wt/WContainerWidget.h>
 
 App::App(const Wt::WEnvironment &env)
     : 
