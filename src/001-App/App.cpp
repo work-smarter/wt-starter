@@ -16,4 +16,6 @@ App::App(const Wt::WEnvironment &env)
     // JSs
     require(docRoot() + "/static/js/utils.js");
 
+    root()->addWidget(std::make_unique<Wt::WText>("Wt Starter App"));
+
 }
