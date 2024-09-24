@@ -7,6 +7,10 @@ int main(int argc, char **argv)
     // return Wt::WRun(argc, argv, [](const Wt::WEnvironment& env) {
     //   return std::make_unique<App>(env);
     // });
+    // for (int i = 0; i < argc; i++)
+    // {
+    //     std::cout << "\nArg: " << argv[i] << std::endl;
+    // }
     try
     {
 

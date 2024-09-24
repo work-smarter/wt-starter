@@ -1,6 +1,9 @@
 #pragma once
 #include <Wt/WApplication.h>
 #include <Wt/WStackedWidget.h>
+#include <Wt/WImage.h>
+#include <Wt/WLink.h>
+#include <Wt/WPopupMenu.h>
 // #include <Wt/WTemplate.h>
 
 #include <Wt/Auth/AuthWidget.h>

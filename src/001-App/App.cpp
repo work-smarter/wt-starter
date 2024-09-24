@@ -62,7 +62,12 @@ void App::createUi()
     navbar->bindString("title", "Wt Starter");
     auto home_link = navbar->bindWidget("home-link", std::make_unique<Wt::WText>("Home"));
     auto test_link = navbar->bindWidget("test-link", std::make_unique<Wt::WText>("Test"));
-    auto user_menu = navbar->bindWidget("user-menu", std::make_unique<Wt::WText>("User Menu"));
+    auto user_menu_btn = navbar->bindWidget("user-menu", std::make_unique<Wt::WPushButton>());
+    user_menu_btn->setIcon(Wt::WLink("static/util/user-icon.png"));
+    // user_menu_btn->setStyleClass("");
+    // auto user_icon = user_menu_btn->addWidget(std::make_unique<Wt::WImage>(Wt::WLink("static/util/user-icon.png")));
+    // user_icon->setAlternateText("User Icon");
+    // user_icon->setStyleClass("");
 
     home_link->clicked().connect([=]
                                  { setInternalPath("/home");
@@ -71,7 +76,26 @@ void App::createUi()
                                  { setInternalPath("/test"); 
                                     internalPathChanged().emit("/test"); });
 
-    internalPathChanged().emit(internalPath());
+    auto popup_meun = std::make_unique<Wt::WPopupMenu>();
+    popup_meun->setAutoHide(true, 1000);
+
+    auto popup_menu_item_1 = popup_meun->addItem("popup-1", std::make_unique<Wt::WText>("popup page 1"));
+    popup_menu_item_1->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
+    popup_menu_item_1->setPathComponent("popup-1");
+
+    auto popup_menu_item_2 = popup_meun->addItem("popup-2", std::make_unique<Wt::WText>("popup page 2"));
+    popup_menu_item_2->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
+    popup_menu_item_2->setPathComponent("popup-2");
+
+    auto logout_menu_item = popup_meun->addItem("logout");
+    logout_menu_item->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
+    logout_menu_item->clicked().connect([=]
+                                        { session_.login().logout(); });
+
+    user_menu_btn->setMenu(std::move(popup_meun));
+
+    internalPathChanged()
+        .emit(internalPath());
 
     // auto path = Wt::WApplication::instance()->internalPath();
     // if (path.compare("/") == 0)
