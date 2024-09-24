@@ -1,6 +1,7 @@
 #pragma once
 #include <Wt/WApplication.h>
 #include <Wt/WStackedWidget.h>
+// #include <Wt/WTemplate.h>
 
 #include <Wt/Auth/AuthWidget.h>
 #include <Wt/Auth/PasswordService.h>
@@ -13,12 +14,14 @@ class App : public Wt::WApplication
 {
 public:
     App(const Wt::WEnvironment &env);
-    Wt::WStackedWidget *stack_;
     AuthWidget *auth_;
-    Wt::WContainerWidget *root_;
+    Wt::WTemplate *root_temp_;
+    Wt::WContainerWidget *root_content_;
 
 private:
     Session session_;
 
     void createUi();
+    void createHome();
+    void createTest();
 };
