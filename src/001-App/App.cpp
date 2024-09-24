@@ -1,13 +1,14 @@
 #include "App.h"
 #include <Wt/WText.h>
 #include <Wt/WContainerWidget.h>
+#include "004-Settings/Settings.h"
 
 App::App(const Wt::WEnvironment &env)
     : WApplication(env),
       session_(appRoot() + "../dbo.db")
 
 {
-    setTitle("Wt Starter");
+    setTitle("Starter App");
 
     messageResourceBundle().use("../xml-templates/app/app");
 
@@ -47,6 +48,10 @@ App::App(const Wt::WEnvironment &env)
             createHome();
         } else if (path == "/test") {
             createTest();
+        } else if (path == "/profile") {
+            createProfile();
+        } else if (path == "/settings") {
+            createSettings();
         }else {
             setInternalPath("/home");
             createHome();
@@ -57,17 +62,12 @@ App::App(const Wt::WEnvironment &env)
 
 void App::createUi()
 {
-
     auto navbar = root_temp_->bindWidget("navbar", std::make_unique<Wt::WTemplate>(Wt::WString::tr("starter.navbar")));
-    navbar->bindString("title", "Wt Starter");
+    navbar->bindString("title", "Starter App");
     auto home_link = navbar->bindWidget("home-link", std::make_unique<Wt::WText>("Home"));
     auto test_link = navbar->bindWidget("test-link", std::make_unique<Wt::WText>("Test"));
     auto user_menu_btn = navbar->bindWidget("user-menu", std::make_unique<Wt::WPushButton>());
     user_menu_btn->setIcon(Wt::WLink("static/util/user-icon.png"));
-    // user_menu_btn->setStyleClass("");
-    // auto user_icon = user_menu_btn->addWidget(std::make_unique<Wt::WImage>(Wt::WLink("static/util/user-icon.png")));
-    // user_icon->setAlternateText("User Icon");
-    // user_icon->setStyleClass("");
 
     home_link->clicked().connect([=]
                                  { setInternalPath("/home");
@@ -79,15 +79,19 @@ void App::createUi()
     auto popup_meun = std::make_unique<Wt::WPopupMenu>();
     popup_meun->setAutoHide(true, 1000);
 
-    auto popup_menu_item_1 = popup_meun->addItem("popup-1", std::make_unique<Wt::WText>("popup page 1"));
-    popup_menu_item_1->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
-    popup_menu_item_1->setPathComponent("popup-1");
+    auto profile_link = popup_meun->addItem("Profile");
+    profile_link->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
+    profile_link->clicked().connect([=]
+                                    { setInternalPath("/profile");
+                                      internalPathChanged().emit("/profile"); });
 
-    auto popup_menu_item_2 = popup_meun->addItem("popup-2", std::make_unique<Wt::WText>("popup page 2"));
-    popup_menu_item_2->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
-    popup_menu_item_2->setPathComponent("popup-2");
+    auto settings_link = popup_meun->addItem("Settings");
+    settings_link->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
+    settings_link->clicked().connect([=]
+                                     { setInternalPath("/settings");
+                                      internalPathChanged().emit("/settings"); });
 
-    auto logout_menu_item = popup_meun->addItem("logout");
+    auto logout_menu_item = popup_meun->addItem("Logout");
     logout_menu_item->setStyleClass("p-2 px-4 cursor-pointer hover:bg-gray-200");
     logout_menu_item->clicked().connect([=]
                                         { session_.login().logout(); });
@@ -96,17 +100,6 @@ void App::createUi()
 
     internalPathChanged()
         .emit(internalPath());
-
-    // auto path = Wt::WApplication::instance()->internalPath();
-    // if (path.compare("/") == 0)
-    // {
-    //     setInternalPath("/home");
-    //     internalPathChanged().emit("/home");
-    // }
-    // else
-    // {
-    //     internalPathChanged().emit(path);
-    // }
 }
 
 void App::createHome()
@@ -119,4 +112,16 @@ void App::createTest()
 {
     root_content_ = root_temp_->bindWidget("content", std::make_unique<Wt::WContainerWidget>());
     root_content_->addWidget(std::make_unique<Wt::WText>("Test Page"));
+}
+
+void App::createProfile()
+{
+    root_content_ = root_temp_->bindWidget("content", std::make_unique<Wt::WContainerWidget>());
+    root_content_->addWidget(std::make_unique<Wt::WText>("Profile Page"));
+}
+
+void App::createSettings()
+{
+    root_content_ = root_temp_->bindWidget("content", std::make_unique<Wt::WContainerWidget>());
+    root_content_->addWidget(std::make_unique<Settings>(session_));
 }

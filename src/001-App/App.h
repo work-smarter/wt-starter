@@ -26,5 +26,7 @@ private:
 
     void createUi();
     void createHome();
+    void createProfile();
+    void createSettings();
     void createTest();
 };

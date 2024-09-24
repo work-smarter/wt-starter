@@ -12,8 +12,8 @@
 
     <message id="starter.navbar" height="300px">
         <ul class="flex items-center bg-gray-200 w-full shadow-md rounded-md p-1.5 text-nowrap overflow-y-auto">
-            <li class="mr-6 ml-1">
-                <span class="text-md sm:text-xl">${title}</span>
+            <li class="mr-2 ml-1">
+                <span class="text-md sm:text-xl font-bold hidden mr-4 sm:!block cursor-default">${title}</span>
             </li>
             <div class="flex text-sm sm:text-md">
                 <li class="mr-6 text-inherit">
@@ -27,6 +27,31 @@
                 <span class="">${user-menu class="flex items-center max-w-9 max-h-9 min-w-9 min-h-9 cursor-pointer p-0.5 rounded-md hover:bg-gray-300"}</span>
             </li>
         </ul>
+    </message>
+
+    <message id="starter.settings">
+        <div class="hidden">Settings template</div>
+        <div class="max-w-[320px] shadow-md border border-solid border-gray-200">
+            <div class="flex bg-blue-200 w-full px-2 rounded-md">
+                <div class="flex justify-start items-centers w-full">
+                    <div class="mr-1">${user-id}.</div>
+                    <div class="font-semibold">${user-first-name}</div>
+                    <div class="font-semibold">${user-last-name}</div>
+                    <div class="ml-auto">
+                        <div class="text-[10px]">Join Date</div>
+                        <div class="text-[10px] font-semibold">${user-join-date}</div>
+                    </div>
+                </div>
+            </div>
+            <div class=" m-2 flex flex-wrap">
+                <div class="w-1/2">Email</div>
+                <div class="w-1/2 font-semibold">${user-email}</div>
+                <div class="w-1/2">Phone</div>
+                <div class="w-1/2 font-semibold">${user-phone}</div>
+                <div class="w-1/2">Dark Mode</div>
+                <div class="w-1/2 font-semibold">${user-dark-mode}</div>
+            </div>
+        </div>
     </message>
 
 </messages>

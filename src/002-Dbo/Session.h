@@ -6,6 +6,8 @@
 #include <Wt/Dbo/Session.h>
 #include <Wt/Dbo/ptr.h>
 
+#include <Wt/WString.h>
+
 using namespace Wt;
 
 namespace dbo = Wt::Dbo;
