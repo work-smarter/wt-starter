@@ -1,7 +1,7 @@
 #include "003-Auth/AuthWidget.h"
 #include "003-Auth/RegistrationView.h"
 #include "002-Dbo/Session.h"
-#include "002-Dbo/UserDetailsModel.h"
+#include "002-Dbo/UserFormModel.h"
 // #include "App/1-AuthApp.h"
 
 AuthWidget::AuthWidget(Session &session)

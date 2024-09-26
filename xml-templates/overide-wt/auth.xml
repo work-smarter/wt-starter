@@ -11,7 +11,7 @@
                     <div class="">
                         <label for="${id:user-name}" class=" ">
                             <div class="flex">
-                                <div class=" block text-sm font-medium leading-6 text-gray-900">${user-name-label class=" " implementation=""}</div>
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${user-name-label class=" " implementation=""}</div>
                                 <div class=" ">${user-name-info class="font-bold text-red-500 ml-3"}</div>
                             </div>
                             <div class=" w-full">${user-name class="line-edit-style-1" implementation="input:Username"}</div>
@@ -20,7 +20,7 @@
                     <div>
                         <label for="${id:password}" class=" ">
                             <div class="flex">
-                                <div class=" block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.password}</div>
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.password}</div>
                                 <div>${password-info class="font-bold text-red-500 ml-3"}</div>
                             </div>
                             <div class=" w-full">${password class="line-edit-style-1" implementation="input:Password"}</div>
@@ -30,7 +30,7 @@
                         <div class="">${tr:Wt.Auth.remember-me}</div>
                         <label for="${id:remember-me}" class="flex">
                             <div>${remember-me class="" implementation="checkbox:remember-me"}</div>
-                            <div class=" block text-sm font-medium leading-6 text-gray-900">${remember-me-info}</div>
+                            <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${remember-me-info}</div>
                         </label>
                     </div>
                     <!-- ${</if:passwords>} -->
@@ -63,7 +63,7 @@
                     <div>${confirm-is-you class=""}</div>
                     <label for="${id:user-name}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900">${user-name-label}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${user-name-label}</div>
                             <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${user-name class="line-edit-style-1" implementation="input:username"}</div>
@@ -72,7 +72,7 @@
                 <!-- ${</if:user-name>} -->
                 <div>
                     <label for="${id:choose-password}" class="">
-                        <div class="block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.choose-password}</div>
+                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.choose-password}</div>
                         <div>${choose-password class="line-edit-style-1" implementation="input:chose password"}</div>
                     </label>
                     <div>${choose-password-info class="font-bold text-red-500"}</div>
@@ -80,7 +80,7 @@
                 <div>
                     <label for="${id:repeat-password}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.repeat-password}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.repeat-password}</div>
                             <div>${repeat-password-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${repeat-password class="line-edit-style-1" implementation="input:repeat password"}</div>
@@ -89,7 +89,7 @@
                 <div>
                     <label for="${id:first-name}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.first-name}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
                             <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${first-name class="line-edit-style-1" implementation="input:first name"}</div>
@@ -98,7 +98,7 @@
                 <div>
                     <label for="${id:last-name}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.last-name}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
                             <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${last-name class="line-edit-style-1" implementation="input:last name"}</div>
@@ -107,7 +107,7 @@
                 <div>
                     <label for="${id:phone}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.phone}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
                             <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${phone class="line-edit-style-1" implementation="input:phone"}</div>
@@ -117,7 +117,7 @@
                 <div>
                     <label for="${id:email}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900">${tr:Wt.Auth.email}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.email}</div>
                             <div>${email-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${email class="line-edit-style-1" implementation="input:email"}</div>

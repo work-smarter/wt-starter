@@ -11,6 +11,7 @@ App::App(const Wt::WEnvironment &env)
     setTitle("Starter App");
 
     messageResourceBundle().use("../xml-templates/app/app");
+    messageResourceBundle().use("../xml-templates/app/inputs");
 
     messageResourceBundle().use("../xml-templates/overide-wt/auth");
     messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
@@ -27,7 +28,7 @@ App::App(const Wt::WEnvironment &env)
     auto authWidget = std::make_unique<AuthWidget>(session_);
     authWidget->model()->addPasswordAuth(&Session::passwordAuth());
     authWidget->model()->addOAuth(Session::oAuth());
-    authWidget->setRegistrationEnabled(false);
+    authWidget->setRegistrationEnabled(true);
 
     auth_ = root()->addWidget(std::move(authWidget));
     root_temp_ = root()->addWidget(std::make_unique<Wt::WTemplate>(Wt::WString::tr("starter.app")));

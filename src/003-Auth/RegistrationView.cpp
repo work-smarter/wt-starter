@@ -1,7 +1,6 @@
 #include "003-Auth/RegistrationView.h"
-#include "002-Dbo/UserDetailsModel.h"
-#include <Wt/WLineEdit.h>
 
+#include <Wt/WLineEdit.h>
 #include <Wt/WLengthValidator.h>
 
 RegistrationView::RegistrationView(Session &session,
@@ -10,9 +9,9 @@ RegistrationView::RegistrationView(Session &session,
       session_(session)
 {
   setTemplateText(tr("Wt.Auth.template.registration"));
-  detailsModel_ = std::make_unique<UserDetailsModel>(session_);
+  model_ = std::make_unique<UserFormModel>(session_);
   setStyleClass("h-screen w-screen px-6 py-12 flex-col flex lg:px-8 bg-white ");
-  updateView(detailsModel_.get());
+  updateView(model_.get());
 
   bindEmpty("first-name-info");
   bindEmpty("last-name-info");
@@ -21,9 +20,9 @@ RegistrationView::RegistrationView(Session &session,
 
 std::unique_ptr<Wt::WWidget> RegistrationView::createFormWidget(Wt::WFormModel::Field field)
 {
-  if (field == UserDetailsModel::first_name ||
-      field == UserDetailsModel::last_name ||
-      field == UserDetailsModel::phone)
+  if (field == UserFormModel::FIRST_NAME ||
+      field == UserFormModel::LAST_NAME ||
+      field == UserFormModel::PHONE)
   {
 
     auto input = std::make_unique<Wt::WLineEdit>();
@@ -39,15 +38,15 @@ bool RegistrationView::validate()
 {
   bool result = Wt::Auth::RegistrationWidget::validate();
 
-  updateModel(detailsModel_.get());
-  if (!detailsModel_->validate())
+  updateModel(model_.get());
+  if (!model_->validate())
     result = false;
-  updateView(detailsModel_.get());
+  updateView(model_.get());
 
   return result;
 }
 
 void RegistrationView::registerUserDetails(Wt::Auth::User &user)
 {
-  detailsModel_->save(user);
+  model_->save(user);
 }

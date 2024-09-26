@@ -1,8 +1,9 @@
 #pragma once
 #include <Wt/Auth/RegistrationWidget.h>
+#include "002-Dbo/UserFormModel.h"
 
 class Session;
-class UserDetailsModel;
+// class UserFormModel;
 
 class RegistrationView : public Wt::Auth::RegistrationWidget
 {
@@ -13,7 +14,7 @@ public:
   virtual std::unique_ptr<Wt::WWidget> createFormWidget(Wt::WFormModel::Field field);
 
 protected:
-  /* specialize to also validate the user details */
+  // /* specialize to also validate the user details */
   virtual bool validate();
 
   /* specialize to register user details */
@@ -22,5 +23,5 @@ protected:
 private:
   Session &session_;
 
-  std::unique_ptr<UserDetailsModel> detailsModel_;
+  std::unique_ptr<UserFormModel> model_;
 };

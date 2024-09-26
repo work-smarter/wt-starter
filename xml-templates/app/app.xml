@@ -52,6 +52,53 @@
                 <div class="w-1/2 font-semibold">${user-dark-mode}</div>
             </div>
         </div>
+        <div class="border border-solid border-black my-4"></div>
+        <div>
+            <div>${user-settings-form}</div>
+        </div>
+    </message>
+
+    <message id="starter.user.settings.form">
+        <div>
+            <label for="${id:user-name}" class="">
+                <div class="flex">
+                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
+                    <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
+                </div>
+                <div>${user-name class="line-edit-style-1" implementation="input:first name"}</div>
+            </label>
+        </div>
+        <div>
+            <label for="${id:first-name}" class="">
+                <div class="flex">
+                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
+                    <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
+                </div>
+                <div>${first-name class="line-edit-style-1" implementation="input:first name"}</div>
+            </label>
+        </div>
+        <div>
+            <label for="${id:last-name}" class="">
+                <div class="flex">
+                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
+                    <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
+                </div>
+                <div>${last-name class="line-edit-style-1" implementation="input:first name"}</div>
+            </label>
+        </div>
+        <div>
+            <label for="${id:phone}" class="">
+                <div class="flex">
+                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
+                    <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
+                </div>
+                <div>${phone class="line-edit-style-1" implementation="input:first name"}</div>
+            </label>
+        </div>
+        <!-- <div>${user-name}</div> -->
+        <!-- <div>${first-name}</div> -->
+        <!-- <div>${last-name}</div> -->
+        <!-- <div>${phone}</div> -->
     </message>
 
 </messages>

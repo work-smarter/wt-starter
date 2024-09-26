@@ -3,16 +3,19 @@
 
 class Session;
 
-class UserDetailsModel : public Wt::WFormModel
+class UserFormModel : public Wt::WFormModel
 {
 public:
-    static const Field first_name;
-    static const Field last_name;
-    static const Field phone;
+    static const Field USER_NAME;
+    static const Field FIRST_NAME;
+    static const Field LAST_NAME;
+    static const Field PHONE;
+    static const Field JOIN_DATE;
 
-    UserDetailsModel(Session &session);
+    UserFormModel(Session &session);
 
     void save(const Wt::Auth::User &user);
+    void saveUserName(const Wt::Auth::User &user, const std::string &user_name);
     void saveFirstName(const Wt::Auth::User &user, const std::string &first_name);
     void saveLastName(const Wt::Auth::User &user, const std::string &last_name);
     void savePhone(const Wt::Auth::User &user, const std::string &phone);

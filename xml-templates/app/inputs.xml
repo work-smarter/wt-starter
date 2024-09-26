@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages>
+
+    <message id="starter.input" height="300px">
+        <div class="">
+            <label for="${id:input}" class=" ">
+                <div class="flex">
+                    <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${label class=" " implementation=""}</div>
+                    <div class=" ">${info class="font-bold text-red-500 ml-3"}</div>
+                </div>
+                <div class=" w-full">${input class="line-edit-style-1" implementation="input:Username"}</div>
+            </label>
+        </div>
+    </message>
+
+</messages>

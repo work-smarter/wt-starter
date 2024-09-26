@@ -15,7 +15,6 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 set(SOURCE_DIR ${PROJECT_SOURCE_DIR}/src/)
 # set(SOURCE_DIR_MY_WT ${PROJECT_SOURCE_DIR}/../1000-MyWt/)
 
-
 include_directories(${SOURCE_DIR})
 # include_directories(${SOURCE_DIR_MY_WT})
 # include_directories(${SOURCE_DIR}/101-Interface)
@@ -25,7 +24,8 @@ set(SOURCES
     ${SOURCE_DIR}/main.cpp
     ${SOURCE_DIR}/001-App/App.cpp
     ${SOURCE_DIR}/002-Dbo/Session.cpp
-    ${SOURCE_DIR}/002-Dbo/UserDetailsModel.cpp
+    ${SOURCE_DIR}/002-Dbo/UserFormModel.cpp
+    ${SOURCE_DIR}/002-Dbo/UserFormView.cpp
     ${SOURCE_DIR}/003-Auth/AuthWidget.cpp
     ${SOURCE_DIR}/003-Auth/RegistrationView.cpp
     ${SOURCE_DIR}/004-Settings/Settings.cpp
@@ -39,6 +39,8 @@ target_link_libraries(${PROJECT_NAME}
     wt
     wtdbo
     wtdbosqlite3
+    # laws-cpp-sdk-s3
+    # laws-cpp-sdk-core
     # boost_filesystem
     # boost_regex
     # Ice++11

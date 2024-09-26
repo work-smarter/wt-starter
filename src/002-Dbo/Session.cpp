@@ -1,5 +1,7 @@
 #include "002-Dbo/Session.h"
 #include "002-Dbo/User.h"
+#include "002-Dbo/UserFormModel.h"
+
 #include <Wt/Auth/Dbo/AuthInfo.h>
 
 #include <Wt/Dbo/backend/Sqlite3.h>
@@ -59,27 +61,30 @@ void Session::createInitialData()
   // dbo::Transaction t(*this);
 
   // create user roles
-  auto userRole = add(std::make_unique<UserRole>());
-  userRole.modify()->name = "admin";
+  auto admin_role = add(std::make_unique<UserRole>());
+  admin_role.modify()->name = "admin";
 
-  userRole = add(std::make_unique<UserRole>());
-  userRole.modify()->name = "user";
+  auto user_role = add(std::make_unique<UserRole>());
+  user_role.modify()->name = "user";
 
   // Create a new User in User table
-  std::unique_ptr<User> newUserPtr{new User()};
-  newUserPtr->first_name = "Alexandru";
-  newUserPtr->last_name = "Croitoriu";
-  newUserPtr->phone = "+40771133255";
-  newUserPtr->darkMode = false;
-  newUserPtr->joinDate = Wt::WDateTime::currentDateTime().toTimePoint();
+  std::unique_ptr<User> new_user_ptr{new User()};
+  new_user_ptr->first_name = "Alexandru";
+  new_user_ptr->last_name = "Croitoriu";
+  new_user_ptr->phone = "0771133255";
+  new_user_ptr->dark_mode = false;
+  new_user_ptr->role = admin_role;
+  new_user_ptr->join_date = Wt::WDateTime::currentDateTime().toTimePoint();
 
-  dbo::ptr<User> userPtr = this->add(std::move(newUserPtr));
+  dbo::ptr<User> dbo_user = this->add(std::move(new_user_ptr));
 
-  auto newUser = users_->registerNew();
-  users_->setIdentity(newUser, Wt::Auth::Identity::LoginName, "admin@gmail.com");
-  newUser.setEmail("admin@gmail.com");
+  auto new_user = users_->registerNew();
+  // new_user.setEmail("admin@gmail.com");
+  new_user.setIdentity(Wt::Auth::Identity::LoginName, "admin");
+  myPasswordService.updatePassword(new_user, "asdfghj1");
 
-  myPasswordService.updatePassword(newUser, "asdfghj1");
+  auto dbo_user_info = users_->find(new_user);
+  dbo_user_info.modify()->setUser(dbo_user);
 
   // t.commit();
 }
@@ -90,7 +95,7 @@ void Session::configureAuth()
   myAuthService.setEmailVerificationEnabled(false);
   myAuthService.setEmailVerificationRequired(false);
   // myAuthService.setAuthTokenValidity(300);
-  myAuthService.setIdentityPolicy(Wt::Auth::IdentityPolicy::EmailAddress);
+  myAuthService.setIdentityPolicy(Wt::Auth::IdentityPolicy::LoginName);
   // myAuthService.setIdentityPolicy(Wt::Auth::IdentityPolicy::LoginName);
 
   auto verifier = std::make_unique<Wt::Auth::PasswordVerifier>();
