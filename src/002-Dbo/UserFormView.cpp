@@ -3,14 +3,8 @@
 
 #include <Wt/Auth/Dbo/AuthInfo.h>
 
-#include <Wt/Dbo/backend/Sqlite3.h>
-#include <Wt/Auth/AuthService.h>
-#include <Wt/Auth/HashFunction.h>
-#include <Wt/Auth/PasswordService.h>
-#include <Wt/Auth/PasswordStrengthValidator.h>
-#include <Wt/Auth/PasswordVerifier.h>
 #include <Wt/Auth/GoogleService.h>
-#include <Wt/Auth/FacebookService.h>
+// #include <Wt/Auth/FacebookService.h>
 
 #include <Wt/WLineEdit.h>
 #include <Wt/WText.h>
@@ -28,8 +22,32 @@ UserFormView::UserFormView(Session &session)
     auto user_name_input = dynamic_cast<Wt::WLineEdit *>(resolveWidget(UserFormModel::USER_NAME));
     user_name_input->setPlaceholderText(Wt::WString::tr("Wt.Auth.user-name"));
     user_name_input->changed().connect([=]
-                                       { validate();
-                                        model_->saveUserName(session_.login().user(), user_name_input->text().toUTF8()); });
+                                       {
+                                           updateModelField(model_.get(), UserFormModel::USER_NAME);
+
+                                           std::string user_name = model_->valueText(UserFormModel::USER_NAME).toUTF8();
+
+                                           Dbo::Transaction t(session_);
+                                           // check if there are any other users with the same user_name
+                                           auto user = session_.users().findWithIdentity(Wt::Auth::Identity::LoginName, user_name);
+                                           std::cout << "\n\n current user id :[" << session_.user().id() << "]\n\n";
+                                           std::cout << "\n\n user id :[" << user.id() << "]\n\n";
+                                           std::string user_id = std::to_string(session_.user().id());
+                                            if (user.id().compare("") == 0)
+                                            {
+                                                std::cout << "\n\n user name saved to the dbo \n\n";
+                                                model_->saveUserName(session_.login().user(), user_name_input->text().toUTF8());
+                                            }else if (user.id().compare(user_id) == 0)
+                                            {
+                                                std::cout << "\n\n same user name so dont save \n\n";
+                                                model_->setValidation(UserFormModel::USER_NAME, Wt::WValidator::Result(Wt::WValidator::State::Valid, Wt::WString::tr("Wt.Auth.user-name-valid")));
+                                            }else{
+                                                std::cout << "\n\n user name exists \n\n";
+                                                model_->setValidation(UserFormModel::USER_NAME, Wt::WValidator::Result(Wt::WValidator::State::Invalid, Wt::WString::tr("Wt.Auth.user-name-exists")));
+                                            }
+
+                                            t.commit(); 
+                                            updateView(model_.get()); });
 
     setFormWidget(UserFormModel::FIRST_NAME, std::make_unique<Wt::WLineEdit>());
     bindString("first-name-info", Wt::WString::tr("Wt.Auth.first-name-info"));
@@ -72,15 +90,5 @@ bool UserFormView::validate()
     if (!model_->validate())
         result = false;
     updateView(model_.get());
-
-    std::string user_name = model_->valueText(UserFormModel::USER_NAME).toUTF8();
-
-    Dbo::Transaction t(session_);
-    // check if there are any other users with the same user_name
-    auto user = session_.users().findWithIdentity(Wt::Auth::Identity::LoginName, user_name);
-    std::cout << "\n\n current user id :[" << session_.user().id() << "]\n\n";
-    std::cout << "\n\n user id :[" << user.id() << "]\n\n";
-
-    t.commit();
     return result;
 }

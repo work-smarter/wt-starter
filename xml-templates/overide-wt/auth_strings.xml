@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<messages xmlns:if="Wt.WTemplate.conditions"
-          nplurals="2"
-          plural="n == 1 ? 0 : 1">
+<messages xmlns:if="Wt.WTemplate.conditions" nplurals="2" plural="n == 1 ? 0 : 1">
 
   <!-- BaseAuth, PasswordAuth and OAuth models -->
 
@@ -62,7 +60,8 @@
   <message id="Wt.Auth.lost-password">Lost password</message>
   <message id="Wt.Auth.login">Login</message>
   <message id="Wt.Auth.logout">Logout</message>
-  <message id="Wt.Auth.throttle-retry">Retry in <span>{1}s</span></message>
+  <message id="Wt.Auth.throttle-retry">Retry in <span>{1}s</span>
+  </message>
 
   <message id="Wt.Auth.resend-email-verification">Resend?</message>
   <message id="Wt.Auth.resend-verification-title">Resend Email Verification</message>
@@ -91,10 +90,10 @@
   <message id="Wt.Auth.phone-info"></message>
   <message id="Wt.Auth.email-invalid">Invalid email address</message>
   <message id="Wt.Auth.email-exists">Email already registered</message>
-  <message id="Wt.Auth.oauth">Your external account</message>
+  <message id="Wt.Auth.oauth">Your external account</message>w
   <message id="Wt.Auth.oauth-info">Choose one of your accounts</message>
-  <message id="Wt.Auth.user-name-exists">User already exists</message>
-  <message id="Wt.Auth.confirm-is-you">User exists, is this you?</message>
+  <message id="Wt.Auth.user-name-exists">Username already exists</message>
+  <message id="Wt.Auth.confirm-is-you">Username exists, is this you?</message>
   <message id="Wt.Auth.user-name-tooshort">Min. size <span>{1}</span> characters</message>
   <message id="Wt.Auth.password-tooshort">Min. size <span>{1}</span> characters</message>
   <message id="Wt.Auth.passwords-dont-match">Passwords don't match</message>
@@ -150,7 +149,7 @@ Please click here to confirm your registration or copy and paste the
 following URL into your browser: (Note: be sure to copy the entire
 URL, including any part of it which goes onto a second line.)
 
-<span>{3}</span>
+    <span>{3}</span>
 
 This text is resolved from the "Wt.Auth.confirmmail.subject",
 "Wt.Auth.confirmmail.body", and "Wt.Auth.confirmmail.htmlbody"
@@ -162,7 +161,8 @@ The Wt team.
   </message>
 
   <message id="Wt.Auth.confirmmail.htmlbody">
-    <h3>Hello <span>{1}</span>,</h3>
+    <h3>Hello <span>{1}</span>,
+    </h3>
 
     <p>Thank you for joining!</p>
 
@@ -173,7 +173,8 @@ The Wt team.
     <p>Please <a href="{3}">click here to confirm</a> your
     registration or copy and paste the following URL into your
     browser: <i>(Note: be sure to copy the entire URL, including any
-    part of it which goes onto a second line.)</i></p>
+    part of it which goes onto a second line.)</i>
+    </p>
 
     <b>{3}</b>
 
@@ -220,7 +221,8 @@ The Wt team.
   </message>
 
   <message id="Wt.Auth.lostpasswordmail.htmlbody">
-    <h3>Hello <span>{1}</span>,</h3>
+    <h3>Hello <span>{1}</span>,
+    </h3>
 
     <p>This mail has been sent to you, because someone (presumably
     you?)  indicated that he wishes to choose a new password, because
@@ -234,7 +236,8 @@ The Wt team.
     <p>Please <a href="{3}">click here to choose a new password</a> or
     copy and paste the following URL into your browser: <i>(Note: be
     sure to copy the entire URL, including any part of it which goes
-    onto a second line.)</i></p>
+    onto a second line.)</i>
+    </p>
 
     <b>{3}</b>
 

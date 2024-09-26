@@ -6,7 +6,7 @@ std::shared_ptr<Wt::WRegExpValidator> createNameValidator()
 {
     auto validator = std::make_shared<Wt::WRegExpValidator>("^[a-zA-Z]{3,50}$");
     // validator->setMandatory(true);
-    validator->setInvalidNoMatchText("Must contain between 3 and 50 characters");
+    validator->setInvalidNoMatchText("Must contain between 3 and 50 characters and no spaces");
     validator->setInvalidBlankText("Cannot be empty");
     return validator;
 }

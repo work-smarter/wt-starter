@@ -60,10 +60,10 @@
             <div class="space-y-2">
                 <!-- ${<if:user-name>} -->
                 <div>
-                    <div>${confirm-is-you class=""}</div>
                     <label for="${id:user-name}" class="">
                         <div class="flex">
                             <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${user-name-label}</div>
+                            <div class="ms-2">${confirm-is-you class=""}</div>
                             <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${user-name class="line-edit-style-1" implementation="input:username"}</div>
