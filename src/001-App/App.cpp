@@ -17,7 +17,7 @@ App::App(const Wt::WEnvironment &env)
     messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
 
     // CSS
-    require("https://cdn.tailwindcss.com");
+    // require("https://cdn.tailwindcss.com");
 
     useStyleSheet("static/css/tailwind-out.css");
     // JSs
