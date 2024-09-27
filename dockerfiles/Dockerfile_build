@@ -1,7 +1,21 @@
 FROM wt_builder
 
-COPY ./ ./app
-WORKDIR ./app
+COPY ./resources/ ./app/resources/
+COPY ./src/ ./app/src/
+COPY ./static/ ./app/static/
+COPY ./tailwind/ ./app/tailwind/
+COPY ./xml-templates/ ./app/xml-templates/
+COPY ./CMakeLists.txt ./app/CMakeLists.txt
+COPY ./wt_config.xml ./app/wt_config.xml
+COPY ./dbo.db ./app/dbo.db
 
-RUN mkdir build && cd build && cmake .. && make
+# WORKDIR ./app
+
+# RUN mkdir build && cd build && cmake .. && make
+RUN mkdir ~/../app/build 
+RUN cd ~/../app/build && cmake ..
+RUN cd ~/../app/build &&  make
+RUN cd ~/../app/tailwind && npm install
+RUN cd ~/../app/tailwind && npm run build
+# RUN cd tailwind && npm install && npm run build
 

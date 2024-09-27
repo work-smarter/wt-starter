@@ -3,18 +3,15 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'Building wt_starter_build image'
-        sh 'docker build -t wt_starter_build -f dockerfiles/Dockerfile_build .'
-        sh 'docker build -t wt_starter -f dockerfiles/Dockerfile_deploy .'
+        sh 'chmod +x scripts/docker_builder_images.sh'
+        sh 'scripts/docker_builder_images.sh'
       }
     }
     
     stage('deploy') {
       steps {
-        echo 'Removing wt_starter container'
-        sh 'docker rm -f wt_starter || true'
-        echo 'Running wt_starter container'
-        sh 'docker run --rm -d --network vps-starter-containers_caddy -p 9010:9010 --name wt_starter wt_starter:latest'
+        sh 'chmod +x scripts/docker_deploy.sh'
+        sh 'scripts/docker_deploy.sh'
       }
     }
   }
