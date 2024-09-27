@@ -11,7 +11,7 @@
                     <div class="">
                         <label for="${id:user-name}" class=" ">
                             <div class="flex">
-                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${user-name-label class=" " implementation=""}</div>
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
                                 <div class=" ">${user-name-info class="font-bold text-red-500 ml-3"}</div>
                             </div>
                             <div class=" w-full">${user-name class="line-edit-style-1" implementation="input:Username"}</div>
@@ -62,8 +62,8 @@
                 <div>
                     <label for="${id:user-name}" class="">
                         <div class="flex">
-                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${user-name-label}</div>
-                            <div class="ms-2">${confirm-is-you class=""}</div>
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
+                            <div class="ms-2">${confirm-is-you class="text-green-600 font-bold underline"}</div>
                             <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
                         </div>
                         <div>${user-name class="line-edit-style-1" implementation="input:username"}</div>
@@ -135,8 +135,8 @@
             <div>${icons}</div>
             <!-- ${</if:oauth>} -->
             <div class="items-center flex justify-between my-2">
-                <div class="">${ok-button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" implementation="button:sign-up"}</div>
                 <div>${cancel-button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" implementation="button:sign-up"}</div>
+                <div>${ok-button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" implementation="button:sign-up"}</div>
             </div>
         </div>
     </message>
@@ -195,19 +195,30 @@
         </div>
     </message>
     <message id="Wt.Auth.template.password-prompt">
-        <div class="Wt-form Wt-auth-password-prompt">
-            <h2>${tr:Wt.Auth.password-prompt-form-title}</h2>
-            <p>${tr:Wt.Auth.password-prompt-form-info}</p>
-            <div class="Wt-fields">
-                <label for="${id:user-name}">
-                    <div>${tr:Wt.Auth.user-name}</div>
-                </label>
-                <div>${user-name}</div>
-                <div>${block:Wt.Auth.field password}</div>
-            </div>
-            <div class="Wt-buttons">
-                <div>${ok-button}</div>
-                <div>${cancel-button}</div>
+        <div class="h-screen w-screen px-6 py-12 flex flex-col lg:px-8 bg-white ">
+            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+
+                <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.password-prompt-form-title}</h2>
+                <p>${tr:Wt.Auth.password-prompt-form-info}</p>
+                <div class="flex flex-col space-y-2">
+                    <label for="${id:user-name}">
+                        <div>${tr:Wt.Auth.user-name}</div>
+                    </label>
+                    <div>${user-name class="line-edit-style-1"}</div>
+                    <div>
+                        <label for="${id:password}" class=" ">
+                            <div class="flex">
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.password}</div>
+                                <div>${password-info class="font-bold text-red-500 ml-3"}</div>
+                            </div>
+                            <div class=" w-full">${password class="line-edit-style-1" implementation="input:Password"}</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between my-2">
+                    <div>${cancel-button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"}</div>
+                    <div>${ok-button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"}</div>
+                </div>
             </div>
         </div>
     </message>

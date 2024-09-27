@@ -92,7 +92,7 @@
   <message id="Wt.Auth.email-exists">Email already registered</message>
   <message id="Wt.Auth.oauth">Your external account</message>w
   <message id="Wt.Auth.oauth-info">Choose one of your accounts</message>
-  <message id="Wt.Auth.user-name-exists">Username already exists</message>
+  <message id="Wt.Auth.user-name-exists">Username already taken</message>
   <message id="Wt.Auth.confirm-is-you">Username exists, is this you?</message>
   <message id="Wt.Auth.user-name-tooshort">Min. size <span>{1}</span> characters</message>
   <message id="Wt.Auth.password-tooshort">Min. size <span>{1}</span> characters</message>
@@ -108,7 +108,7 @@
 
   <!-- PasswordPromptDialog -->
 
-  <message id="Wt.Auth.enter-password">Enter your password</message>
+  <message id="Wt.Auth.enter-password"></message>
   <message id="Wt.Auth.password-prompt-form-title">Enter your password</message>
   <message id="Wt.Auth.password-prompt-form-info"></message>
   <message id="Wt.Auth.password-invalid">Invalid password</message>

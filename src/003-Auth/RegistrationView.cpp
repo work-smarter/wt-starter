@@ -1,4 +1,5 @@
 #include "003-Auth/RegistrationView.h"
+#include "002-Dbo/Session.h"
 
 #include <Wt/WLineEdit.h>
 #include <Wt/WLengthValidator.h>
@@ -20,14 +21,30 @@ RegistrationView::RegistrationView(Session &session,
 
 std::unique_ptr<Wt::WWidget> RegistrationView::createFormWidget(Wt::WFormModel::Field field)
 {
-  if (field == UserFormModel::FIRST_NAME ||
-      field == UserFormModel::LAST_NAME ||
-      field == UserFormModel::PHONE)
+  if (field == UserFormModel::FIRST_NAME)
   {
 
     auto input = std::make_unique<Wt::WLineEdit>();
     input->changed().connect([=]
+                             {
+                               updateModelField(model_.get(), UserFormModel::FIRST_NAME);
+                                auto result = model_->validateField(UserFormModel::FIRST_NAME);
+                               updateViewField(model_.get(), UserFormModel::FIRST_NAME); });
+    return input;
+  }
+  else if (field == UserFormModel::LAST_NAME)
+  {
+    auto input = std::make_unique<Wt::WLineEdit>();
+    input->changed().connect([=]
                              { validate(); });
+    return input;
+  }
+  else if (field == UserFormModel::PHONE)
+  {
+    auto input = std::make_unique<Wt::WLineEdit>();
+    input->changed().connect([=]
+                             { validate(); });
+    input->setMaxLength(10);
     return input;
   }
   else

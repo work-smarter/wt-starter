@@ -37,10 +37,11 @@ UserFormView::UserFormView(Session &session)
                                             {
                                                 std::cout << "\n\n user name saved to the dbo \n\n";
                                                 model_->saveUserName(session_.login().user(), user_name_input->text().toUTF8());
+                                                model_->setValidation(UserFormModel::USER_NAME, Wt::WValidator::Result(Wt::WValidator::State::Valid, Wt::WString::tr("Wt.Auth.user-name-info")));
                                             }else if (user.id().compare(user_id) == 0)
                                             {
                                                 std::cout << "\n\n same user name so dont save \n\n";
-                                                model_->setValidation(UserFormModel::USER_NAME, Wt::WValidator::Result(Wt::WValidator::State::Valid, Wt::WString::tr("Wt.Auth.user-name-valid")));
+                                                model_->setValidation(UserFormModel::USER_NAME, Wt::WValidator::Result(Wt::WValidator::State::Valid, Wt::WString::tr("Wt.Auth.user-name-info")));
                                             }else{
                                                 std::cout << "\n\n user name exists \n\n";
                                                 model_->setValidation(UserFormModel::USER_NAME, Wt::WValidator::Result(Wt::WValidator::State::Invalid, Wt::WString::tr("Wt.Auth.user-name-exists")));
@@ -54,7 +55,14 @@ UserFormView::UserFormView(Session &session)
     auto first_name_input = dynamic_cast<Wt::WLineEdit *>(resolveWidget(UserFormModel::FIRST_NAME));
     first_name_input->setPlaceholderText(Wt::WString::tr("Wt.Auth.first-name"));
     first_name_input->changed().connect([=]
-                                        { validate(); });
+                                        { 
+                                            updateModelField(model_.get(), UserFormModel::FIRST_NAME);
+                                            auto result = model_->validateField(UserFormModel::FIRST_NAME);
+                                            if (result)
+                                            {
+                                                model_->saveFirstName(session_.login().user(), first_name_input->text().toUTF8());
+                                            }
+                                            updateView(model_.get()); });
 
     setFormWidget(UserFormModel::LAST_NAME, std::make_unique<Wt::WLineEdit>());
     bindString("last-name-info", Wt::WString::tr("Wt.Auth.last-name-info"));

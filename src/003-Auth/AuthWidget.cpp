@@ -2,10 +2,12 @@
 #include "003-Auth/RegistrationView.h"
 #include "002-Dbo/Session.h"
 #include "002-Dbo/UserFormModel.h"
+#include "003-Auth/PasswordPromptDialog.h"
 // #include "App/1-AuthApp.h"
 
 AuthWidget::AuthWidget(Session &session)
     : Auth::AuthWidget(Session::auth(), session.users(), session.login()),
+      // model_(std::make_shared<Wt::Auth::AuthModel>(Session::auth(), session.users())),
       session_(session)
 {
   setStyleClass("w-screen h-screen");
@@ -30,4 +32,9 @@ std::unique_ptr<Wt::WWidget> AuthWidget::createRegistrationView(const Wt::Auth::
 //   logout->clicked().connect(this, [=](){
 //     login().logout();
 //   });
+// }
+
+// std::unique_ptr<Wt::WDialog> AuthWidget::createPasswordPromptDialog(Wt::Auth::Login &login)
+// {
+//   return std::make_unique<PasswordPromptDialog>(login, model_);
 // }
