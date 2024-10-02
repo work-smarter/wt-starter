@@ -16,7 +16,7 @@ echo 'Running wt_starter container'
 docker  run --rm -d  \
         --network vps-starter-containers_caddy \
         -p 9010:9010 \
-        --name wt_starter wt_starter:latest \
         -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
         -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-        -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+        -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
+        --name wt_starter wt_starter:latest 
