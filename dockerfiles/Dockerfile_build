@@ -8,11 +8,14 @@ COPY ./xml-templates/ ./app/xml-templates/
 COPY ./CMakeLists.txt ./app/CMakeLists.txt
 COPY ./wt_config.xml ./app/wt_config.xml
 COPY ./dbo.db ./app/dbo.db
+COPY ./aws/ ./app/aws/
+COPY ./image.png ./app/
 
 # WORKDIR ./app
 
 # RUN mkdir build && cd build && cmake .. && make
 RUN mkdir ~/../app/build 
+COPY ./image.png ./build/image.png
 RUN cd ~/../app/build && cmake ..
 RUN cd ~/../app/build &&  make
 RUN cd ~/../app/tailwind && npm install

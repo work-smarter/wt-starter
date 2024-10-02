@@ -7,7 +7,8 @@ project(app)
 # --no-print-directory
 
 set(CMAKE_CXX_STANDARD 17)
-add_definitions(-DICE_CPP11_MAPPING)
+# add_definitions(-DICE_CPP11_MAPPING)
+set(SERVICE_COMPONENTS s3)
 set(XMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 set(RLIB --docroot ../ -c ../wt_config.xml --http-address 0.0.0.0 --http-port 9010)
@@ -18,6 +19,7 @@ set(SOURCE_DIR ${PROJECT_SOURCE_DIR}/src/)
 include_directories(${SOURCE_DIR})
 # include_directories(${SOURCE_DIR_MY_WT})
 # include_directories(${SOURCE_DIR}/101-Interface)
+find_package(AWSSDK REQUIRED COMPONENTS ${SERVICE_COMPONENTS})
 
 # Add App.cpp to the list of source files
 set(SOURCES
@@ -30,6 +32,7 @@ set(SOURCES
     ${SOURCE_DIR}/003-Auth/PasswordPromptDialog.cpp
     ${SOURCE_DIR}/003-Auth/RegistrationView.cpp
     ${SOURCE_DIR}/004-Settings/Settings.cpp
+    ${SOURCE_DIR}/100-Utils/AwsConnect.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -40,6 +43,7 @@ target_link_libraries(${PROJECT_NAME}
     wt
     wtdbo
     wtdbosqlite3
+    ${AWSSDK_LINK_LIBRARIES}
     # laws-cpp-sdk-s3
     # laws-cpp-sdk-core
     # boost_filesystem

@@ -1,16 +1,29 @@
 FROM ubuntu
 
+RUN apt-get update && apt-get install -y ca-certificates
+
 COPY --from=wt_starter_build /usr/lib/libwt*.so.* /usr/lib/
 COPY --from=wt_starter_build /usr/lib/x86_64-linux-gnu/libIce++11.so.37 /usr/lib/x86_64-linux-gnu/
 COPY --from=wt_starter_build /usr/include/boost/* /usr/include/boost/
 COPY --from=wt_starter_build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib/x86_64-linux-gnu/
+COPY --from=wt_starter_build /usr/lib/x86_64-linux-gnu/libcurl.so.* /usr/lib/x86_64-linux-gnu/
+COPY --from=wt_starter_build /usr/local/ /usr/local/
+COPY --from=wt_starter_build /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/
+
+# COPY --from=wt_starter_build ./app/aws/ ~/.aws/
 
 COPY --from=wt_starter_build ./app/build/ /app/build/
 COPY --from=wt_starter_build ./app/xml-templates/ /app/xml-templates/
 COPY --from=wt_starter_build ./app/wt_config.xml /app/wt_config.xml
 COPY --from=wt_starter_build ./app/static/ /app/static/
 COPY --from=wt_starter_build ./app/resources/ /app/resources/
+COPY --from=wt_starter_build ./app/image.png ./app/build/
 
 WORKDIR ~/../app/build
+
+# Set AWS credentials as environment variables
+# ENV AWS_ACCESS_KEY_ID=AKIAZAGYIJ4EHIOHJLF4
+# ENV AWS_SECRET_ACCESS_KEY=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
+# ENV AWS_DEFAULT_REGION=eu-north-1
 
 CMD ./app --docroot ../ -c ../wt_config.xml --http-address 0.0.0.0 --http-port 9010

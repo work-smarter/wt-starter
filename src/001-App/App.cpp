@@ -3,6 +3,8 @@
 #include <Wt/WContainerWidget.h>
 #include "004-Settings/Settings.h"
 
+#include "100-Utils/AwsConnect.h"
+
 App::App(const Wt::WEnvironment &env)
     : WApplication(env),
       session_(appRoot() + "../dbo.db")
@@ -108,6 +110,14 @@ void App::createHome()
 {
     root_content_ = root_temp_->bindWidget("content", std::make_unique<Wt::WContainerWidget>());
     root_content_->addWidget(std::make_unique<Wt::WText>("Home Page"));
+    auto test_btn = root_content_->addWidget(std::make_unique<Wt::WPushButton>("Test"));
+    test_btn->setStyleClass("btn-green");
+    test_btn->clicked().connect([=]
+                                {
+                                    AwsConnect aws;
+                                    // aws.displayBuckets();
+                                    auto result_url = aws.sendFile(appRoot() + "image.png", "image.png");
+                                    auto image = root_content_->addWidget(std::make_unique<Wt::WImage>(result_url)); });
 }
 
 void App::createTest()
