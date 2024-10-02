@@ -31,7 +31,7 @@
 
     <message id="starter.settings">
         <div class="hidden">Settings template</div>
-        <div class="max-w-[320px] shadow-md border border-solid border-gray-200">
+        <div class="max-w-[320px] shadow-md border border-solid border-gray-200 mx-auto">
             <div class="flex bg-blue-200 w-full px-2 rounded-md">
                 <div class="flex justify-start items-centers w-full">
                     <div class="mr-1">${user-id}.</div>
@@ -44,6 +44,8 @@
                 </div>
             </div>
             <div class=" m-2 flex flex-wrap">
+                <div class="w-1/2">Username</div>
+                <div class="w-1/2 font-semibold">${user-user-name}</div>
                 <div class="w-1/2">Email</div>
                 <div class="w-1/2 font-semibold">${user-email}</div>
                 <div class="w-1/2">Phone</div>
@@ -59,46 +61,60 @@
     </message>
 
     <message id="starter.user.settings.form">
-        <div>
-            <label for="${id:user-name}" class="">
-                <div class="flex">
-                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
-                    <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
-                </div>
-                <div>${user-name class="line-edit-style-1" implementation="input:first name"}</div>
-            </label>
+        <div class="max-w-md mx-auto">
+            <div class="w-full">
+                <label for="${id:user-name}" class="">
+                    <div class="flex">
+                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
+                        <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-full">${user-name class="line-edit-style-1" implementation="input:first name"}</div>
+                        <div>${user-name-save-btn class="btn-green"}</div>
+                        <div>${user-name-cancel-btn class="btn-green"}</div>
+                    </div>
+                </label>
+            </div>
+            <div class="w-full">
+                <label for="${id:first-name}" class="">
+                    <div class="flex">
+                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
+                        <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-full">${first-name class="line-edit-style-1" implementation="input:first name"}</div>
+                        <div>${first-name-save-btn class="btn-green"}</div>
+                        <div>${first-name-cancel-btn class="btn-green"}</div>
+                    </div>
+                </label>
+            </div>
+            <div class="w-full">
+                <label for="${id:last-name}" class="">
+                    <div class="flex">
+                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
+                        <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-full">${last-name class="line-edit-style-1" implementation="input:first name"}</div>
+                        <div>${last-name-save-btn class="btn-green"}</div>
+                        <div>${last-name-cancel-btn class="btn-green"}</div>
+                    </div>
+                </label>
+            </div>
+            <div class="w-full">
+                <label for="${id:phone}" class="">
+                    <div class="flex">
+                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
+                        <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-full">${phone class="line-edit-style-1" implementation="input:first name"}</div>
+                        <div>${phone-save-btn class="btn-green"}</div>
+                        <div>${phone-cancel-btn class="btn-green"}</div>
+                    </div>
+                </label>
+            </div>
         </div>
-        <div>
-            <label for="${id:first-name}" class="">
-                <div class="flex">
-                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
-                    <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
-                </div>
-                <div>${first-name class="line-edit-style-1" implementation="input:first name"}</div>
-            </label>
-        </div>
-        <div>
-            <label for="${id:last-name}" class="">
-                <div class="flex">
-                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
-                    <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
-                </div>
-                <div>${last-name class="line-edit-style-1" implementation="input:first name"}</div>
-            </label>
-        </div>
-        <div>
-            <label for="${id:phone}" class="">
-                <div class="flex">
-                    <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
-                    <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
-                </div>
-                <div>${phone class="line-edit-style-1" implementation="input:first name"}</div>
-            </label>
-        </div>
-        <!-- <div>${user-name}</div> -->
-        <!-- <div>${first-name}</div> -->
-        <!-- <div>${last-name}</div> -->
-        <!-- <div>${phone}</div> -->
     </message>
 
 </messages>

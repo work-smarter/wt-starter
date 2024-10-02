@@ -12,12 +12,13 @@ App::App(const Wt::WEnvironment &env)
 
     messageResourceBundle().use("../xml-templates/app/app");
     messageResourceBundle().use("../xml-templates/app/inputs");
+    messageResourceBundle().use("../xml-templates/app/strings");
 
     messageResourceBundle().use("../xml-templates/overide-wt/auth");
     messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
 
     // CSS
-    // require("https://cdn.tailwindcss.com");
+    require("https://cdn.tailwindcss.com");
 
     useStyleSheet("static/css/tailwind-out.css");
     // JSs

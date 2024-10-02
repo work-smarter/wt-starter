@@ -40,6 +40,7 @@ void UserFormModel::save(const Auth::User &user)
 
 void UserFormModel::saveUserName(const Auth::User &user, const std::string &user_name)
 {
+  std::cout << "\n ------------------ UserFormModel::saveUserName: " << user_name << std::endl;
   Dbo::Transaction t(session_);
 
   Dbo::ptr<User> dbo_user = session_.user(user);
@@ -50,6 +51,7 @@ void UserFormModel::saveUserName(const Auth::User &user, const std::string &user
 
 void UserFormModel::saveFirstName(const Auth::User &user, const std::string &first_name)
 {
+  std::cout << "\n ------------------ UserFormModel::saveFirstName: " << first_name << std::endl;
   Dbo::Transaction t(session_);
 
   Dbo::ptr<User> dbo_user = session_.user(user);
@@ -60,6 +62,7 @@ void UserFormModel::saveFirstName(const Auth::User &user, const std::string &fir
 
 void UserFormModel::saveLastName(const Auth::User &user, const std::string &last_name)
 {
+  std::cout << "\n ------------------ UserFormModel::saveLastName: " << last_name << std::endl;
   Dbo::Transaction t(session_);
 
   Dbo::ptr<User> dbo_user = session_.user(user);
@@ -70,6 +73,7 @@ void UserFormModel::saveLastName(const Auth::User &user, const std::string &last
 
 void UserFormModel::savePhone(const Auth::User &user, const std::string &phone)
 {
+  std::cout << "\n ------------------ UserFormModel::savePhone: " << phone << std::endl;
   Dbo::Transaction t(session_);
 
   Dbo::ptr<User> dbo_user = session_.user(user);

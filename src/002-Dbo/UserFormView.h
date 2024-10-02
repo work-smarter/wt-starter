@@ -11,6 +11,6 @@ public:
 
 private:
     Session &session_;
-    bool validate();
+    // bool validate();
     std::unique_ptr<UserFormModel> model_;
 };

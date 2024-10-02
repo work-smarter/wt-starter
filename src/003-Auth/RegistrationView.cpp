@@ -36,14 +36,20 @@ std::unique_ptr<Wt::WWidget> RegistrationView::createFormWidget(Wt::WFormModel::
   {
     auto input = std::make_unique<Wt::WLineEdit>();
     input->changed().connect([=]
-                             { validate(); });
+                             { 
+                                updateModelField(model_.get(), UserFormModel::LAST_NAME);
+                                auto result = model_->validateField(UserFormModel::LAST_NAME);
+                                updateViewField(model_.get(), UserFormModel::LAST_NAME); });
     return input;
   }
   else if (field == UserFormModel::PHONE)
   {
     auto input = std::make_unique<Wt::WLineEdit>();
     input->changed().connect([=]
-                             { validate(); });
+                             { 
+                                updateModelField(model_.get(), UserFormModel::PHONE);
+                                auto result = model_->validateField(UserFormModel::PHONE);
+                                updateViewField(model_.get(), UserFormModel::PHONE); });
     input->setMaxLength(10);
     return input;
   }
