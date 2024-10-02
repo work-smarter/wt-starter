@@ -8,7 +8,6 @@ COPY ./xml-templates/ ./app/xml-templates/
 COPY ./CMakeLists.txt ./app/CMakeLists.txt
 COPY ./wt_config.xml ./app/wt_config.xml
 COPY ./dbo.db ./app/dbo.db
-COPY ./aws/ ./app/aws/
 COPY ./image.png ./app/
 
 # WORKDIR ./app
