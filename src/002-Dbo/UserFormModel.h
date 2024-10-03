@@ -11,7 +11,7 @@ public:
     static const Field LAST_NAME;
     static const Field PHONE;
     static const Field JOIN_DATE;
-    static const Field PHOTO;
+    // static const Field PHOTO;
 
     UserFormModel(Session &session);
 

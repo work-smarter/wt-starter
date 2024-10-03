@@ -10,8 +10,8 @@ const WFormModel::Field
     UserFormModel::USER_NAME = "user-name",
     UserFormModel::FIRST_NAME = "first-name",
     UserFormModel::LAST_NAME = "last-name",
-    UserFormModel::PHONE = "phone",
-    UserFormModel::PHOTO = "photo";
+    UserFormModel::PHONE = "phone";
+// UserFormModel::PHOTO = "photo";
 
 UserFormModel::UserFormModel(Session &session)
     : WFormModel(),
@@ -21,7 +21,7 @@ UserFormModel::UserFormModel(Session &session)
   addField(FIRST_NAME, WString::tr("Wt.Auth.first-name-info"));
   addField(LAST_NAME, WString::tr("Wt.Auth.first-name-info"));
   addField(PHONE, WString::tr("Wt.Auth.phone-info"));
-  addField(PHOTO, WString::tr("App.photo-info"));
+  // addField(PHOTO, WString::tr("App.photo-info"));
 
   setValidator(USER_NAME, createNameValidator());
   setValidator(FIRST_NAME, createNameValidator());

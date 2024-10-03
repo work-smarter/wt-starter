@@ -10,13 +10,14 @@ UserPhotoUploder::UserPhotoUploder(Session &session)
     bindEmpty("file-info-1");
     bindEmpty("file-info-2");
     bindEmpty("file-info-3");
-    bindEmpty("file-info-4");
 
     photo_uploader = bindWidget("file-upload", std::make_unique<Wt::WFileUpload>());
     photo_uploader->setMultiple(false);
 
     auto progress_bar = bindWidget("progress-bar", std::make_unique<Wt::WProgressBar>());
     photo_uploader->setProgressBar(progress_bar);
+
+    // upload_btn = bindWidget("upload-btn", std::make_unique<Wt::WPushButton>(Wt::WString::tr("starter.svg.edit"), Wt::TextFormat::XHTML));
 
     if (photo_url.empty())
     {
@@ -29,6 +30,7 @@ UserPhotoUploder::UserPhotoUploder(Session &session)
     image_->setStyleClass("");
 
     photo_uploader->setDisplayWidget(image_);
+    // photo_uploader->setDisplayWidget(upload_btn);
     photo_uploader->changed().connect(this, &UserPhotoUploder::fileChanged);
     photo_uploader->uploaded().connect(this, &UserPhotoUploder::fileUploaded);
     photo_uploader->fileTooLarge().connect(this, &UserPhotoUploder::fileToLarge);
@@ -36,7 +38,7 @@ UserPhotoUploder::UserPhotoUploder(Session &session)
 
 void UserPhotoUploder::fileUploaded()
 {
-    bindString("file-info-1", "file uploaded");
+    // bindString("file-info-1", "file uploaded");
     std::cout << "\n file uploaded \n";
     std::cout << "\n spoolFileName: " << photo_uploader->spoolFileName() << "\n";
     std::cout << "\n clientFileName: " << photo_uploader->clientFileName() << "\n";
@@ -52,7 +54,7 @@ void UserPhotoUploder::fileUploaded()
 
 void UserPhotoUploder::fileChanged()
 {
-    bindString("file-info-2", "file changed");
+    // bindString("file-info-2", "file changed");
     std::cout << "\n file changed \n";
     photo_uploader->upload();
     std::cout << "\n " << photo_uploader->spoolFileName() << "\n";
@@ -60,7 +62,7 @@ void UserPhotoUploder::fileChanged()
 
 void UserPhotoUploder::fileToLarge()
 {
-    bindString("file-info-4", "file to large");
+    // bindString("file-info-3", "file to large");
     std::cout << "\n file to large \n";
     // photo_uploader->show();
 }

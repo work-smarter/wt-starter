@@ -125,26 +125,38 @@
             <div>${file-info-1}</div>
             <div>${file-info-2}</div>
             <div>${file-info-3}</div>
-            <div>${file-info-4}</div>
             <!-- <div>${progress-bar}</div> -->
             <div>${file-upload}</div>
-            <div class="
-            hover:after:content-['Change'] 
-            hover:after:rounded-md
-            hover:after:cursor-pointer
-            hover:after:w-full
-            hover:after:h-full
-            hover:after:text-white
-            hover:after:font-bold
-            hover:after:text-xl
-            hover:after:text-center
-            hover:after:leading-[100px]
-            hover:after:absolute 
-            hover:after:top-0
-            hover:after:left-0
-            hover:after:bg-gray-500
-            hover:after:opacity-60">${image class="bg-center bg-cover rounded-md max-h-[230px]"}</div>
+            <div class="relative w-fit h-fit">
+                <div>${upload-btn class="absolute bottom-4 right-4 w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 opacity-60"}</div>
+                <div>${image class="bg-center bg-cover rounded-md max-h-[230px]"}</div>
+            </div>
         </div>
     </message>
 
+    <message id="starter.svg.edit">
+        <svg fill="#000000" class="w-fit h-fit" viewBox="-4 0 32 32" version="1.1"
+            xmlns="http://www.w3.org/2000/svg">
+            <title>edit</title>
+            <path d="M17.438 22.469v-4.031l2.5-2.5v7.344c0 1.469-1.219 2.688-2.656 2.688h-14.625c-1.469 0-2.656-1.219-2.656-2.688v-14.594c0-1.469 1.188-2.688 2.656-2.688h14.844v0.031l-2.5 2.469h-11.5c-0.531 0-1 0.469-1 1.031v12.938c0 0.563 0.469 1 1 1h12.938c0.531 0 1-0.438 1-1zM19.813 7.219l2.656 2.656 1.219-1.219-2.656-2.656zM10.469 16.594l2.625 2.656 8.469-8.469-2.625-2.656zM8.594 21.094l3.625-0.969-2.656-2.656z"></path>
+        </svg>
+    </message>
+
 </messages>
+
+<!-- class="
+hover:before:content-['Change']
+hover:before:rounded-md
+hover:before:cursor-pointer
+hover:before:w-full
+hover:before:h-full
+hover:before:text-white
+hover:before:font-bold
+hover:before:text-xl
+hover:before:text-center
+hover:before:leading-[100px]
+hover:before:absolute 
+hover:before:top-0
+hover:before:left-0
+hover:before:bg-gray-500
+hover:before:opacity-60" -->
