@@ -5,4 +5,6 @@
     <message id="App-first-name-error">First name should be between 3 and 50 characters and no spaces</message>
     <message id="App-last-name-error">Last name should be between 3 and 50 characters and no spaces</message>
     <message id="App-phone-validation-error">10 numbers only</message>
+    <message id="App.photo">Photo</message>
+    <message id="App.photo-info"></message>
 </messages>

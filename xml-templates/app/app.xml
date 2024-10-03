@@ -114,6 +114,21 @@
                     </div>
                 </label>
             </div>
+            <div class="w-full">
+                <div>${file-upload}</div>
+            </div>
+        </div>
+    </message>
+
+    <message id="starter.photo.upload">
+        <div class="bg-red-200">
+            <div>${file-info-1}</div>
+            <div>${file-info-2}</div>
+            <div>${file-info-3}</div>
+            <div>${file-info-4}</div>
+            <div>${progress-bar}</div>
+            <div>${file-upload}</div>
+            <div>${image}</div>
         </div>
     </message>
 

@@ -1,6 +1,6 @@
 #include "002-Dbo/UserFormView.h"
 #include "002-Dbo/Session.h"
-
+#include "100-Utils/PhotoUpload.h"
 // #include <Wt/Auth/Dbo/AuthInfo.h>
 
 // #include <Wt/Auth/GoogleService.h>
@@ -8,8 +8,10 @@
 #include <Wt/Auth/Identity.h>
 
 #include <Wt/WLineEdit.h>
-#include <Wt/WText.h>
+#include <Wt/WFileUpload.h>
 #include <Wt/WPushButton.h>
+#include <Wt/WText.h>
+#include <Wt/WLink.h>
 
 UserFormView::UserFormView(Session &session)
     : WTemplateFormView(tr("starter.user.settings.form")),
@@ -101,12 +103,12 @@ UserFormView::UserFormView(Session &session)
                                         }
                                         updateView(model_.get());
                                         auto t = Dbo::Transaction(session_);
-                                        if (result && first_name_input->text().toUTF8().compare(session_.user()->first_name) != 0)
+                                        if (result && first_name_input->text().toUTF8().compare(session_.user()->first_name.toUTF8()) != 0)
                                         {
                                             first_name_save_btn->setEnabled(true);
                                             first_name_cancel_btn->setEnabled(true);
                                         }
-                                        else if (!result && first_name_input->text().toUTF8().compare(session_.user()->first_name) != 0)
+                                        else if (!result && first_name_input->text().toUTF8().compare(session_.user()->first_name.toUTF8()) != 0)
                                         {
                                             first_name_save_btn->setEnabled(false);
                                             first_name_cancel_btn->setEnabled(true);
@@ -146,10 +148,10 @@ UserFormView::UserFormView(Session &session)
                                             }
                                             updateView(model_.get()); 
                                             auto t = Dbo::Transaction(session_);
-                                            if(result && last_name_input->text().toUTF8().compare(session_.user()->last_name) != 0) {
+                                            if(result && last_name_input->text().toUTF8().compare(session_.user()->last_name.toUTF8()) != 0) {
                                                 last_name_save_btn->setEnabled(true);
                                                 last_name_cancel_btn->setEnabled(true);
-                                            } else if(!result && last_name_input->text().toUTF8().compare(session_.user()->last_name) != 0) {
+                                            } else if(!result && last_name_input->text().toUTF8().compare(session_.user()->last_name.toUTF8()) != 0) {
                                                 last_name_save_btn->setEnabled(false);
                                                 last_name_cancel_btn->setEnabled(true);
                                             } else {
@@ -188,10 +190,10 @@ UserFormView::UserFormView(Session &session)
                                         }
                                         updateView(model_.get());
                                         auto t = Dbo::Transaction(session_);
-                                        if(result && phone_input->text().toUTF8().compare(session_.user()->phone) != 0) {
+                                        if(result && phone_input->text().toUTF8().compare(session_.user()->phone.toUTF8()) != 0) {
                                             phone_save_btn->setEnabled(true);
                                             phone_cancel_btn->setEnabled(true);
-                                        } else if(!result && phone_input->text().toUTF8().compare(session_.user()->phone) != 0) {
+                                        } else if(!result && phone_input->text().toUTF8().compare(session_.user()->phone.toUTF8()) != 0) {
                                             phone_save_btn->setEnabled(false);
                                             phone_cancel_btn->setEnabled(true);
                                         } else {
@@ -212,7 +214,11 @@ UserFormView::UserFormView(Session &session)
                                         updateViewField(model_.get(), UserFormModel::PHONE); });
     phone_input->setMaxLength(10);
 
+    auto file_upload = bindWidget("file-upload", std::make_unique<PhotoUpload>(session_.user()->photo.toUTF8(), session_));
+    file_upload->image_->setStyleClass("w-12 h-12");
+
     dbo::Transaction t(session_);
+
     user_name_input->setText(session_.user()->auth_info->authIdentities().front()->identity());
     t.commit();
     first_name_input->setText(session_.user()->first_name);

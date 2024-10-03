@@ -116,7 +116,7 @@ void App::createHome()
                                 {
                                     AwsConnect aws;
                                     // aws.displayBuckets();
-                                    auto result_url = aws.sendFile(appRoot() + "image.png", "image.png");
+                                    auto result_url = aws.sendFile(appRoot() + "../image.png", "image.png");
                                     auto image = root_content_->addWidget(std::make_unique<Wt::WImage>(result_url)); });
 }
 

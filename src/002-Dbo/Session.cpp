@@ -74,7 +74,7 @@ void Session::createInitialData()
   new_user_ptr->phone = "0771133255";
   new_user_ptr->dark_mode = false;
   new_user_ptr->role = admin_role;
-  new_user_ptr->join_date = Wt::WDateTime::currentDateTime().toTimePoint();
+  new_user_ptr->join_date = Wt::WDateTime::currentDateTime();
 
   dbo::ptr<User> dbo_user = this->add(std::move(new_user_ptr));
 

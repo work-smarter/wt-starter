@@ -2,6 +2,7 @@
 #include <Wt/Dbo/Types.h>
 #include <Wt/WGlobal.h>
 #include <Wt/Dbo/Dbo.h>
+#include <Wt/Dbo/WtSqlTraits.h>
 
 namespace dbo = Wt::Dbo;
 
@@ -11,7 +12,7 @@ using AuthInfo = Wt::Auth::Dbo::AuthInfo<User>;
 class UserRole
 {
 public:
-  std::string name;
+  Wt::WString name;
   dbo::collection<dbo::ptr<User>> users;
 
   template <class Action>
@@ -25,11 +26,13 @@ public:
 class User
 {
 public:
-  std::string first_name;
-  std::string last_name;
-  std::string phone;
+  Wt::WString first_name;
+  Wt::WString last_name;
+  Wt::WString phone;
+  Wt::WString photo;
   bool dark_mode;
-  std::chrono::system_clock::time_point join_date;
+  // std::chrono::system_clock::time_point join_date;
+  Wt::WDateTime join_date;
 
   dbo::weak_ptr<AuthInfo> auth_info;
   dbo::ptr<UserRole> role;
@@ -44,5 +47,6 @@ public:
     dbo::field(a, phone, "phone");
     dbo::field(a, dark_mode, "darkMode");
     dbo::field(a, join_date, "joinDate");
+    dbo::field(a, photo, "photo");
   }
 };

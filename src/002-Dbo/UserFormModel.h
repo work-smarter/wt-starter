@@ -11,6 +11,7 @@ public:
     static const Field LAST_NAME;
     static const Field PHONE;
     static const Field JOIN_DATE;
+    static const Field PHOTO;
 
     UserFormModel(Session &session);
 
@@ -19,6 +20,7 @@ public:
     void saveFirstName(const Wt::Auth::User &user, const std::string &first_name);
     void saveLastName(const Wt::Auth::User &user, const std::string &last_name);
     void savePhone(const Wt::Auth::User &user, const std::string &phone);
+    void savePhoto(const Wt::Auth::User &user, const std::string &photo_path);
 
 private:
     Session &session_;

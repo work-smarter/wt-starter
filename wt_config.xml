@@ -247,7 +247,7 @@
            Maximum size of an incoming POST request. This value must be
            increased when the user is allowed to upload files.
          -->
-    <max-request-size>128</max-request-size>
+    <max-request-size>5000</max-request-size>
 
     <!-- Maximum form data (KiB)
 
@@ -724,8 +724,7 @@
       leaflet CSS.
               -->
       <!-- <property name="leafletJSURL">https://unpkg.com/leaflet@1.5.1/dist/leaflet.js</property> -->
-      <!-- <property
-      name="leafletCSSURL">https://unpkg.com/leaflet@1.5.1/dist/leaflet.css</property> -->
+      <!-- <property name="leafletCSSURL">https://unpkg.com/leaflet@1.5.1/dist/leaflet.css</property> -->
 
       <!-- google_api_key property
 
@@ -846,8 +845,7 @@
        should match exactly.
       -->
   <!--
-    <application-settings
-       location="/var/www/localhost/wt-examples/hello.wt">
+    <application-settings location="/var/www/localhost/wt-examples/hello.wt">
     </application-settings>
     -->
 </server>
