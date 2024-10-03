@@ -28,12 +28,12 @@ set(SOURCES
     ${SOURCE_DIR}/002-Dbo/Session.cpp
     ${SOURCE_DIR}/002-Dbo/UserFormModel.cpp
     ${SOURCE_DIR}/002-Dbo/UserFormView.cpp
+    ${SOURCE_DIR}/002-Dbo/UserPhotoUploder.cpp
     ${SOURCE_DIR}/003-Auth/AuthWidget.cpp
     ${SOURCE_DIR}/003-Auth/PasswordPromptDialog.cpp
     ${SOURCE_DIR}/003-Auth/RegistrationView.cpp
     ${SOURCE_DIR}/004-Settings/Settings.cpp
     ${SOURCE_DIR}/100-Utils/AwsConnect.cpp
-    ${SOURCE_DIR}/100-Utils/PhotoUpload.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

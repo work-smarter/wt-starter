@@ -1,6 +1,6 @@
 #include "002-Dbo/UserFormView.h"
 #include "002-Dbo/Session.h"
-#include "100-Utils/PhotoUpload.h"
+#include "002-Dbo/UserPhotoUploder.h"
 // #include <Wt/Auth/Dbo/AuthInfo.h>
 
 // #include <Wt/Auth/GoogleService.h>
@@ -214,8 +214,7 @@ UserFormView::UserFormView(Session &session)
                                         updateViewField(model_.get(), UserFormModel::PHONE); });
     phone_input->setMaxLength(10);
 
-    auto file_upload = bindWidget("file-upload", std::make_unique<PhotoUpload>(session_.user()->photo.toUTF8(), session_));
-    file_upload->image_->setStyleClass("w-12 h-12");
+    auto file_upload = bindWidget("file-upload", std::make_unique<UserPhotoUploder>(session_));
 
     dbo::Transaction t(session_);
 

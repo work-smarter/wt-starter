@@ -6,12 +6,12 @@
 #include "002-Dbo/Session.h"
 #include <Wt/WProgressBar.h>
 
-class PhotoUpload : public Wt::WTemplate
+class UserPhotoUploder : public Wt::WTemplate
 {
 public:
-    PhotoUpload(std::string photo_url, Session &session);
+    UserPhotoUploder(Session &session);
     // Wt::WFileDropWidget *file_upload_;
-    Wt::WFileUpload *file_upload_;
+    Wt::WFileUpload *photo_uploader;
     Wt::WImage *image_;
 
 private:

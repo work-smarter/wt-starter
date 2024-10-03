@@ -61,74 +61,89 @@
     </message>
 
     <message id="starter.user.settings.form">
-        <div class="max-w-md mx-auto">
-            <div class="w-full">
-                <label for="${id:user-name}" class="">
-                    <div class="flex">
-                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
-                        <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-full">${user-name class="line-edit-style-1" implementation="input:first name"}</div>
-                        <div>${user-name-save-btn class="btn-green"}</div>
-                        <div>${user-name-cancel-btn class="btn-green"}</div>
-                    </div>
-                </label>
-            </div>
-            <div class="w-full">
-                <label for="${id:first-name}" class="">
-                    <div class="flex">
-                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
-                        <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-full">${first-name class="line-edit-style-1" implementation="input:first name"}</div>
-                        <div>${first-name-save-btn class="btn-green"}</div>
-                        <div>${first-name-cancel-btn class="btn-green"}</div>
-                    </div>
-                </label>
-            </div>
-            <div class="w-full">
-                <label for="${id:last-name}" class="">
-                    <div class="flex">
-                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
-                        <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-full">${last-name class="line-edit-style-1" implementation="input:first name"}</div>
-                        <div>${last-name-save-btn class="btn-green"}</div>
-                        <div>${last-name-cancel-btn class="btn-green"}</div>
-                    </div>
-                </label>
-            </div>
-            <div class="w-full">
-                <label for="${id:phone}" class="">
-                    <div class="flex">
-                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
-                        <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-full">${phone class="line-edit-style-1" implementation="input:first name"}</div>
-                        <div>${phone-save-btn class="btn-green"}</div>
-                        <div>${phone-cancel-btn class="btn-green"}</div>
-                    </div>
-                </label>
-            </div>
-            <div class="w-full">
-                <div>${file-upload}</div>
+        <div class="flex flex-col sm:!flex-row justify-center align-center w-full">
+            <div class="sm:w-1/2 flex items-center justify-center lg:!justify-end p-4">${file-upload class=""}</div>
+            <div class="sm:!w-1/2 w-full space-y-2">
+                <div class="w-full max-w-md mx-auto lg:!ml-0">
+                    <label for="${id:user-name}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
+                            <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-full">${user-name class="line-edit-style-1" implementation="input:first name"}</div>
+                            <div>${user-name-save-btn class="btn-green"}</div>
+                            <div>${user-name-cancel-btn class="btn-green"}</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="w-full max-w-md mx-auto lg:!ml-0">
+                    <label for="${id:first-name}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
+                            <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-full">${first-name class="line-edit-style-1" implementation="input:first name"}</div>
+                            <div>${first-name-save-btn class="btn-green"}</div>
+                            <div>${first-name-cancel-btn class="btn-green"}</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="w-full max-w-md mx-auto lg:!ml-0">
+                    <label for="${id:last-name}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
+                            <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-full">${last-name class="line-edit-style-1" implementation="input:first name"}</div>
+                            <div>${last-name-save-btn class="btn-green"}</div>
+                            <div>${last-name-cancel-btn class="btn-green"}</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="w-full max-w-md mx-auto lg:!ml-0">
+                    <label for="${id:phone}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
+                            <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-full">${phone class="line-edit-style-1" implementation="input:first name"}</div>
+                            <div>${phone-save-btn class="btn-green"}</div>
+                            <div>${phone-cancel-btn class="btn-green"}</div>
+                        </div>
+                    </label>
+                </div>
             </div>
         </div>
     </message>
 
     <message id="starter.photo.upload">
-        <div class="bg-red-200">
+        <div class="relative w-fit">
             <div>${file-info-1}</div>
             <div>${file-info-2}</div>
             <div>${file-info-3}</div>
             <div>${file-info-4}</div>
-            <div>${progress-bar}</div>
+            <!-- <div>${progress-bar}</div> -->
             <div>${file-upload}</div>
-            <div>${image}</div>
+            <div class="
+            hover:after:content-['Change'] 
+            hover:after:rounded-md
+            hover:after:cursor-pointer
+            hover:after:w-full
+            hover:after:h-full
+            hover:after:text-white
+            hover:after:font-bold
+            hover:after:text-xl
+            hover:after:text-center
+            hover:after:leading-[100px]
+            hover:after:absolute 
+            hover:after:top-0
+            hover:after:left-0
+            hover:after:bg-gray-500
+            hover:after:opacity-60">${image class="bg-center bg-cover rounded-md max-h-[230px]"}</div>
         </div>
     </message>
 
