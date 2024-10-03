@@ -3,6 +3,7 @@
 #include <aws/s3/S3Client.h>
 #include <aws/core/auth/AWSCredentialsProviderChain.h>
 #include <aws/s3/model/PutObjectRequest.h>
+#include <aws/s3/model/DeleteObjectRequest.h>
 
 #include <fstream>
 
@@ -113,4 +114,41 @@ std::string AwsConnect::sendFile(std::string file_path, std::string aws_file_pat
     }
     Aws::ShutdownAPI(options);
     return return_url;
+}
+
+bool AwsConnect::deleteFile(std::string aws_file_path)
+{
+    bool success = false;
+    Aws::SDKOptions options;
+    options.loggingOptions.logLevel = Aws::Utils::Logging::LogLevel::Debug;
+    Aws::InitAPI(options);
+    {
+        const Aws::String bucket_name = "aipro-storage";
+        const Aws::String object_name = aws_file_path.c_str();
+
+        Aws::Client::ClientConfiguration clientConfig;
+        clientConfig.region = Aws::Region::EU_NORTH_1;
+        Aws::S3::S3Client s3_client(clientConfig);
+
+        Aws::S3::Model::DeleteObjectRequest object_request;
+        object_request.SetBucket(bucket_name);
+        object_request.SetKey(object_name);
+
+        std::cout << "Attempting to delete object: " << object_name << " from bucket: " << bucket_name << std::endl;
+
+        auto delete_object_outcome = s3_client.DeleteObject(object_request);
+
+        if (delete_object_outcome.IsSuccess())
+        {
+            std::cout << "Successfully deleted " << object_name << " from " << bucket_name << std::endl;
+            success = true;
+        }
+        else
+        {
+            std::cerr << "Failed to delete " << object_name << " from " << bucket_name << ": "
+                      << delete_object_outcome.GetError().GetMessage() << std::endl;
+        }
+    }
+    Aws::ShutdownAPI(options);
+    return success;
 }

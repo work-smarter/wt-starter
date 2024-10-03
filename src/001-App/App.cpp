@@ -114,10 +114,19 @@ void App::createHome()
     test_btn->setStyleClass("btn-green");
     test_btn->clicked().connect([=]
                                 {
-                                    AwsConnect aws;
-                                    // aws.displayBuckets();
-                                    auto result_url = aws.sendFile(appRoot() + "../image.png", "image.png");
-                                    auto image = root_content_->addWidget(std::make_unique<Wt::WImage>(result_url)); });
+                                    // AwsConnect aws;
+                                    // // aws.displayBuckets();
+                                    // // auto result_url = aws.sendFile(appRoot() + "../image.png", "image.png");
+                                    // // auto image = root_content_->addWidget(std::make_unique<Wt::WImage>(result_url));
+
+                                    // auto result = aws.deleteFile("starterApp/wt9aTGKF/1/profile.jpg");
+                                    // // auto result = aws.deleteFile("https://aipro-storage.s3.eu-north-1.amazonaws.com/starterApp/wt9aTGKF/1/profile.jpg");
+                                    // if (result) {
+                                    //     std::cout << "\n File deleted \n";
+                                    // } else {
+                                    //     std::cout << "\n File not deleted \n";
+                                    // }
+                                });
 }
 
 void App::createTest()

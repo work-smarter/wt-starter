@@ -90,7 +90,7 @@ void UserFormModel::savePhoto(const Auth::User &user, const std::string &photo_p
   Dbo::Transaction t(session_);
 
   Dbo::ptr<User> dbo_user = session_.user(user);
-  dbo_user.modify()->photo = photo_path;
+  dbo_user.modify()->photo_url = photo_path;
 
   t.commit();
 }

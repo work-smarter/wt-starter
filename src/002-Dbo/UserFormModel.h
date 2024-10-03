@@ -19,6 +19,7 @@ public:
     void saveUserName(const Wt::Auth::User &user, const std::string &user_name);
     void saveFirstName(const Wt::Auth::User &user, const std::string &first_name);
     void saveLastName(const Wt::Auth::User &user, const std::string &last_name);
+    void saveUserEmail(const Wt::Auth::User &user, const std::string &email);
     void savePhone(const Wt::Auth::User &user, const std::string &phone);
     void savePhoto(const Wt::Auth::User &user, const std::string &photo_path);
 

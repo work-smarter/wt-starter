@@ -5,7 +5,7 @@ UserPhotoUploder::UserPhotoUploder(Session &session)
     : Wt::WTemplate(Wt::WString::tr("starter.photo.upload")),
       session_(session)
 {
-    auto photo_url = session_.user()->photo.toUTF8();
+    auto photo_url = session_.user()->photo_url.toUTF8();
     // addFunction("id", &WTemplate::Functions::id);
     bindEmpty("file-info-1");
     bindEmpty("file-info-2");
@@ -42,14 +42,24 @@ void UserPhotoUploder::fileUploaded()
     std::cout << "\n file uploaded \n";
     std::cout << "\n spoolFileName: " << photo_uploader->spoolFileName() << "\n";
     std::cout << "\n clientFileName: " << photo_uploader->clientFileName() << "\n";
+    std::string random_image_name = photo_uploader->spoolFileName().substr(photo_uploader->spoolFileName().find_last_of("/") + 1);
+    std::string file_termination = photo_uploader->clientFileName().toUTF8().substr(photo_uploader->clientFileName().toUTF8().find_last_of("."));
     AwsConnect aws;
-    auto result_url = aws.sendFile(photo_uploader->spoolFileName(), "starterApp/" + std::to_string(session_.user().id()) + "/profile.jpg");
-    image_->setImageLink(Wt::WLink(result_url));
+    auto result_url = aws.sendFile(photo_uploader->spoolFileName(), "starterApp/user-" + std::to_string(session_.user().id()) + "/" + random_image_name + file_termination);
 
+    // set the photo_url to the user and delete the previous photo from aws
     auto t = Dbo::Transaction(session_);
-    session_.user().modify()->photo = result_url;
+    if (session_.user()->photo_url.toUTF8().compare(""))
+    {
+        auto photo_key = session_.user()->photo_url.toUTF8().substr(session_.user()->photo_url.toUTF8().find("starterApp"));
+        aws.deleteFile(photo_key);
+    }
+    session_.user().modify()->photo_url = result_url;
     t.commit();
+
     photo_uploader->progressBar()->hide();
+    image_->setImageLink(Wt::WLink(result_url));
+    image_->refresh();
     // std::cout << "\n " << photo_uploader->spoolFileName() << "\n";
 }
 

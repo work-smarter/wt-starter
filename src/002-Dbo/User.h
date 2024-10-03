@@ -29,9 +29,8 @@ public:
   Wt::WString first_name;
   Wt::WString last_name;
   Wt::WString phone;
-  Wt::WString photo;
+  Wt::WString photo_url;
   bool dark_mode;
-  // std::chrono::system_clock::time_point join_date;
   Wt::WDateTime join_date;
 
   dbo::weak_ptr<AuthInfo> auth_info;
@@ -45,8 +44,8 @@ public:
     dbo::field(a, first_name, "first_name");
     dbo::field(a, last_name, "last_name");
     dbo::field(a, phone, "phone");
-    dbo::field(a, dark_mode, "darkMode");
-    dbo::field(a, join_date, "joinDate");
-    dbo::field(a, photo, "photo");
+    dbo::field(a, dark_mode, "dark_mode");
+    dbo::field(a, join_date, "join_date");
+    dbo::field(a, photo_url, "photo_url");
   }
 };
