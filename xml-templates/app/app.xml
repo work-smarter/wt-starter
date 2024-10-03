@@ -125,12 +125,12 @@
             <div>${file-info-1}</div>
             <div>${file-info-2}</div>
             <div>${file-info-3}</div>
-            <!-- <div>${progress-bar}</div> -->
             <div>${file-upload}</div>
             <div class="relative w-fit h-fit">
                 <div>${upload-btn class="absolute bottom-4 right-4 w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 opacity-60"}</div>
                 <div>${image class="bg-center bg-cover rounded-md max-h-[230px]"}</div>
             </div>
+            <div>${progress-bar class="w-full"}</div>
         </div>
     </message>
 

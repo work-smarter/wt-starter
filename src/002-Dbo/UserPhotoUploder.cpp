@@ -14,10 +14,10 @@ UserPhotoUploder::UserPhotoUploder(Session &session)
     photo_uploader = bindWidget("file-upload", std::make_unique<Wt::WFileUpload>());
     photo_uploader->setMultiple(false);
 
-    auto progress_bar = bindWidget("progress-bar", std::make_unique<Wt::WProgressBar>());
-    photo_uploader->setProgressBar(progress_bar);
+    photo_uploader->setProgressBar(bindWidget("progress-bar", std::make_unique<Wt::WProgressBar>()));
+    photo_uploader->progressBar()->hide();
 
-    // upload_btn = bindWidget("upload-btn", std::make_unique<Wt::WPushButton>(Wt::WString::tr("starter.svg.edit"), Wt::TextFormat::XHTML));
+    upload_btn = bindWidget("upload-btn", std::make_unique<Wt::WPushButton>(Wt::WString::tr("starter.svg.edit"), Wt::TextFormat::XHTML));
 
     if (photo_url.empty())
     {
@@ -29,8 +29,8 @@ UserPhotoUploder::UserPhotoUploder(Session &session)
     image_ = bindWidget("image", std::make_unique<Wt::WImage>(Wt::WLink(photo_url), "user image"));
     image_->setStyleClass("");
 
-    photo_uploader->setDisplayWidget(image_);
-    // photo_uploader->setDisplayWidget(upload_btn);
+    // photo_uploader->setDisplayWidget(image_);
+    photo_uploader->setDisplayWidget(upload_btn);
     photo_uploader->changed().connect(this, &UserPhotoUploder::fileChanged);
     photo_uploader->uploaded().connect(this, &UserPhotoUploder::fileUploaded);
     photo_uploader->fileTooLarge().connect(this, &UserPhotoUploder::fileToLarge);
@@ -49,6 +49,7 @@ void UserPhotoUploder::fileUploaded()
     auto t = Dbo::Transaction(session_);
     session_.user().modify()->photo = result_url;
     t.commit();
+    photo_uploader->progressBar()->hide();
     // std::cout << "\n " << photo_uploader->spoolFileName() << "\n";
 }
 
@@ -56,7 +57,9 @@ void UserPhotoUploder::fileChanged()
 {
     // bindString("file-info-2", "file changed");
     std::cout << "\n file changed \n";
+    photo_uploader->progressBar()->show();
     photo_uploader->upload();
+
     std::cout << "\n " << photo_uploader->spoolFileName() << "\n";
 }
 

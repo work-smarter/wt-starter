@@ -14,7 +14,7 @@ public:
     // Wt::WFileDropWidget *file_upload_;
     Wt::WFileUpload *photo_uploader;
     Wt::WImage *image_;
-    // Wt::WPushButton *upload_btn;
+    Wt::WPushButton *upload_btn;
 
 private:
     Session &session_;
