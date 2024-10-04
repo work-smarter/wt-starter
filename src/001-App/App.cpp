@@ -39,6 +39,7 @@ App::App(const Wt::WEnvironment &env)
 
     auth_ = root()->addWidget(std::move(authWidget));
     root_temp_ = root()->addWidget(std::make_unique<Wt::WTemplate>(Wt::WString::tr("starter.app")));
+    root_temp_->bindWidget("navbar", std::make_unique<Wt::WContainerWidget>())->setStyleClass("bg-gray-800 text-white p-4");
 
     auth_->login().changed().connect([=]
                                      {
