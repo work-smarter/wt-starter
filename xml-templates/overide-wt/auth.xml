@@ -38,7 +38,7 @@
                 <!-- ${<if:oauth>} -->
                 <div class="">
                     <h3 class="">Or use:</h3>
-                    <div class="">${icons}</div>
+                    <div class="[&amp;_div_img]:p-5 [&amp;_div_img]:bg-red-200">${icons class=""}</div>
                 </div>
                 <!-- ${</if:oauth>} -->
                 <div class="w-full ">
