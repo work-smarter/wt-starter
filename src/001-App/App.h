@@ -21,9 +21,14 @@ public:
     Wt::WTemplate *root_temp_;
     Wt::WContainerWidget *root_content_;
 
-private:
+    static App *app()
+    {
+        return (App *)WApplication::instance();
+    }
+
     Session session_;
 
+private:
     void createUi();
     void createHome();
     void createProfile();

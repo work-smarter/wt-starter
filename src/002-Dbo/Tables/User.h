@@ -7,6 +7,8 @@
 namespace dbo = Wt::Dbo;
 
 class User;
+class CalendarEntry;
+
 using AuthInfo = Wt::Auth::Dbo::AuthInfo<User>;
 
 class UserRole
@@ -35,6 +37,9 @@ public:
 
   dbo::weak_ptr<AuthInfo> auth_info;
   dbo::ptr<UserRole> role;
+  dbo::collection<dbo::ptr<CalendarEntry>> entries;
+
+  dbo::collection<dbo::ptr<CalendarEntry>> entriesInRange(const Wt::WDate &from, const Wt::WDate &until) const;
 
   template <class Action>
   void persist(Action &a)
@@ -47,5 +52,6 @@ public:
     dbo::field(a, dark_mode, "dark_mode");
     dbo::field(a, join_date, "join_date");
     dbo::field(a, photo_url, "photo_url");
+    dbo::hasMany(a, entries, dbo::ManyToOne, "user");
   }
 };

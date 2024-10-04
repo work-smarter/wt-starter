@@ -1,5 +1,5 @@
 #include "002-Dbo/UserFormModel.h"
-#include "002-Dbo/User.h"
+#include "002-Dbo/Tables/User.h"
 #include "002-Dbo/Session.h"
 #include "002-Dbo/Validators.h"
 

@@ -5,6 +5,9 @@
 
 #include "100-Utils/AwsConnect.h"
 
+#include <Wt/WCalendar.h>
+#include "005-Calendar/Calendar.h"
+
 App::App(const Wt::WEnvironment &env)
     : WApplication(env),
       session_(appRoot() + "../dbo.db")
@@ -15,6 +18,7 @@ App::App(const Wt::WEnvironment &env)
     messageResourceBundle().use("../xml-templates/app/app");
     messageResourceBundle().use("../xml-templates/app/inputs");
     messageResourceBundle().use("../xml-templates/app/strings");
+    messageResourceBundle().use("../xml-templates/app/calendar");
 
     messageResourceBundle().use("../xml-templates/overide-wt/auth");
     messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
@@ -127,6 +131,9 @@ void App::createHome()
                                     //     std::cout << "\n File not deleted \n";
                                     // }
                                 });
+
+    Wt::WCalendar *c1 = root_content_->addNew<Wt::WCalendar>();
+    Calendar *c2 = root_content_->addNew<Calendar>(session_.user());
 }
 
 void App::createTest()

@@ -1,5 +1,5 @@
 #include "002-Dbo/Session.h"
-#include "002-Dbo/User.h"
+#include "002-Dbo/Tables/User.h"
 #include "002-Dbo/UserFormModel.h"
 
 #include <Wt/Auth/Dbo/AuthInfo.h>
@@ -29,6 +29,7 @@ Session::Session(const std::string &sqliteDb)
   auto connection = std::make_unique<Dbo::backend::Sqlite3>(sqliteDb);
   setConnection(std::move(connection));
 
+  mapClass<CalendarEntry>("calendar_entry");
   mapClass<UserRole>("user_role");
   mapClass<User>("user");
   mapClass<AuthInfo>("auth_info");

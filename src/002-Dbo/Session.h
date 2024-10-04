@@ -1,5 +1,6 @@
 #pragma once
-#include "002-Dbo/User.h"
+#include "002-Dbo/Tables/User.h"
+#include "002-Dbo/Tables/CalendarEntry.h"
 #include <Wt/Auth/Login.h>
 #include <Wt/Auth/Dbo/UserDatabase.h>
 

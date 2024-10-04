@@ -3,7 +3,7 @@
 #include <Wt/WTemplate.h>
 
 #include "002-Dbo/Session.h"
-#include "002-Dbo/User.h"
+#include "002-Dbo/Tables/User.h"
 
 #include <Wt/WDateTime.h>
 

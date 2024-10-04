@@ -832,6 +832,10 @@
       <!-- <property name="tinyMCEVersion">3</property> -->
       <!-- <property name="tinyMCEURL"></property> -->
       <!-- <property name="tinyMCEBaseURL">resources/tiny_mce</property> -->
+      <property name="google-oauth2-redirect-endpoint">https://starter.alexandru-croitoriu.dev/oauth2callback</property>
+      <!-- <property name="google-oauth2-redirect-endpoint">http://localhost:9010/oauth2callback</property> -->
+      <property name="google-oauth2-client-id">624213510706-5auali2s3aenj5rkag9sr8dd842hl2mv.apps.googleusercontent.com</property>
+      <property name="google-oauth2-client-secret">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</property>
     </properties>
 
   </application-settings>

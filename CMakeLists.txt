@@ -26,6 +26,7 @@ set(SOURCES
     ${SOURCE_DIR}/main.cpp
     ${SOURCE_DIR}/001-App/App.cpp
     ${SOURCE_DIR}/002-Dbo/Session.cpp
+    ${SOURCE_DIR}/002-Dbo/Tables/User.cpp
     ${SOURCE_DIR}/002-Dbo/UserFormModel.cpp
     ${SOURCE_DIR}/002-Dbo/UserFormView.cpp
     ${SOURCE_DIR}/002-Dbo/UserPhotoUploder.cpp
@@ -33,6 +34,11 @@ set(SOURCES
     ${SOURCE_DIR}/003-Auth/PasswordPromptDialog.cpp
     ${SOURCE_DIR}/003-Auth/RegistrationView.cpp
     ${SOURCE_DIR}/004-Settings/Settings.cpp
+    ${SOURCE_DIR}/005-Calendar/Calendar.cpp
+    ${SOURCE_DIR}/005-Calendar/AllEntriesDialog.cpp
+    ${SOURCE_DIR}/005-Calendar/CalendarCell.cpp
+    ${SOURCE_DIR}/005-Calendar/EntryDialog.cpp
+    ${SOURCE_DIR}/005-Calendar/TimeSuggestions.cpp
     ${SOURCE_DIR}/100-Utils/AwsConnect.cpp
 )
 
