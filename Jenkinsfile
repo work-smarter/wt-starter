@@ -11,8 +11,8 @@ pipeline {
       steps {
         sh 'chmod +x scripts/docker_builder_images.sh'
         // sh 'rm -f ./wt_config.xml'
-        sh 'cp $WT_CPONFIG_FILE ./wt_config.xml'
-        // sh 'echo $WT_CPONFIG_FILE > wt_config_path.txt'
+        sh 'cp $WT_CPONFIG_FILE_PATH ./wt_config.xml'
+        // sh 'echo $WT_CPONFIG_FILE_PATH > wt_config_path.txt'
         sh 'cat wt_config.xml'
         sh 'scripts/docker_builder_images.sh'
       }
