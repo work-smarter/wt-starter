@@ -17,10 +17,8 @@ pipeline {
     stage('deploy') {
       steps {
         sh 'chmod +x scripts/docker_deploy.sh'
+        sh 'cp $WT_CPONFIG_FILE ./wt_config.xml'
         sh 'scripts/docker_deploy.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_REGION'
-        // print the WT_CPONFIG_FILE variable
-        sh 'cp $WT_CPONFIG_FILE ./wt_starter_config_file.txt'
-        sh 'cat wt_starter_config_file.txt'
       }
     }
   }
