@@ -19,7 +19,8 @@ pipeline {
         sh 'chmod +x scripts/docker_deploy.sh'
         sh 'rm -f ./wt_config.xml'
         sh 'cp $WT_CPONFIG_FILE ./wt_config.xml'
-        sh 'echo $WT_CPONFIG_FILE > wt_starter_config_file.txt'
+        sh 'echo $WT_CPONFIG_FILE > wt_config_path.txt'
+        sh 'cat wt_config.xml'
         sh 'scripts/docker_deploy.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_REGION'
       }
     }
