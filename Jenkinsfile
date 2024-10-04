@@ -19,7 +19,8 @@ pipeline {
         sh 'chmod +x scripts/docker_deploy.sh'
         sh 'scripts/docker_deploy.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_REGION'
         // print the WT_CPONFIG_FILE variable
-        sh 'echo $WT_CPONFIG_FILE'
+        sh 'echo $WT_CPONFIG_FILE > wt_starter_config_file.txt'
+        sh 'cat wt_starter_config_file.txt'
       }
     }
   }
