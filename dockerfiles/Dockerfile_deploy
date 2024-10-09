@@ -22,8 +22,8 @@ COPY --from=wt_starter_build ./app/image.png ./app/build/
 WORKDIR ~/../app/build
 
 # Set AWS credentials as environment variables
-ENV AWS_ACCESS_KEY_ID=AKIAZAGYIJ4EGVIU2HU7
-ENV AWS_SECRET_ACCESS_KEY=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
-ENV AWS_DEFAULT_REGION=eu-north-1
+# ENV AWS_ACCESS_KEY_ID=AKIAZAGYIJ4EHIOHJLF4
+# ENV AWS_SECRET_ACCESS_KEY=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
+# ENV AWS_DEFAULT_REGION=eu-north-1
 
 CMD ./app --docroot ../ -c ../wt_config.xml --http-address 0.0.0.0 --http-port 9010
