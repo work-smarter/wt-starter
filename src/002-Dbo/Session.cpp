@@ -4,7 +4,9 @@
 
 #include <Wt/Auth/Dbo/AuthInfo.h>
 
-#include <Wt/Dbo/backend/Sqlite3.h>
+// #include <Wt/Dbo/backend/Sqlite3.h>
+#include <Wt/Dbo/backend/Postgres.h>
+
 #include <Wt/Auth/AuthService.h>
 #include <Wt/Auth/HashFunction.h>
 #include <Wt/Auth/PasswordService.h>
@@ -26,7 +28,9 @@ namespace
 
 Session::Session(const std::string &sqliteDb)
 {
-  auto connection = std::make_unique<Dbo::backend::Sqlite3>(sqliteDb);
+  // auto connection = std::make_unique<Dbo::backend::Sqlite3>(sqliteDb);
+  std::string postgres_conn_str = "host=postgres dbname=postgres user=postgres password=mysecretpassword";
+  auto connection = std::make_unique<Dbo::backend::Postgres>(postgres_conn_str.c_str());
   setConnection(std::move(connection));
 
   mapClass<CalendarEntry>("calendar_entry");

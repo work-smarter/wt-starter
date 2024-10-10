@@ -50,7 +50,8 @@ target_link_libraries(${PROJECT_NAME}
     wthttp
     wt
     wtdbo
-    wtdbosqlite3
+    # wtdbosqlite3
+    wtdbopostgres
     ${AWSSDK_LINK_LIBRARIES}
     # laws-cpp-sdk-s3
     # laws-cpp-sdk-core
