@@ -1,5 +1,6 @@
 #include "002-Dbo/Session.h"
 #include "002-Dbo/Tables/User.h"
+#include "002-Dbo/Tables/XmlTemplates.h"
 #include "002-Dbo/UserFormModel.h"
 
 #include <Wt/Auth/Dbo/AuthInfo.h>
@@ -29,10 +30,24 @@ namespace
 Session::Session(const std::string &sqliteDb)
 {
   // auto connection = std::make_unique<Dbo::backend::Sqlite3>(sqliteDb);
-  std::string postgres_conn_str = "host=postgres dbname=postgres user=postgres password=mysecretpassword";
+  const char *postgres_password = std::getenv("POSTGRES_PASSWORD");
+  if (postgres_password)
+    std::cout << "POSTGRES_PASSWORD: recived succesfuly" << std::endl;
+  else
+    std::cout << "POSTGRES_PASSWORD is not set." << std::endl;
+
+  const char *vps_ip = std::getenv("VPS_IP");
+  if (vps_ip)
+    std::cout << "VPS_IP: recived succesfuly" << std::endl;
+  else
+    std::cout << "VPS_IP is not set." << std::endl;
+
+  std::string postgres_conn_str = "host=" + std::string(vps_ip) + " dbname=postgres user=postgres password=" + std::string(postgres_password);
   auto connection = std::make_unique<Dbo::backend::Postgres>(postgres_conn_str.c_str());
   setConnection(std::move(connection));
 
+  mapClass<TemplateFile>("template_file");
+  mapClass<Template>("template");
   mapClass<CalendarEntry>("calendar_entry");
   mapClass<UserRole>("user_role");
   mapClass<User>("user");

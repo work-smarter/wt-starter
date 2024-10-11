@@ -20,8 +20,8 @@ public:
   template <class Action>
   void persist(Action &a)
   {
-    dbo::hasMany(a, users, dbo::ManyToOne, "user_role");
     dbo::field(a, name, "name");
+    dbo::hasMany(a, users, dbo::ManyToOne, "user_role");
   }
 };
 
