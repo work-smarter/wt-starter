@@ -16,12 +16,12 @@ App::App(const Wt::WEnvironment &env)
 {
     setTitle("Starter App");
 
-    messageResourceBundle().use("../xml-templates/app/app");
+    messageResourceBundle().use("../xml-templates/app/app-test");
     messageResourceBundle().use("../xml-templates/app/inputs");
     messageResourceBundle().use("../xml-templates/app/strings");
     messageResourceBundle().use("../xml-templates/app/calendar");
 
-    messageResourceBundle().use("../xml-templates/overide-wt/auth");
+    messageResourceBundle().use("../xml-templates/overide-wt/auth_test");
     messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
 
     // CSS
@@ -147,7 +147,8 @@ void App::createTest()
     test_btn->setStyleClass("btn-green");
     test_btn->clicked().connect([=]
                                 {
-                                    stylus_.writeAppFile(appRoot() + "../xml-templates/app/app.xml", "starter");
+                                    // stylus_.writeAppFile("starter", appRoot() + "../xml-templates/app/app.xml", appRoot() + "../xml-templates/app-test/app.xml");
+                                    stylus_.writeFile(appRoot() + "../xml-templates/overide-wt/auth.xml", appRoot() + "../xml-templates/overide-wt/auth_test.xml");
 
                                     // stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth.xml");
                                     // stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth_strings.xml");

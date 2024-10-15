@@ -12,7 +12,8 @@ public:
     void readXmlFile(Wt::WString file_path);
     void readAppXmlFile(Wt::WString file_path, Wt::WString app_name);
 
-    void writeAppFile(Wt::WString file_path, Wt::WString app_name);
+    void writeFile(Wt::WString file_path, Wt::WString destination_file_path);
+    void writeAppFile(Wt::WString app_name, Wt::WString file_path, Wt::WString destination_file_path);
 
 private:
     Session &session_;

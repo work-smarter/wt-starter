@@ -110,7 +110,7 @@ void Stylus::readAppXmlFile(Wt::WString file_path, Wt::WString app_name)
     transaction.commit();
 }
 
-void Stylus::writeAppFile(Wt::WString file_path, Wt::WString app_name)
+void Stylus::writeAppFile(Wt::WString app_name, Wt::WString file_path, Wt::WString destination_file_path)
 {
     auto transaction = Dbo::Transaction(session_);
 
@@ -152,6 +152,41 @@ void Stylus::writeAppFile(Wt::WString file_path, Wt::WString app_name)
     }
 
     doc.SaveFile("../xml-templates/app/app-test.xml");
+
+    transaction.commit();
+}
+
+void Stylus::writeFile(Wt::WString file_path, Wt::WString destination_file_path)
+{
+    auto transaction = Dbo::Transaction(session_);
+
+    auto template_file = session_.find<TemplateFile>().where("path = ?").bind(file_path).resultValue();
+    if (!template_file)
+    {
+        std::cerr << "\n Error: No template file found with the path: " << file_path << "\n";
+        return;
+    }
+
+    tinyxml2::XMLDocument doc;
+    tinyxml2::XMLNode *messages = doc.NewElement("messages");
+    doc.InsertFirstChild(messages);
+
+    for (auto xml_template : template_file->xml_templates)
+    {
+        std::cout << "\n " << xml_template->xml_temp.toUTF8().c_str() << "\n";
+        auto message = messages->InsertEndChild(doc.NewElement("message"));
+        message->ToElement()->SetAttribute("id", xml_template->temp_id.toUTF8().c_str());
+        tinyxml2::XMLDocument temp_doc;
+        temp_doc.Parse(xml_template->xml_temp.toUTF8().c_str());
+        auto child = temp_doc.FirstChild();
+        for (child; child; child = child->NextSibling())
+        {
+            auto new_child = child->DeepClone(&doc);
+            message->InsertEndChild(new_child);
+        }
+    }
+
+    doc.SaveFile(destination_file_path.toUTF8().c_str());
 
     transaction.commit();
 }
