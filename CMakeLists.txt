@@ -42,6 +42,12 @@ set(SOURCES
     ${SOURCE_DIR}/100-Utils/AwsConnect.cpp
     ${SOURCE_DIR}/100-Utils/tinyxml2/tinyxml2.cpp
     ${SOURCE_DIR}/101-Stylus/Stylus.cpp
+    ${SOURCE_DIR}/101-Stylus/PanelDialogs/BaseDialogPanel.cpp
+    ${SOURCE_DIR}/101-Stylus/PanelDialogs/LeftPanel.cpp
+    ${SOURCE_DIR}/101-Stylus/PanelDialogs/RightPanel.cpp
+    ${SOURCE_DIR}/101-Stylus/PanelDialogs/EdditorPanel.cpp
+    ${SOURCE_DIR}/101-Stylus/PanelDialogs/SettingsPanel.cpp
+    ${SOURCE_DIR}/101-Stylus/PanelDialogs/QuickCommandsPanel.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

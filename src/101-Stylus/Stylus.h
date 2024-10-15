@@ -4,6 +4,12 @@
 #include "101-Stylus/Tables/TemplateFile.h"
 #include "101-Stylus/Tables/TemplateApp.h"
 
+class LeftPanel;
+class RightPanel;
+class EdditorPanel;
+class SettingsPanel;
+class QuickCommandsPanel;
+
 class Stylus
 {
 public:
@@ -17,4 +23,11 @@ public:
 
 private:
     Session &session_;
+
+    LeftPanel *left_panel_;
+    RightPanel *right_panel_;
+    EdditorPanel *edditor_panel_;
+    SettingsPanel *settings_panel_;
+    QuickCommandsPanel *quick_commands_panel_;
+    void processKeyEvent(Wt::WKeyEvent e);
 };

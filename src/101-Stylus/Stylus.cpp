@@ -1,6 +1,14 @@
 #include "101-Stylus/Stylus.h"
 #include "100-Utils/tinyxml2/tinyxml2.h"
 
+#include "101-Stylus/PanelDialogs/LeftPanel.h"
+#include "101-Stylus/PanelDialogs/RightPanel.h"
+#include "101-Stylus/PanelDialogs/EdditorPanel.h"
+#include "101-Stylus/PanelDialogs/SettingsPanel.h"
+#include "101-Stylus/PanelDialogs/QuickCommandsPanel.h"
+
+#include <Wt/WApplication.h>
+
 Stylus::Stylus(Session &session, Wt::WString app_name)
     : session_(session)
 {
@@ -18,6 +26,21 @@ Stylus::Stylus(Session &session, Wt::WString app_name)
         std::cerr << "\n App found with the name: " << app_name << "app id is: " << app.id() << "\n\n";
     }
     transaction.commit();
+
+    left_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<LeftPanel>(this));
+    right_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<RightPanel>(this));
+    edditor_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<EdditorPanel>(this));
+    settings_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<SettingsPanel>(this));
+    quick_commands_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<QuickCommandsPanel>(this));
+
+    left_panel_->show();
+    right_panel_->show();
+    edditor_panel_->show();
+    settings_panel_->show();
+    quick_commands_panel_->show();
+
+    Wt::WApplication::instance()->globalKeyWentDown().connect([=](Wt::WKeyEvent e)
+                                                              { std::cout << "\n\n process from stylus brain \n\n"; processKeyEvent(e); });
 }
 
 void Stylus::readXmlFile(Wt::WString file_path)
@@ -189,4 +212,69 @@ void Stylus::writeFile(Wt::WString file_path, Wt::WString destination_file_path)
     doc.SaveFile(destination_file_path.toUTF8().c_str());
 
     transaction.commit();
+}
+
+void Stylus::processKeyEvent(Wt::WKeyEvent e)
+{
+    std::cout << "\n\n processKeyEvent: \n\n";
+
+    if (e.modifiers().test(Wt::KeyboardModifier::Alt))
+    {
+        std::cout << "\n\n Alt key is pressed \n\n";
+        if (e.key() == Wt::Key::Key_1)
+        {
+            if (left_panel_->isVisible())
+            {
+                left_panel_->hide();
+            }
+            else
+            {
+                left_panel_->show();
+            }
+        }
+        else if (e.key() == Wt::Key::Key_3)
+        {
+            if (right_panel_->isVisible())
+            {
+                right_panel_->hide();
+            }
+            else
+            {
+                right_panel_->show();
+            }
+        }
+        else if (e.key() == Wt::Key::Key_5)
+        {
+            if (quick_commands_panel_->isVisible())
+            {
+                quick_commands_panel_->hide();
+            }
+            else
+            {
+                quick_commands_panel_->show();
+            }
+        }
+        else if (e.key() == Wt::Key::Key_7)
+        {
+            if (edditor_panel_->isVisible())
+            {
+                edditor_panel_->hide();
+            }
+            else
+            {
+                edditor_panel_->show();
+            }
+        }
+        else if (e.key() == Wt::Key::Key_9)
+        {
+            if (settings_panel_->isVisible())
+            {
+                settings_panel_->hide();
+            }
+            else
+            {
+                settings_panel_->show();
+            }
+        }
+    }
 }
