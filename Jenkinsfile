@@ -13,14 +13,14 @@ pipeline {
       steps {
         // sh 'cp $WT_CONFIG_FILE ./wt_config.xml'
         sh 'chmod +x scripts/docker_builder_images.sh'
-        sh 'scripts/docker_builder_images.sh'
+        sh 'scripts/docker_builder_images.sh || { echo "Deploy script failed"; exit 1; }'
       }
     }
     
     stage('deploy') {
       steps {
         sh 'chmod +x scripts/docker_deploy.sh'
-        sh 'scripts/docker_deploy.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_REGION $POSTGRES_PASSWORD $VPS_IP'
+        sh 'scripts/docker_deploy.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $AWS_REGION $POSTGRES_PASSWORD $VPS_IP || { echo "Deploy script failed"; exit 1; } '
       }
     }
   }
