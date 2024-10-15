@@ -145,17 +145,19 @@ void App::createTest()
 
     auto test_btn = root_content_->addWidget(std::make_unique<Wt::WPushButton>("Test"));
     test_btn->setStyleClass("btn-green");
-    // test_btn->clicked().connect([=]
-    //                             {
-    //                                 stylus_.readOverideWtXmlFile(appRoot() + "../xml-templates/overide-wt/auth.xml");
-    //                                 stylus_.readOverideWtXmlFile(appRoot() + "../xml-templates/overide-wt/auth_strings.xml");
+    test_btn->clicked().connect([=]
+                                {
+                                    stylus_.writeAppFile(appRoot() + "../xml-templates/app/app.xml", "starter");
 
-    //                                 stylus_.readXmlFile(appRoot() + "../xml-templates/app/app.xml", "starter");
-    //                                 stylus_.readXmlFile(appRoot() + "../xml-templates/app/calendar.xml", "starter");
-    //                                 stylus_.readXmlFile(appRoot() + "../xml-templates/app/inputs.xml", "starter");
-    //                                 stylus_.readXmlFile(appRoot() + "../xml-templates/app/strings.xml", "starter");
-    //                                 stylus_.readXmlFile(appRoot() + "../xml-templates/app/test.xml", "starter");
-    //                             });
+                                    // stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth.xml");
+                                    // stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth_strings.xml");
+
+                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/app.xml", "starter");
+                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/calendar.xml", "starter");
+                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/inputs.xml", "starter");
+                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/strings.xml", "starter");
+                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/test.xml", "starter");
+                                });
 }
 
 void App::createProfile()
