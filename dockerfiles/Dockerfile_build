@@ -14,7 +14,6 @@ COPY ./image.png ./app/
 
 # RUN mkdir build && cd build && cmake .. && make
 RUN mkdir ~/../app/build 
-COPY ./image.png ./build/image.png
 RUN cd ~/../app/build && cmake ..
 RUN cd ~/../app/build &&  make
 RUN cd ~/../app/tailwind && npm install
