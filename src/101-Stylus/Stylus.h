@@ -7,7 +7,10 @@
 class Stylus
 {
 public:
-    Stylus(Session &session);
+    Stylus(Session &session, Wt::WString app_name);
+
+    void readOverideWtXmlFile(Wt::WString file_path);
+    void readXmlFile(Wt::WString file_path, Wt::WString app_name);
 
 private:
     Session &session_;
