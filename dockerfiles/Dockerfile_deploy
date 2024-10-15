@@ -17,7 +17,6 @@ COPY --from=wt_starter_build ./app/xml-templates/ /app/xml-templates/
 COPY --from=wt_starter_build ./app/wt_config.xml /app/wt_config.xml
 COPY --from=wt_starter_build ./app/static/ /app/static/
 COPY --from=wt_starter_build ./app/resources/ /app/resources/
-COPY --from=wt_starter_build ./app/image.png ./app/build/
 
 WORKDIR ~/../app/build
 
