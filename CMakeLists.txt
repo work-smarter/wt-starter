@@ -41,6 +41,7 @@ set(SOURCES
     ${SOURCE_DIR}/005-Calendar/TimeSuggestions.cpp
     ${SOURCE_DIR}/100-Utils/AwsConnect.cpp
     ${SOURCE_DIR}/100-Utils/tinyxml2/tinyxml2.cpp
+    ${SOURCE_DIR}/101-Stylus/Stylus.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

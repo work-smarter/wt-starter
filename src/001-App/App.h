@@ -12,6 +12,7 @@
 #include "003-Auth/AuthWidget.h"
 #include "002-Dbo/Session.h"
 #include "003-Auth/AuthWidget.h"
+#include "101-Stylus/Stylus.h"
 
 class App : public Wt::WApplication
 {
@@ -27,6 +28,7 @@ public:
     }
 
     Session session_;
+    Stylus stylus_;
 
 private:
     void createUi();

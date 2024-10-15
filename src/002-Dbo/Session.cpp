@@ -46,8 +46,13 @@ Session::Session(const std::string &sqliteDb)
   setConnection(std::move(connection));
 
   mapClass<TemplateFile>("template_file");
-  mapClass<Template>("template");
+  mapClass<XmlTemplate>("xml_template");
+  mapClass<TemplateApp>("template_app");
+  mapClass<AppTemplateFile>("app_template_file");
+  mapClass<AppXmlTemplate>("app_xml_template");
+
   mapClass<CalendarEntry>("calendar_entry");
+
   mapClass<UserRole>("user_role");
   mapClass<User>("user");
   mapClass<AuthInfo>("auth_info");

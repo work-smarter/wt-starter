@@ -10,7 +10,8 @@
 
 App::App(const Wt::WEnvironment &env)
     : WApplication(env),
-      session_(appRoot() + "../dbo.db")
+      session_(appRoot() + "../dbo.db"),
+      stylus_(session_)
 
 {
     setTitle("Starter App");
