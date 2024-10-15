@@ -3,7 +3,7 @@
 #include <Wt/WCalendar.h>
 #include <Wt/WDate.h>
 #include <Wt/WDialog.h>
-#include "002-Dbo/Tables/User.h"
+#include "003-Auth/Tables/User.h"
 
 class Calendar : public Wt::WCalendar
 {

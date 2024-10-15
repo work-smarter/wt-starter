@@ -1,13 +1,13 @@
 #pragma once
-#include "002-Dbo/Tables/User.h"
-#include "002-Dbo/Tables/CalendarEntry.h"
 #include <Wt/Auth/Login.h>
 #include <Wt/Auth/Dbo/UserDatabase.h>
-
 #include <Wt/Dbo/Session.h>
 #include <Wt/Dbo/ptr.h>
-
 #include <Wt/WString.h>
+
+#include "003-Auth/Tables/User.h"
+#include "005-Calendar/Tables/CalendarEntry.h"
+#include "102-Stylus/Tables/XmlTemplates.h"
 
 using namespace Wt;
 

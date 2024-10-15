@@ -1,7 +1,6 @@
 #include "002-Dbo/Session.h"
-#include "002-Dbo/Tables/User.h"
-#include "002-Dbo/Tables/XmlTemplates.h"
-#include "002-Dbo/UserFormModel.h"
+
+// #include "003-Auth/UserFormModel.h"
 
 #include <Wt/Auth/Dbo/AuthInfo.h>
 

@@ -1,5 +1,5 @@
-#include "002-Dbo/Tables/User.h"
-#include "002-Dbo/Tables/CalendarEntry.h"
+#include "003-Auth/Tables/User.h"
+#include "005-Calendar/Tables/CalendarEntry.h"
 
 dbo::collection<dbo::ptr<CalendarEntry>> User::entriesInRange(const Wt::WDate &from,
                                                               const Wt::WDate &until) const

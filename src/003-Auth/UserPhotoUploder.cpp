@@ -1,4 +1,4 @@
-#include "002-Dbo/UserPhotoUploder.h"
+#include "003-Auth/UserPhotoUploder.h"
 #include "100-Utils/AwsConnect.h"
 
 UserPhotoUploder::UserPhotoUploder(Session &session)

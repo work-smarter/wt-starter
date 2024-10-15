@@ -1,7 +1,7 @@
 
 #include "005-Calendar/Calendar.h"
 #include "005-Calendar/CalendarCell.h"
-#include "002-Dbo/Tables/CalendarEntry.h"
+#include "005-Calendar/Tables/CalendarEntry.h"
 
 Calendar::Calendar(dbo::ptr<User> user)
     : WCalendar(),

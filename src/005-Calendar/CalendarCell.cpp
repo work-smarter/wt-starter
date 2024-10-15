@@ -2,7 +2,7 @@
 #include "005-Calendar/EntryDialog.h"
 #include "005-Calendar/AllEntriesDialog.h"
 #include "001-App/App.h"
-#include "002-Dbo/Tables/CalendarEntry.h"
+#include "005-Calendar/Tables/CalendarEntry.h"
 
 #include <Wt/WDate.h>
 #include <Wt/WText.h>

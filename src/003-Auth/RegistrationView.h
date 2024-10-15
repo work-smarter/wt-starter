@@ -1,6 +1,6 @@
 #pragma once
 #include <Wt/Auth/RegistrationWidget.h>
-#include "002-Dbo/UserFormModel.h"
+#include "003-Auth/UserFormModel.h"
 
 class Session;
 // class UserFormModel;

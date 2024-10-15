@@ -26,10 +26,10 @@ set(SOURCES
     ${SOURCE_DIR}/main.cpp
     ${SOURCE_DIR}/001-App/App.cpp
     ${SOURCE_DIR}/002-Dbo/Session.cpp
-    ${SOURCE_DIR}/002-Dbo/Tables/User.cpp
-    ${SOURCE_DIR}/002-Dbo/UserFormModel.cpp
-    ${SOURCE_DIR}/002-Dbo/UserFormView.cpp
-    ${SOURCE_DIR}/002-Dbo/UserPhotoUploder.cpp
+    ${SOURCE_DIR}/003-Auth/Tables/User.cpp
+    ${SOURCE_DIR}/003-Auth/UserFormModel.cpp
+    ${SOURCE_DIR}/003-Auth/UserFormView.cpp
+    ${SOURCE_DIR}/003-Auth/UserPhotoUploder.cpp
     ${SOURCE_DIR}/003-Auth/AuthWidget.cpp
     ${SOURCE_DIR}/003-Auth/PasswordPromptDialog.cpp
     ${SOURCE_DIR}/003-Auth/RegistrationView.cpp

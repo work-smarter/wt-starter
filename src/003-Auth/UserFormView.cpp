@@ -1,6 +1,6 @@
-#include "002-Dbo/UserFormView.h"
+#include "003-Auth/UserFormView.h"
 #include "002-Dbo/Session.h"
-#include "002-Dbo/UserPhotoUploder.h"
+#include "003-Auth/UserPhotoUploder.h"
 #include "100-Utils/AwsConnect.h"
 // #include <Wt/Auth/Dbo/AuthInfo.h>
 

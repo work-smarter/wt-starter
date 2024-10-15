@@ -3,7 +3,7 @@
 #include <Wt/WDate.h>
 #include <Wt/WDialog.h>
 
-#include "002-Dbo/Tables/User.h"
+#include "003-Auth/Tables/User.h"
 // #include "UserAccount.h"
 
 class CalendarCell : public Wt::WContainerWidget

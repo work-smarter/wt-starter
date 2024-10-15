@@ -1,7 +1,7 @@
 #include "003-Auth/AuthWidget.h"
 #include "003-Auth/RegistrationView.h"
 #include "002-Dbo/Session.h"
-#include "002-Dbo/UserFormModel.h"
+#include "003-Auth/UserFormModel.h"
 #include "003-Auth/PasswordPromptDialog.h"
 // #include "App/1-AuthApp.h"
 
