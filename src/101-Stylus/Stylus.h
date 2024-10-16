@@ -27,7 +27,8 @@ public:
     SettingsPanel *settings_panel_;
     QuickCommandsPanel *quick_commands_panel_;
 
-private:
     Session &session_;
+
+private:
     void processKeyEvent(Wt::WKeyEvent e);
 };

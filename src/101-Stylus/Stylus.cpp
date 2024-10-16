@@ -154,7 +154,6 @@ void Stylus::writeAppFile(Wt::WString app_name, Wt::WString file_path, Wt::WStri
         return;
     }
 
-    // .where("path = ?").bind(file_path).resultValue();
     tinyxml2::XMLDocument doc;
     tinyxml2::XMLNode *messages = doc.NewElement("messages");
     doc.InsertFirstChild(messages);
