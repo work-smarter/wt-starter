@@ -11,7 +11,7 @@
 App::App(const Wt::WEnvironment &env)
     : WApplication(env),
       session_(appRoot() + "../dbo.db"),
-      stylus_(session_, "starter")
+      stylus_(session_, "starter", appRoot() + "../xml-templates/")
 
 {
     setTitle("Starter App");
@@ -152,21 +152,21 @@ void App::createTest()
                                     // stylus_.writeAppFile("starter", appRoot() + "../xml-templates/app/app.xml", appRoot() + "../xml-templates/app-test/app.xml");
                                     // stylus_.writeFile(appRoot() + "../xml-templates/overide-wt/auth.xml", appRoot() + "../xml-templates/overide-wt/auth_test.xml");
 
-                                    stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth.xml");
-                                    stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth_strings.xml");
+                                    stylus_.readXmlFile("overide-wt/auth.xml");
+                                    stylus_.readXmlFile("overide-wt/auth_strings.xml");
 
-                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/app.xml", "starter");
-                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/calendar.xml", "starter");
-                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/inputs.xml", "starter");
-                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/strings.xml", "starter");
-                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/test.xml", "starter"); });
+                                    stylus_.readAppXmlFile("app/app.xml", "starter");
+                                    stylus_.readAppXmlFile("app/calendar.xml", "starter");
+                                    stylus_.readAppXmlFile("app/inputs.xml", "starter");
+                                    stylus_.readAppXmlFile("app/strings.xml", "starter");
+                                    stylus_.readAppXmlFile("app/test.xml", "starter"); });
 
     auto dbo_to_file_btn = root_content_->addWidget(std::make_unique<Wt::WPushButton>("write dbo to templates"));
     dbo_to_file_btn->setStyleClass("btn-green");
     dbo_to_file_btn->clicked().connect([=]
                                        {
-                                    stylus_.writeAppFile("starter", appRoot() + "../xml-templates/app/app.xml", appRoot() + "../xml-templates/app-test/app.xml");
-                                    stylus_.writeFile(appRoot() + "../xml-templates/overide-wt/auth.xml", appRoot() + "../xml-templates/overide-wt/auth_test.xml"); });
+                                    stylus_.writeAppFile("starter", "app/app.xml", "app-test/app.xml");
+                                    stylus_.writeFile("overide-wt/auth.xml", "overide-wt/auth_test.xml"); });
 }
 
 void App::createProfile()

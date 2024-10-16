@@ -79,7 +79,6 @@ void SettingsPanel::createRightPanelSettings(Wt::WContainerWidget *wrapper)
     right_toggler_->changed().connect([=]()
                                       { toggleRightDialogActive(); });
 }
-
 void SettingsPanel::createLeftPanelSettings(Wt::WContainerWidget *wrapper)
 {
     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
@@ -96,7 +95,6 @@ void SettingsPanel::createLeftPanelSettings(Wt::WContainerWidget *wrapper)
     left_toggler_->changed().connect([=]()
                                      { toggleLeftDialogActive(); });
 }
-
 void SettingsPanel::createEdditorPanelSettings(Wt::WContainerWidget *wrapper)
 {
     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
@@ -113,7 +111,6 @@ void SettingsPanel::createEdditorPanelSettings(Wt::WContainerWidget *wrapper)
     edditor_toggler_->changed().connect([=]()
                                         { toggleEdditorDialogActive(); });
 }
-
 void SettingsPanel::createQuickCommandsPanelSettings(Wt::WContainerWidget *wrapper)
 {
     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
@@ -209,6 +206,7 @@ void SettingsPanel::readStateFromXmlFile()
         edditor_xml_node_ = settings_xml_doc_->NewElement("edditorPanel");
         edditor_xml_node_->SetAttribute("active", "false");
         message_node->InsertEndChild(edditor_xml_node_);
+
         settings_xml_doc_->SaveFile(xml_file_path);
     }
     else
@@ -310,6 +308,7 @@ void SettingsPanel::readStateFromXmlFile()
 //         xml_brain_config_->templateChanged_.emit();
 //     }
 // }
+
 void SettingsPanel::toggleRightDialogActive()
 {
     stylus_state_.right_active_ = !stylus_state_.right_active_;
@@ -318,7 +317,6 @@ void SettingsPanel::toggleRightDialogActive()
     right_xml_node_->SetAttribute("active", stylus_state_.right_active_ ? "true" : "false");
     settings_xml_doc_->SaveFile(xml_file_path);
 }
-
 void SettingsPanel::toggleLeftDialogActive()
 {
     std::cout << "\n\n toggle control dialog \n\n";
@@ -337,7 +335,6 @@ void SettingsPanel::toggleQuickCommandsDialogActive()
     quick_commands_xml_node_->SetAttribute("active", stylus_state_.quick_commands_active_ ? "true" : "false");
     settings_xml_doc_->SaveFile(xml_file_path);
 }
-
 void SettingsPanel::toggleEdditorDialogActive()
 {
     std::cout << "\n\n toggle files manager dialog \n\n";
@@ -347,7 +344,6 @@ void SettingsPanel::toggleEdditorDialogActive()
     edditor_xml_node_->SetAttribute("active", stylus_state_.edditor_active_ ? "true" : "false");
     settings_xml_doc_->SaveFile(xml_file_path);
 }
-
 void SettingsPanel::toggleSettingsDialogActive()
 {
     std::cout << "\n\n toggle settings dialog \n\n";

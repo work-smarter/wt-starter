@@ -13,7 +13,7 @@ class QuickCommandsPanel;
 class Stylus
 {
 public:
-    Stylus(Session &session, Wt::WString app_name);
+    Stylus(Session &session, Wt::WString app_name, Wt::WString templates_root_path);
 
     void readXmlFile(Wt::WString file_path);
     void readAppXmlFile(Wt::WString file_path, Wt::WString app_name);
@@ -31,4 +31,5 @@ public:
 
 private:
     void processKeyEvent(Wt::WKeyEvent e);
+    Wt::WString templates_root_path_;
 };

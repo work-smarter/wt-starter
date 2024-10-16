@@ -9,8 +9,9 @@
 
 #include <Wt/WApplication.h>
 
-Stylus::Stylus(Session &session, Wt::WString app_name)
-    : session_(session)
+Stylus::Stylus(Session &session, Wt::WString app_name, Wt::WString templates_root_path)
+    : session_(session),
+      templates_root_path_(templates_root_path)
 {
     auto transaction = Dbo::Transaction(session_);
     auto app = session_.find<TemplateApp>().where("app_name = ?").bind(app_name).resultValue();
@@ -45,6 +46,7 @@ Stylus::Stylus(Session &session, Wt::WString app_name)
 
 void Stylus::readXmlFile(Wt::WString file_path)
 {
+    file_path = templates_root_path_ + file_path;
     tinyxml2::XMLDocument doc;
     doc.LoadFile(file_path.toUTF8().c_str());
     std::cout << "\n\n file_path: " << file_path.toUTF8() << "\n\n";
@@ -85,6 +87,7 @@ void Stylus::readXmlFile(Wt::WString file_path)
 
 void Stylus::readAppXmlFile(Wt::WString file_path, Wt::WString app_name)
 {
+    file_path = templates_root_path_ + file_path;
     auto transaction = Dbo::Transaction(session_);
 
     // find app id by app name
@@ -135,6 +138,8 @@ void Stylus::readAppXmlFile(Wt::WString file_path, Wt::WString app_name)
 
 void Stylus::writeAppFile(Wt::WString app_name, Wt::WString file_path, Wt::WString destination_file_path)
 {
+    file_path = templates_root_path_ + file_path;
+    destination_file_path = templates_root_path_ + destination_file_path;
     auto transaction = Dbo::Transaction(session_);
 
     // find app id by app name
@@ -180,6 +185,8 @@ void Stylus::writeAppFile(Wt::WString app_name, Wt::WString file_path, Wt::WStri
 
 void Stylus::writeFile(Wt::WString file_path, Wt::WString destination_file_path)
 {
+    file_path = templates_root_path_ + file_path;
+    destination_file_path = templates_root_path_ + destination_file_path;
     auto transaction = Dbo::Transaction(session_);
 
     auto template_file = session_.find<TemplateFile>().where("path = ?").bind(file_path).resultValue();
