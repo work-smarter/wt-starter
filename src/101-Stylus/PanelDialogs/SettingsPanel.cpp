@@ -1,11 +1,19 @@
 #include "101-Stylus/PanelDialogs/SettingsPanel.h"
+#include "101-Stylus/PanelDialogs/LeftPanel.h"
+#include "101-Stylus/PanelDialogs/RightPanel.h"
+#include "101-Stylus/PanelDialogs/EdditorPanel.h"
+#include "101-Stylus/PanelDialogs/QuickCommandsPanel.h"
+
 #include "101-Stylus/Stylus.h"
+
+#include <Wt/WContainerWidget.h>
+#include <Wt/WCheckBox.h>
 
 SettingsPanel::SettingsPanel(Stylus *stylus)
     : BaseDialogPanel(stylus)
 {
     // addStyleClass("!text-black");
-    contents()->addStyleClass("flex flex-col rounded-b-md");
+    contents()->addStyleClass("flex flex-col items-center rounded-b-md");
     titleBar()->addStyleClass("!text-black rounded-t-md");
     setOffsets(100, Wt::Side::Top | Wt::Side::Bottom);
     setOffsets(580, Wt::Side::Right | Wt::Side::Left);
@@ -30,13 +38,15 @@ SettingsPanel::SettingsPanel(Stylus *stylus)
 
     auto left_right_panels_wrapper = contents()->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto rest_of_panels_wrapper = contents()->addWidget(std::make_unique<Wt::WContainerWidget>());
-    left_right_panels_wrapper->setStyleClass("flex");
-    rest_of_panels_wrapper->setStyleClass("flex");
+    left_right_panels_wrapper->setStyleClass("flex w-full");
+    rest_of_panels_wrapper->setStyleClass("flex w-full");
 
-    // createLeftPanelSettings(left_right_panels_wrapper);
-    // createRightPanelSettings(left_right_panels_wrapper);
-    // createFilesManagerPanelSettings(rest_of_panels_wrapper);
-    // createQuickCommandsPanelSettings(rest_of_panels_wrapper);
+    readStateFromXmlFile();
+
+    createLeftPanelSettings(left_right_panels_wrapper);
+    createRightPanelSettings(left_right_panels_wrapper);
+    createEdditorPanelSettings(rest_of_panels_wrapper);
+    createQuickCommandsPanelSettings(rest_of_panels_wrapper);
 }
 
 // void SettingsPanel::createRefreshSessionsWidget()
@@ -53,269 +63,206 @@ SettingsPanel::SettingsPanel(Stylus *stylus)
 //             Wt::WApplication::instance()->triggerUpdate(); }); });
 // }
 
-// void SettingsPanel::createRightPanelSettings(Wt::WContainerWidget *wrapper)
-// {
-//     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-fit h-fit bg-gray-800 rounded-md");
-//     auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
-//     auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     content->setStyleClass("p-2");
-//     header->addWidget(std::make_unique<Wt::WText>("Right Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
+void SettingsPanel::createRightPanelSettings(Wt::WContainerWidget *wrapper)
+{
+    auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-1/2 h-fit bg-gray-800 rounded-md");
+    auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
+    auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    content->setStyleClass("p-2");
+    header->addWidget(std::make_unique<Wt::WText>("Right Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
 
-//     right_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("toggle visibility"));
-//     right_toggler_->setStyleClass(radio_checkbox_btn_styles_);
-//     right_toggler_->setChecked(stylus_state_.right_active_);
-//     right_toggler_->changed().connect([=]()
-//                                       { toggleRightDialogActive(); });
+    right_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("Tgg Vis"));
+    right_toggler_->setStyleClass(radio_checkbox_btn_styles_);
+    right_toggler_->setChecked(stylus_state_.right_active_);
+    right_toggler_->changed().connect([=]()
+                                      { toggleRightDialogActive(); });
+}
 
-//     std::shared_ptr<Wt::WButtonGroup> panel_mode_group = std::make_shared<Wt::WButtonGroup>();
-//     auto widget_mode_btns_wrapper = content->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     auto normal_btn = widget_mode_btns_wrapper->addWidget(std::make_unique<Wt::WRadioButton>("Normal"));
-//     auto extra_btn = widget_mode_btns_wrapper->addWidget(std::make_unique<Wt::WRadioButton>("Extra"));
-//     auto both_btn = widget_mode_btns_wrapper->addWidget(std::make_unique<Wt::WRadioButton>("Both"));
-//     panel_mode_group->addButton(normal_btn, BasePanelMode::NORMAL);
-//     panel_mode_group->addButton(extra_btn, BasePanelMode::EXTRA);
-//     panel_mode_group->addButton(both_btn, BasePanelMode::BOTH);
-//     normal_btn->setStyleClass(radio_checkbox_btn_styles_);
-//     extra_btn->setStyleClass(radio_checkbox_btn_styles_);
-//     both_btn->setStyleClass(radio_checkbox_btn_styles_);
+void SettingsPanel::createLeftPanelSettings(Wt::WContainerWidget *wrapper)
+{
+    auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-1/2 h-fit bg-gray-800 rounded-md");
+    auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
+    auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    content->setStyleClass("p-2");
+    header->addWidget(std::make_unique<Wt::WText>("Left Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
 
-//     if (right_dialog_panels_mode_ == BasePanelMode::NORMAL)
-//     {
-//         panel_mode_group->setCheckedButton(normal_btn);
-//         std::cout << "\n right panel mode is normal ------------------------ \n";
-//     }
-//     else if (right_dialog_panels_mode_ == BasePanelMode::EXTRA)
-//     {
-//         panel_mode_group->setCheckedButton(extra_btn);
-//         // std::cout << "\n right panel mode is extra ------------------------ \n";
-//     }
-//     else if (right_dialog_panels_mode_ == BasePanelMode::BOTH)
-//     {
-//         panel_mode_group->setCheckedButton(both_btn);
-//         std::cout << "\n right panel mode is both ------------------------ \n";
-//     }
+    left_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("Tgg Vis"));
+    left_toggler_->setStyleClass(radio_checkbox_btn_styles_);
+    left_toggler_->setChecked(stylus_state_.left_active_);
+    left_toggler_->changed().connect([=]()
+                                     { toggleLeftDialogActive(); });
+}
 
-//     panel_mode_group->checkedChanged().connect([=](Wt::WRadioButton *btn)
-//                                                {
-//         std::string new_text = "";
-//         switch(panel_mode_group->checkedId()){
-//             case BasePanelMode::NORMAL:
-//                 right_dialog_panels_mode_ = BasePanelMode::NORMAL;
-//                 new_text = "NORMAL";
-//                 break;
-//             case BasePanelMode::EXTRA:
-//                 right_dialog_panels_mode_ = BasePanelMode::EXTRA;
-//                 new_text = "EXTRA";
-//                 break;
-//             case BasePanelMode::BOTH:
-//                 right_dialog_panels_mode_ = BasePanelMode::BOTH;
-//                 new_text = "BOTH";
-//                 break;
-//             default:
-//             new_text = "BOTH";
-//             std::cout << "\n\n\n cheaslkdjf something is not working right \n\n\n";
-//                 break;
-//         }
-//         auto right_dialog_node = xml_brain_config_->message_node_->FirstChildElement("right-dialog");
-//         if (right_dialog_node)
-//         {
-//             if (right_dialog_node->FirstChildElement("panels-mode")){
-//                 auto text_node = right_dialog_node->FirstChildElement("panels-mode")->FirstChild();
-//                 text_node->SetValue(new_text.c_str());
-//                 xml_brain_config_->file_->doc_->SaveFile(xml_brain_config_->file_->path_.c_str());
-//             }
-//         }
-//         stylus_brain_->m_right_panel_d_->setPanelsMode(right_dialog_panels_mode_); });
-// }
-// void SettingsPanel::createLeftPanelSettings(Wt::WContainerWidget *wrapper)
-// {
-//     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-fit h-fit bg-gray-800 rounded-md");
-//     auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
-//     auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     content->setStyleClass("p-2");
-//     header->addWidget(std::make_unique<Wt::WText>("Left Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
+void SettingsPanel::createEdditorPanelSettings(Wt::WContainerWidget *wrapper)
+{
+    auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-1/2 h-fit bg-gray-800 rounded-md");
+    auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
+    auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    content->setStyleClass("p-2");
+    header->addWidget(std::make_unique<Wt::WText>("Template Edditor Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
 
-//     left_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("toggle visibility"));
-//     left_toggler_->setStyleClass(radio_checkbox_btn_styles_);
-//     left_toggler_->setChecked(stylus_state_.left_active_);
-//     left_toggler_->changed().connect([=]()
-//                                      { toggleLeftDialogActive(); });
-// }
-// void SettingsPanel::createFilesManagerPanelSettings(Wt::WContainerWidget *wrapper)
-// {
-//     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-fit h-fit bg-gray-800 rounded-md");
-//     auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
-//     auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     content->setStyleClass("p-2");
-//     header->addWidget(std::make_unique<Wt::WText>("Files Manager"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
+    edditor_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("Tgg Vis"));
+    edditor_toggler_->setStyleClass(radio_checkbox_btn_styles_);
+    edditor_toggler_->setChecked(stylus_state_.edditor_active_);
+    edditor_toggler_->changed().connect([=]()
+                                        { toggleEdditorDialogActive(); });
+}
 
-//     files_manager_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("toggle visibility"));
-//     files_manager_toggler_->setStyleClass(radio_checkbox_btn_styles_);
-//     files_manager_toggler_->setChecked(stylus_state_.files_manager_active_);
-//     files_manager_toggler_->changed().connect([=]()
-//                                               { togglefilesManagerDialogActive(); });
-// }
-// void SettingsPanel::createQuickCommandsPanelSettings(Wt::WContainerWidget *wrapper)
-// {
-//     auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-fit h-fit bg-gray-800 rounded-md");
-//     auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
-//     auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-//     content->setStyleClass("p-2");
-//     header->addWidget(std::make_unique<Wt::WText>("Quick Commands Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
+void SettingsPanel::createQuickCommandsPanelSettings(Wt::WContainerWidget *wrapper)
+{
+    auto panel_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    panel_wrapper->setStyleClass("border-2 border-solid border-gray-700 m-4 w-1/2 h-fit bg-gray-800 rounded-md");
+    auto header = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    header->setStyleClass("flex items-center justify-between mb-2 border-b-2 border-solid border-gray-900");
+    auto content = panel_wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
+    content->setStyleClass("p-2");
+    header->addWidget(std::make_unique<Wt::WText>("Quick Commands Panel"))->setStyleClass("text-lg font-semibold text-gray-200 mr-6 ml-2 p-0.5");
 
-//     quick_commands_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("toggle visibility"));
-//     quick_commands_toggler_->setStyleClass(radio_checkbox_btn_styles_);
-//     quick_commands_toggler_->setChecked(stylus_state_.quick_commands_active_);
-//     quick_commands_toggler_->changed().connect([=]()
-//                                                { toggleQuickCommandsDialogActive(); });
-// }
+    quick_commands_toggler_ = header->addWidget(std::make_unique<Wt::WCheckBox>("Tgg Vis"));
+    quick_commands_toggler_->setStyleClass(radio_checkbox_btn_styles_);
+    quick_commands_toggler_->setChecked(stylus_state_.quick_commands_active_);
+    quick_commands_toggler_->changed().connect([=]()
+                                               { toggleQuickCommandsDialogActive(); });
+}
 
-// void SettingsPanel::readDataFromXml()
-// {
-
-//     auto stylus_active_node = xml_brain_config_->message_node_->FirstChildElement("stylus-active");
-//     if (stylus_active_node)
-//     {
-//         if (stylus_active_node->FirstChildElement("active"))
-//         {
-//             std::string value = stylus_active_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.stylus_active_ = false;
-//             else
-//                 stylus_state_.stylus_active_ = true;
-//         }
-//     }
-//     auto brain_dialog_node = xml_brain_config_->message_node_->FirstChildElement("brain-dialog");
-//     if (brain_dialog_node)
-//     {
-//         if (brain_dialog_node->FirstChildElement("active"))
-//         {
-//             std::string value = brain_dialog_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.brain_active_ = false;
-//             else
-//                 stylus_state_.brain_active_ = true;
-//         }
-//     }
-//     auto right_dialog_node = xml_brain_config_->message_node_->FirstChildElement("right-dialog");
-//     if (right_dialog_node)
-//     {
-//         if (right_dialog_node->FirstChildElement("active"))
-//         {
-//             std::string value = right_dialog_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.right_active_ = false;
-//             else
-//                 stylus_state_.right_active_ = true;
-//         }
-//         if (right_dialog_node->FirstChildElement("panels-mode"))
-//         {
-//             std::string right_panel_mode_string = right_dialog_node->FirstChildElement("panels-mode")->GetText();
-//             if (right_panel_mode_string.compare("NORMAL") == 0)
-//             {
-//                 right_dialog_panels_mode_ = BasePanelMode::NORMAL;
-//             }
-//             else if (right_panel_mode_string.compare("EXTRA") == 0)
-//             {
-//                 right_dialog_panels_mode_ = BasePanelMode::EXTRA;
-//             }
-//             else if (right_panel_mode_string.compare("BOTH") == 0)
-//             {
-//                 right_dialog_panels_mode_ = BasePanelMode::BOTH;
-//             }
-//             else
-//             {
-//                 std::cout << "\n\n\n something is wrong with the right panel mode \n\n\n";
-//             }
-//         }
-//     }
-//     auto element_control_dialog_node = xml_brain_config_->message_node_->FirstChildElement("element-control-dialog");
-//     if (element_control_dialog_node)
-//     {
-//         if (element_control_dialog_node->FirstChildElement("active"))
-//         {
-//             std::string value = element_control_dialog_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.left_active_ = false;
-//             else
-//                 stylus_state_.left_active_ = true;
-//         }
-//     }
-//     auto left_dialog_node = xml_brain_config_->message_node_->FirstChildElement("left-dialog");
-//     if (left_dialog_node)
-//     {
-//         if (left_dialog_node->FirstChildElement("active"))
-//         {
-//             std::string value = left_dialog_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.left_active_ = false;
-//             else
-//                 stylus_state_.left_active_ = true;
-//         }
-//     }
-//     auto quick_dialog_node = xml_brain_config_->message_node_->FirstChildElement("quick-commands-dialog");
-//     if (quick_dialog_node)
-//     {
-//         if (quick_dialog_node->FirstChildElement("active"))
-//         {
-//             std::string value = quick_dialog_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.quick_commands_active_ = false;
-//             else
-//                 stylus_state_.quick_commands_active_ = true;
-//         }
-//     }
-//     auto files_manager_dialog_node = xml_brain_config_->message_node_->FirstChildElement("files-manager-dialog");
-//     if (files_manager_dialog_node)
-//     {
-//         if (files_manager_dialog_node->FirstChildElement("active"))
-//         {
-//             std::string value = files_manager_dialog_node->FirstChildElement("active")->GetText();
-//             if (value == "false")
-//                 stylus_state_.files_manager_active_ = false;
-//             else
-//                 stylus_state_.files_manager_active_ = true;
-//         }
-//         if (files_manager_dialog_node->FirstChildElement("files-menu-minimized"))
-//         {
-//             std::string value = files_manager_dialog_node->FirstChildElement("files-menu-minimized")->GetText();
-//             if (value == "false")
-//                 stylus_state_.files_manager_files_menu_active_ = false;
-//             else
-//                 stylus_state_.files_manager_files_menu_active_ = true;
-//         }
-//         if (files_manager_dialog_node->FirstChildElement("open-folders"))
-//         {
-//             auto open_folders_node = files_manager_dialog_node->FirstChildElement("open-folders");
-//             auto folder_node = open_folders_node->FirstChildElement("folder");
-//             while (folder_node)
-//             {
-//                 std::string folder_name = "";
-//                 if (folder_node->FirstChildElement("name"))
-//                 {
-//                     folder_name = folder_node->FirstChildElement("name")->GetText();
-//                 }
-//                 if (folder_node->Attribute("open") && std::string(folder_node->Attribute("open")) == "true")
-//                 {
-//                     stylus_state_.open_folders_state_[folder_name] = true;
-//                 }
-//                 else
-//                 {
-//                     stylus_state_.open_folders_state_[folder_name] = false;
-//                 }
-//                 folder_node = folder_node->NextSiblingElement("folder");
-//             }
-//         }
-//     }
-// }
+void SettingsPanel::readStateFromXmlFile()
+{
+    settings_xml_doc_ = new tinyxml2::XMLDocument();
+    settings_xml_doc_->LoadFile(xml_file_path);
+    // get or set messages node
+    auto messages_node = settings_xml_doc_->FirstChildElement("messages");
+    if (!messages_node)
+    {
+        messages_node = settings_xml_doc_->NewElement("messages");
+        settings_xml_doc_->InsertFirstChild(messages_node);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    // get or set message node
+    auto message_node = messages_node->FirstChildElement("message");
+    if (!message_node)
+    {
+        message_node = settings_xml_doc_->NewElement("message");
+        messages_node->InsertEndChild(message_node);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    // Set message id attribute
+    if (!message_node->Attribute("id"))
+    {
+        message_node->SetAttribute("id", "stylus.config");
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    else if (std::string(message_node->Attribute("id")).compare("stylus.config") != 0)
+    {
+        message_node->SetAttribute("id", "stylus.config");
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    // get or set left panel node
+    left_xml_node_ = message_node->FirstChildElement("leftPanel");
+    if (!left_xml_node_)
+    {
+        left_xml_node_ = settings_xml_doc_->NewElement("leftPanel");
+        left_xml_node_->SetAttribute("active", "false");
+        message_node->InsertEndChild(left_xml_node_);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    else
+    {
+        if (std::string(left_xml_node_->Attribute("active")).compare("true") == 0)
+        {
+            stylus_state_.left_active_ = true;
+        }
+        else
+        {
+            stylus_state_.left_active_ = false;
+        }
+    }
+    // get or set right panel node
+    right_xml_node_ = message_node->FirstChildElement("rightPanel");
+    if (!right_xml_node_)
+    {
+        right_xml_node_ = settings_xml_doc_->NewElement("rightPanel");
+        right_xml_node_->SetAttribute("active", "false");
+        message_node->InsertEndChild(right_xml_node_);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    else
+    {
+        if (std::string(right_xml_node_->Attribute("active")).compare("true") == 0)
+        {
+            stylus_state_.right_active_ = true;
+        }
+        else
+        {
+            stylus_state_.right_active_ = false;
+        }
+    }
+    // get or set edditor panel node
+    edditor_xml_node_ = message_node->FirstChildElement("edditorPanel");
+    if (!edditor_xml_node_)
+    {
+        edditor_xml_node_ = settings_xml_doc_->NewElement("edditorPanel");
+        edditor_xml_node_->SetAttribute("active", "false");
+        message_node->InsertEndChild(edditor_xml_node_);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    else
+    {
+        if (std::string(edditor_xml_node_->Attribute("active")).compare("true") == 0)
+        {
+            stylus_state_.edditor_active_ = true;
+        }
+        else
+        {
+            stylus_state_.edditor_active_ = false;
+        }
+    }
+    // get or set quick commands panel node
+    quick_commands_xml_node_ = message_node->FirstChildElement("quickCommandsPanel");
+    if (!quick_commands_xml_node_)
+    {
+        quick_commands_xml_node_ = settings_xml_doc_->NewElement("quickCommandsPanel");
+        quick_commands_xml_node_->SetAttribute("active", "false");
+        message_node->InsertEndChild(quick_commands_xml_node_);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    else
+    {
+        if (std::string(quick_commands_xml_node_->Attribute("active")).compare("true") == 0)
+        {
+            stylus_state_.quick_commands_active_ = true;
+        }
+        else
+        {
+            stylus_state_.quick_commands_active_ = false;
+        }
+    }
+    // get or set settings panel node
+    settings_xml_node_ = message_node->FirstChildElement("settingsPanel");
+    if (!settings_xml_node_)
+    {
+        settings_xml_node_ = settings_xml_doc_->NewElement("settingsPanel");
+        settings_xml_node_->SetAttribute("active", "false");
+        message_node->InsertEndChild(settings_xml_node_);
+        settings_xml_doc_->SaveFile(xml_file_path);
+    }
+    else
+    {
+        if (std::string(settings_xml_node_->Attribute("active")).compare("true") == 0)
+        {
+            stylus_state_.settings_active_ = true;
+        }
+        else
+        {
+            stylus_state_.settings_active_ = false;
+        }
+    }
+}
 
 // void SettingsPanel::toggleStylusActive()
 // {
@@ -363,113 +310,53 @@ SettingsPanel::SettingsPanel(Stylus *stylus)
 //         xml_brain_config_->templateChanged_.emit();
 //     }
 // }
-// void SettingsPanel::toggleRightDialogActive()
-// {
-//     std::cout << "\n\n toggle control dialog \n\n";
-//     auto control_dialog_node = xml_brain_config_->message_node_->FirstChildElement("right-dialog");
-//     if (control_dialog_node)
-//     {
-//         if (std::string(control_dialog_node->FirstChildElement("active")->GetText()) == "false")
-//         {
-//             control_dialog_node->FirstChildElement("active")->SetText("true");
-//             if (stylus_state_.stylus_active_)
-//                 stylus_brain_->m_right_panel_d_->show();
-//             stylus_state_.right_active_ = true;
-//         }
-//         else
-//         {
-//             control_dialog_node->FirstChildElement("active")->SetText("false");
-//             stylus_brain_->m_right_panel_d_->hide();
-//             stylus_state_.right_active_ = false;
-//         }
-//         xml_brain_config_->file_->doc_->SaveFile(xml_brain_config_->file_->path_.c_str());
-//         xml_brain_config_->templateChanged_.emit();
-//     }
-//     right_toggler_->setChecked(stylus_state_.right_active_);
-// }
-// void SettingsPanel::toggleLeftDialogActive()
-// {
-//     std::cout << "\n\n toggle control dialog \n\n";
-//     auto elem_control_dialog_node = xml_brain_config_->message_node_->FirstChildElement("left-dialog");
-//     if (elem_control_dialog_node)
-//     {
-//         if (std::string(elem_control_dialog_node->FirstChildElement("active")->GetText()) == "false")
-//         {
-//             elem_control_dialog_node->FirstChildElement("active")->SetText("true");
-//             if (stylus_state_.stylus_active_)
-//                 stylus_brain_->m_left_panel_d_->show();
-//             stylus_state_.left_active_ = true;
-//         }
-//         else
-//         {
-//             elem_control_dialog_node->FirstChildElement("active")->SetText("false");
-//             stylus_brain_->m_left_panel_d_->hide();
-//             stylus_state_.left_active_ = false;
-//         }
-//         xml_brain_config_->file_->doc_->SaveFile(xml_brain_config_->file_->path_.c_str());
-//         xml_brain_config_->templateChanged_.emit();
-//     }
-//     left_toggler_->setChecked(stylus_state_.left_active_);
-// }
-// void SettingsPanel::toggleQuickCommandsDialogActive()
-// {
-//     std::cout << "\n\n quick commands dialog \n\n";
-//     auto quick_commands_dialog_node = xml_brain_config_->message_node_->FirstChildElement("quick-commands-dialog");
-//     if (quick_commands_dialog_node)
-//     {
-//         if (std::string(quick_commands_dialog_node->FirstChildElement("active")->GetText()) == "true")
-//         {
-//             if (!stylus_brain_->m_quick_commands_d_->line_eddit_->hasFocus())
-//             {
-//                 stylus_brain_->m_quick_commands_d_->line_eddit_->setFocus(true);
-//             }
-//             else
-//             {
-//                 quick_commands_dialog_node->FirstChildElement("active")->SetText("false");
-//                 stylus_brain_->m_quick_commands_d_->hide();
-//                 stylus_state_.quick_commands_active_ = false;
-//             }
-//         }
-//         else
-//         {
-//             quick_commands_dialog_node->FirstChildElement("active")->SetText("true");
-//             if (stylus_state_.stylus_active_)
-//             {
-//                 stylus_brain_->m_quick_commands_d_->show();
-//                 stylus_brain_->m_quick_commands_d_->line_eddit_->setFocus();
-//             }
-//             stylus_state_.quick_commands_active_ = true;
-//         }
-//         xml_brain_config_->file_->doc_->SaveFile(xml_brain_config_->file_->path_.c_str());
-//         xml_brain_config_->templateChanged_.emit();
-//     }
-//     quick_commands_toggler_->setChecked(stylus_state_.quick_commands_active_);
-// }
+void SettingsPanel::toggleRightDialogActive()
+{
+    stylus_state_.right_active_ = !stylus_state_.right_active_;
+    right_toggler_->setChecked(stylus_state_.right_active_);
+    stylus_->right_panel_->setHidden(!stylus_state_.right_active_);
+    right_xml_node_->SetAttribute("active", stylus_state_.right_active_ ? "true" : "false");
+    settings_xml_doc_->SaveFile(xml_file_path);
+}
 
-// void SettingsPanel::togglefilesManagerDialogActive()
-// {
-//     std::cout << "\n\n toggle files manager dialog \n\n";
-//     auto files_manager_dialog_node = xml_brain_config_->message_node_->FirstChildElement("files-manager-dialog");
-//     if (files_manager_dialog_node)
-//     {
-//         if (std::string(files_manager_dialog_node->FirstChildElement("active")->GetText()) == "false")
-//         {
-//             files_manager_dialog_node->FirstChildElement("active")->SetText("true");
-//             if (stylus_state_.stylus_active_)
-//                 stylus_brain_->m_files_manager_d_->show();
-//             stylus_state_.files_manager_active_ = true;
-//         }
-//         else
-//         {
-//             files_manager_dialog_node->FirstChildElement("active")->SetText("false");
-//             stylus_brain_->m_files_manager_d_->hide();
-//             stylus_state_.files_manager_active_ = false;
-//         }
-//         xml_brain_config_->file_->doc_->SaveFile(xml_brain_config_->file_->path_.c_str());
-//         xml_brain_config_->templateChanged_.emit();
-//     }
-//     files_manager_toggler_->setChecked(stylus_state_.files_manager_active_);
-// }
+void SettingsPanel::toggleLeftDialogActive()
+{
+    std::cout << "\n\n toggle control dialog \n\n";
+    stylus_state_.left_active_ = !stylus_state_.left_active_;
+    stylus_->left_panel_->setHidden(!stylus_state_.left_active_);
+    left_toggler_->setChecked(stylus_state_.left_active_);
+    left_xml_node_->SetAttribute("active", stylus_state_.left_active_ ? "true" : "false");
+    settings_xml_doc_->SaveFile(xml_file_path);
+}
+void SettingsPanel::toggleQuickCommandsDialogActive()
+{
+    std::cout << "\n\n quick commands dialog \n\n";
+    stylus_state_.quick_commands_active_ = !stylus_state_.quick_commands_active_;
+    quick_commands_toggler_->setChecked(stylus_state_.quick_commands_active_);
+    stylus_->quick_commands_panel_->setHidden(!stylus_state_.quick_commands_active_);
+    quick_commands_xml_node_->SetAttribute("active", stylus_state_.quick_commands_active_ ? "true" : "false");
+    settings_xml_doc_->SaveFile(xml_file_path);
+}
+
+void SettingsPanel::toggleEdditorDialogActive()
+{
+    std::cout << "\n\n toggle files manager dialog \n\n";
+    stylus_state_.edditor_active_ = !stylus_state_.edditor_active_;
+    edditor_toggler_->setChecked(stylus_state_.edditor_active_);
+    stylus_->edditor_panel_->setHidden(!stylus_state_.edditor_active_);
+    edditor_xml_node_->SetAttribute("active", stylus_state_.edditor_active_ ? "true" : "false");
+    settings_xml_doc_->SaveFile(xml_file_path);
+}
+
+void SettingsPanel::toggleSettingsDialogActive()
+{
+    std::cout << "\n\n toggle settings dialog \n\n";
+    stylus_state_.settings_active_ = !stylus_state_.settings_active_;
+    setHidden(!stylus_state_.settings_active_);
+    settings_xml_node_->SetAttribute("active", stylus_state_.settings_active_ ? "true" : "false");
+    settings_xml_doc_->SaveFile(xml_file_path);
+}
+
 // void SettingsPanel::togglefilesManagerLeftMenuActive()
 // {
 //     std::cout << "\n\n toggle files manager dialog \n\n";

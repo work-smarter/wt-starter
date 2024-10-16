@@ -21,13 +21,13 @@ public:
     void writeFile(Wt::WString file_path, Wt::WString destination_file_path);
     void writeAppFile(Wt::WString app_name, Wt::WString file_path, Wt::WString destination_file_path);
 
-private:
-    Session &session_;
-
     LeftPanel *left_panel_;
     RightPanel *right_panel_;
     EdditorPanel *edditor_panel_;
     SettingsPanel *settings_panel_;
     QuickCommandsPanel *quick_commands_panel_;
+
+private:
+    Session &session_;
     void processKeyEvent(Wt::WKeyEvent e);
 };

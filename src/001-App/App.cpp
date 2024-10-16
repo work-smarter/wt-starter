@@ -16,12 +16,14 @@ App::App(const Wt::WEnvironment &env)
 {
     setTitle("Starter App");
 
-    messageResourceBundle().use("../xml-templates/app/app-test");
+    // messageResourceBundle().use("../xml-templates/app/app-test");
+    messageResourceBundle().use("../xml-templates/app/app");
     messageResourceBundle().use("../xml-templates/app/inputs");
     messageResourceBundle().use("../xml-templates/app/strings");
     messageResourceBundle().use("../xml-templates/app/calendar");
 
-    messageResourceBundle().use("../xml-templates/overide-wt/auth_test");
+    // messageResourceBundle().use("../xml-templates/overide-wt/auth_test");
+    messageResourceBundle().use("../xml-templates/overide-wt/auth");
     messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
 
     // CSS
@@ -143,22 +145,28 @@ void App::createTest()
     root_content_ = root_temp_->bindWidget("content", std::make_unique<Wt::WContainerWidget>());
     root_content_->addWidget(std::make_unique<Wt::WText>("Test Page"));
 
-    auto test_btn = root_content_->addWidget(std::make_unique<Wt::WPushButton>("Test"));
-    test_btn->setStyleClass("btn-green");
-    test_btn->clicked().connect([=]
-                                {
+    auto file_to_dbo_btn = root_content_->addWidget(std::make_unique<Wt::WPushButton>("write templates to dbo"));
+    file_to_dbo_btn->setStyleClass("btn-green");
+    file_to_dbo_btn->clicked().connect([=]
+                                       {
                                     // stylus_.writeAppFile("starter", appRoot() + "../xml-templates/app/app.xml", appRoot() + "../xml-templates/app-test/app.xml");
-                                    stylus_.writeFile(appRoot() + "../xml-templates/overide-wt/auth.xml", appRoot() + "../xml-templates/overide-wt/auth_test.xml");
+                                    // stylus_.writeFile(appRoot() + "../xml-templates/overide-wt/auth.xml", appRoot() + "../xml-templates/overide-wt/auth_test.xml");
 
-                                    // stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth.xml");
-                                    // stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth_strings.xml");
+                                    stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth.xml");
+                                    stylus_.readXmlFile(appRoot() + "../xml-templates/overide-wt/auth_strings.xml");
 
-                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/app.xml", "starter");
-                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/calendar.xml", "starter");
-                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/inputs.xml", "starter");
-                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/strings.xml", "starter");
-                                    // stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/test.xml", "starter");
-                                });
+                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/app.xml", "starter");
+                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/calendar.xml", "starter");
+                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/inputs.xml", "starter");
+                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/strings.xml", "starter");
+                                    stylus_.readAppXmlFile(appRoot() + "../xml-templates/app/test.xml", "starter"); });
+
+    auto dbo_to_file_btn = root_content_->addWidget(std::make_unique<Wt::WPushButton>("write dbo to templates"));
+    dbo_to_file_btn->setStyleClass("btn-green");
+    dbo_to_file_btn->clicked().connect([=]
+                                       {
+                                    stylus_.writeAppFile("starter", appRoot() + "../xml-templates/app/app.xml", appRoot() + "../xml-templates/app-test/app.xml");
+                                    stylus_.writeFile(appRoot() + "../xml-templates/overide-wt/auth.xml", appRoot() + "../xml-templates/overide-wt/auth_test.xml"); });
 }
 
 void App::createProfile()

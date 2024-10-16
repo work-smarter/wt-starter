@@ -33,11 +33,11 @@ Stylus::Stylus(Session &session, Wt::WString app_name)
     settings_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<SettingsPanel>(this));
     quick_commands_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<QuickCommandsPanel>(this));
 
-    left_panel_->show();
-    right_panel_->show();
-    edditor_panel_->show();
-    settings_panel_->show();
-    quick_commands_panel_->show();
+    left_panel_->setHidden(!settings_panel_->stylus_state_.left_active_);
+    right_panel_->setHidden(!settings_panel_->stylus_state_.right_active_);
+    edditor_panel_->setHidden(!settings_panel_->stylus_state_.edditor_active_);
+    settings_panel_->setHidden(!settings_panel_->stylus_state_.settings_active_);
+    quick_commands_panel_->setHidden(!settings_panel_->stylus_state_.quick_commands_active_);
 
     Wt::WApplication::instance()->globalKeyWentDown().connect([=](Wt::WKeyEvent e)
                                                               { std::cout << "\n\n process from stylus brain \n\n"; processKeyEvent(e); });
@@ -223,58 +223,23 @@ void Stylus::processKeyEvent(Wt::WKeyEvent e)
         std::cout << "\n\n Alt key is pressed \n\n";
         if (e.key() == Wt::Key::Key_1)
         {
-            if (left_panel_->isVisible())
-            {
-                left_panel_->hide();
-            }
-            else
-            {
-                left_panel_->show();
-            }
+            settings_panel_->toggleLeftDialogActive();
         }
         else if (e.key() == Wt::Key::Key_3)
         {
-            if (right_panel_->isVisible())
-            {
-                right_panel_->hide();
-            }
-            else
-            {
-                right_panel_->show();
-            }
+            settings_panel_->toggleRightDialogActive();
         }
         else if (e.key() == Wt::Key::Key_5)
         {
-            if (quick_commands_panel_->isVisible())
-            {
-                quick_commands_panel_->hide();
-            }
-            else
-            {
-                quick_commands_panel_->show();
-            }
+            settings_panel_->toggleQuickCommandsDialogActive();
         }
         else if (e.key() == Wt::Key::Key_7)
         {
-            if (edditor_panel_->isVisible())
-            {
-                edditor_panel_->hide();
-            }
-            else
-            {
-                edditor_panel_->show();
-            }
+            settings_panel_->toggleEdditorDialogActive();
         }
         else if (e.key() == Wt::Key::Key_9)
         {
-            if (settings_panel_->isVisible())
-            {
-                settings_panel_->hide();
-            }
-            else
-            {
-                settings_panel_->show();
-            }
+            settings_panel_->toggleSettingsDialogActive();
         }
     }
 }

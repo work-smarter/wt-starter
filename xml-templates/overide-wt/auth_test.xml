@@ -1,241 +1,229 @@
 <messages>
     <message id="Wt.Auth.template.login">
-        <message id="Wt.Auth.template.login">
-            <div class="px-6 py-12 min-h-full flex-col flex lg:px-8 bg-white">
-                <div class=" sm:mx-auto sm:w-full sm:max-w-sm">
-                    <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.login-form-title}</h2>
-                    <p class=" ">${tr:Wt.Auth.login-form-info}</p>
-                    <div class="space-y-2 flex-col flex my-2">
-                        <!-- ${<if:passwords>} -->
-                        <div class="">${user-confirm-email class=""}</div>
-                        <div class="">
-                            <label for="${id:user-name}" class=" ">
-                                <div class="flex">
-                                    <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
-                                    <div class=" ">${user-name-info class="font-bold text-red-500 ml-3"}</div>
-                                </div>
-                                <div class=" w-full">${user-name class="line-edit-style-1" implementation="input:Username"}</div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="${id:password}" class=" ">
-                                <div class="flex">
-                                    <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.password}</div>
-                                    <div>${password-info class="font-bold text-red-500 ml-3"}</div>
-                                </div>
-                                <div class=" w-full">${password class="line-edit-style-1" implementation="input:Password"}</div>
-                            </label>
-                        </div>
-                        <div class="">
-                            <div class="">${tr:Wt.Auth.remember-me}</div>
-                            <label for="${id:remember-me}" class="flex">
-                                <div>${remember-me class="" implementation="checkbox:remember-me"}</div>
-                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${remember-me-info}</div>
-                            </label>
-                        </div>
-                        <!-- ${</if:passwords>} -->
-                    </div>
-                    <!-- ${<if:oauth>} -->
+        <div class="px-6 py-12 min-h-full flex-col flex lg:px-8 bg-white">
+            <div class=" sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.login-form-title}</h2>
+                <p class=" ">${tr:Wt.Auth.login-form-info}</p>
+                <div class="space-y-2 flex-col flex my-2">
+                    <!-- ${<if:passwords>} -->
+                    <div class="">${user-confirm-email class=""}</div>
                     <div class="">
-                        <h3 class="">Or use:</h3>
-                        <div class="[&amp;_div_img]:p-5 [&amp;_div_img]:bg-red-200">${icons class=""}</div>
+                        <label for="${id:user-name}" class=" ">
+                            <div class="flex">
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
+                                <div class=" ">${user-name-info class="font-bold text-red-500 ml-3"}</div>
+                            </div>
+                            <div class=" w-full">${user-name class="line-edit-style-1" implementation="input:Username"}</div>
+                        </label>
                     </div>
-                    <!-- ${</if:oauth>} -->
-                    <div class="w-full ">
-                        <div class="">${login class="btn-style-1" implementation="button:Login"}</div>
-                        <div class="ml-auto items-center justify-between flex mt-2">
-                            <div class="">${lost-password class="" implementation="button:lost password ?"}</div>
-                            <div class=" hidden">${sep class="" implementation="text:|"}</div>
-                            <div class=" ">${register class="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500" implementation="button:Register"}</div>
-                        </div>
+                    <div>
+                        <label for="${id:password}" class=" ">
+                            <div class="flex">
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.password}</div>
+                                <div>${password-info class="font-bold text-red-500 ml-3"}</div>
+                            </div>
+                            <div class=" w-full">${password class="line-edit-style-1" implementation="input:Password"}</div>
+                        </label>
+                    </div>
+                    <div class="">
+                        <div class="">${tr:Wt.Auth.remember-me}</div>
+                        <label for="${id:remember-me}" class="flex">
+                            <div>${remember-me class="" implementation="checkbox:remember-me"}</div>
+                            <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${remember-me-info}</div>
+                        </label>
+                    </div>
+                    <!-- ${</if:passwords>} -->
+                </div>
+                <!-- ${<if:oauth>} -->
+                <div class="">
+                    <h3 class="">Or use:</h3>
+                    <div class="[&amp;_div_img]:p-5 [&amp;_div_img]:bg-red-200">${icons class=""}</div>
+                </div>
+                <!-- ${</if:oauth>} -->
+                <div class="w-full ">
+                    <div class="">${login class="btn-style-1" implementation="button:Login"}</div>
+                    <div class="ml-auto items-center justify-between flex mt-2">
+                        <div class="">${lost-password class="" implementation="button:lost password ?"}</div>
+                        <div class=" hidden">${sep class="" implementation="text:|"}</div>
+                        <div class=" ">${register class="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500" implementation="button:Register"}</div>
                     </div>
                 </div>
             </div>
-        </message>
+        </div>
     </message>
     <message id="Wt.Auth.template.registration">
-        <message id="Wt.Auth.template.registration">
-            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.registration-form-title}</h2>
-                <p>${tr:Wt.Auth.registration-form-info}</p>
-                <div>${password-description}</div>
-                <div class="space-y-2">
-                    <!-- ${<if:user-name>} -->
-                    <div>
-                        <label for="${id:user-name}" class="">
-                            <div class="flex">
-                                <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
-                                <div class="ms-2">${confirm-is-you class="text-green-600 font-bold underline"}</div>
-                                <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
-                            </div>
-                            <div>${user-name class="line-edit-style-1" implementation="input:username"}</div>
-                        </label>
-                    </div>
-                    <!-- ${</if:user-name>} -->
-                    <div>
-                        <label for="${id:choose-password}" class="">
-                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.choose-password}</div>
-                            <div>${choose-password class="line-edit-style-1" implementation="input:chose password"}</div>
-                        </label>
-                        <div>${choose-password-info class="font-bold text-red-500"}</div>
-                    </div>
-                    <div>
-                        <label for="${id:repeat-password}" class="">
-                            <div class="flex">
-                                <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.repeat-password}</div>
-                                <div>${repeat-password-info class="font-bold text-red-500 ml-3"}</div>
-                            </div>
-                            <div>${repeat-password class="line-edit-style-1" implementation="input:repeat password"}</div>
-                        </label>
-                    </div>
-                    <div>
-                        <label for="${id:first-name}" class="">
-                            <div class="flex">
-                                <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
-                                <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
-                            </div>
-                            <div>${first-name class="line-edit-style-1" implementation="input:first name"}</div>
-                        </label>
-                    </div>
-                    <div>
-                        <label for="${id:last-name}" class="">
-                            <div class="flex">
-                                <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
-                                <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
-                            </div>
-                            <div>${last-name class="line-edit-style-1" implementation="input:last name"}</div>
-                        </label>
-                    </div>
-                    <div>
-                        <label for="${id:phone}" class="">
-                            <div class="flex">
-                                <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
-                                <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
-                            </div>
-                            <div>${phone class="line-edit-style-1" implementation="input:phone"}</div>
-                        </label>
-                    </div>
-                    <!-- ${<if:email>} -->
-                    <div>
-                        <label for="${id:email}" class="">
-                            <div class="flex">
-                                <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.email}</div>
-                                <div>${email-info class="font-bold text-red-500 ml-3"}</div>
-                            </div>
-                            <div>${email class="line-edit-style-1" implementation="input:email"}</div>
-                        </label>
-                    </div>
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.registration-form-title}</h2>
+            <p>${tr:Wt.Auth.registration-form-info}</p>
+            <div>${password-description}</div>
+            <div class="space-y-2">
+                <!-- ${<if:user-name>} -->
+                <div>
+                    <label for="${id:user-name}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.user-name}</div>
+                            <div class="ms-2">${confirm-is-you class="text-green-600 font-bold underline"}</div>
+                            <div>${user-name-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div>${user-name class="line-edit-style-1" implementation="input:username"}</div>
+                    </label>
                 </div>
-                <!-- ${</if:email>} -->
-                <!-- ${<if:oauth>} -->
-                <br class=""/>
-                <div>${oauth-description}</div>
-                <label>
-                    <div>${tr:Wt.Auth.oauth}</div>
-                    <div class="">${tr:Wt.Auth.oauth-info}</div>
-                </label>
-                <div>${icons}</div>
-                <!-- ${</if:oauth>} -->
-                <div class="items-center flex justify-between my-2">
-                    <div>${cancel-button class="btn-style-1" implementation="button:sign-up"}</div>
-                    <div>${ok-button class="btn-style-1" implementation="button:sign-up"}</div>
+                <!-- ${</if:user-name>} -->
+                <div>
+                    <label for="${id:choose-password}" class="">
+                        <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.choose-password}</div>
+                        <div>${choose-password class="line-edit-style-1" implementation="input:chose password"}</div>
+                    </label>
+                    <div>${choose-password-info class="font-bold text-red-500"}</div>
+                </div>
+                <div>
+                    <label for="${id:repeat-password}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.repeat-password}</div>
+                            <div>${repeat-password-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div>${repeat-password class="line-edit-style-1" implementation="input:repeat password"}</div>
+                    </label>
+                </div>
+                <div>
+                    <label for="${id:first-name}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.first-name}</div>
+                            <div>${first-name-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div>${first-name class="line-edit-style-1" implementation="input:first name"}</div>
+                    </label>
+                </div>
+                <div>
+                    <label for="${id:last-name}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.last-name}</div>
+                            <div>${last-name-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div>${last-name class="line-edit-style-1" implementation="input:last name"}</div>
+                    </label>
+                </div>
+                <div>
+                    <label for="${id:phone}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.phone}</div>
+                            <div>${phone-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div>${phone class="line-edit-style-1" implementation="input:phone"}</div>
+                    </label>
+                </div>
+                <!-- ${<if:email>} -->
+                <div>
+                    <label for="${id:email}" class="">
+                        <div class="flex">
+                            <div class="block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.email}</div>
+                            <div>${email-info class="font-bold text-red-500 ml-3"}</div>
+                        </div>
+                        <div>${email class="line-edit-style-1" implementation="input:email"}</div>
+                    </label>
                 </div>
             </div>
-        </message>
+            <!-- ${</if:email>} -->
+            <!-- ${<if:oauth>} -->
+            <br class=""/>
+            <div>${oauth-description}</div>
+            <label>
+                <div>${tr:Wt.Auth.oauth}</div>
+                <div class="">${tr:Wt.Auth.oauth-info}</div>
+            </label>
+            <div>${icons}</div>
+            <!-- ${</if:oauth>} -->
+            <div class="items-center flex justify-between my-2">
+                <div>${cancel-button class="btn-style-1" implementation="button:sign-up"}</div>
+                <div>${ok-button class="btn-style-1" implementation="button:sign-up"}</div>
+            </div>
+        </div>
     </message>
     <message id="Wt.Auth.template.update-password">
-        <message id="Wt.Auth.template.update-password">
-            <div class="">
-                <h2>${tr:Wt.Auth.update-password-form-title}</h2>
-                <p>${tr:Wt.Auth.update-password-form-info}</p>
-                <div class="Wt-fields">
+        <div class="">
+            <h2>${tr:Wt.Auth.update-password-form-title}</h2>
+            <p>${tr:Wt.Auth.update-password-form-info}</p>
+            <div class="Wt-fields">
+                <label for="${id:user-name}">
+                    <div>${tr:Wt.Auth.user-name}</div>
+                </label>
+                <div>${user-name}</div>
+                <div>
+                    <div>${password-info class=""}</div>
+                    <label for="${id:password}" class="flex">
+                        <div>${tr:Wt.Auth.password}</div>
+                        <div>${password class="" implementation="input:choose password"}</div>
+                    </label>
+                </div>
+                <div>
+                    <div>${choose-password-info class=""}</div>
+                    <label for="${id:choose-password}" class="flex">
+                        <div>${tr:Wt.Auth.choose-password}</div>
+                        <div>${choose-password class="" implementation="input:choose password"}</div>
+                    </label>
+                </div>
+                <div>
+                    <div>${repeat-password-info class=""}</div>
+                    <label for="${id:repeat-password}" class="flex">
+                        <div>${tr:Wt.Auth.repeat-password}</div>
+                        <div>${repeat-password class="" implementation="input:choose password"}</div>
+                    </label>
+                </div>
+            </div>
+            <div class="Wt-buttons">
+                <div>${ok-button}</div>
+                <div>${cancel-button}</div>
+            </div>
+        </div>
+    </message>
+    <message id="Wt.Auth.template.lost-password">
+        <div class="Wt-form Wt-auth-lost-password">
+            <h2>${tr:Wt.Auth.lost-password-form-title}</h2>
+            <p>${tr:Wt.Auth.lost-password-form-info}</p>
+            <div class="Wt-fields">
+                <label for="${id:email}">
+                    <div>${tr:Wt.Auth.email}</div>
+                    <div class="Wt-info">${tr:Wt.Auth.email-info}</div>
+                </label>
+                <div>${email}</div>
+            </div>
+            <div class="Wt-buttons">
+                <div>${send-button}</div>
+                <div>${cancel-button}</div>
+            </div>
+        </div>
+    </message>
+    <message id="Wt.Auth.template.password-prompt">
+        <div class="h-screen w-screen px-6 py-12 flex flex-col lg:px-8 bg-white ">
+            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.password-prompt-form-title}</h2>
+                <p>${tr:Wt.Auth.password-prompt-form-info}</p>
+                <div class="flex flex-col space-y-2">
                     <label for="${id:user-name}">
                         <div>${tr:Wt.Auth.user-name}</div>
                     </label>
-                    <div>${user-name}</div>
+                    <div>${user-name class="line-edit-style-1"}</div>
                     <div>
-                        <div>${password-info class=""}</div>
-                        <label for="${id:password}" class="flex">
-                            <div>${tr:Wt.Auth.password}</div>
-                            <div>${password class="" implementation="input:choose password"}</div>
-                        </label>
-                    </div>
-                    <div>
-                        <div>${choose-password-info class=""}</div>
-                        <label for="${id:choose-password}" class="flex">
-                            <div>${tr:Wt.Auth.choose-password}</div>
-                            <div>${choose-password class="" implementation="input:choose password"}</div>
-                        </label>
-                    </div>
-                    <div>
-                        <div>${repeat-password-info class=""}</div>
-                        <label for="${id:repeat-password}" class="flex">
-                            <div>${tr:Wt.Auth.repeat-password}</div>
-                            <div>${repeat-password class="" implementation="input:choose password"}</div>
+                        <label for="${id:password}" class=" ">
+                            <div class="flex">
+                                <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.password}</div>
+                                <div>${password-info class="font-bold text-red-500 ml-3"}</div>
+                            </div>
+                            <div class=" w-full">${password class="line-edit-style-1" implementation="input:Password"}</div>
                         </label>
                     </div>
                 </div>
-                <div class="Wt-buttons">
-                    <div>${ok-button}</div>
-                    <div>${cancel-button}</div>
+                <div class="flex items-center justify-between my-2">
+                    <div>${cancel-button class="btn-style-1"}</div>
+                    <div>${ok-button class="btn-style-1"}</div>
                 </div>
             </div>
-        </message>
-    </message>
-    <message id="Wt.Auth.template.lost-password">
-        <message id="Wt.Auth.template.lost-password">
-            <div class="Wt-form Wt-auth-lost-password">
-                <h2>${tr:Wt.Auth.lost-password-form-title}</h2>
-                <p>${tr:Wt.Auth.lost-password-form-info}</p>
-                <div class="Wt-fields">
-                    <label for="${id:email}">
-                        <div>${tr:Wt.Auth.email}</div>
-                        <div class="Wt-info">${tr:Wt.Auth.email-info}</div>
-                    </label>
-                    <div>${email}</div>
-                </div>
-                <div class="Wt-buttons">
-                    <div>${send-button}</div>
-                    <div>${cancel-button}</div>
-                </div>
-            </div>
-        </message>
-    </message>
-    <message id="Wt.Auth.template.password-prompt">
-        <message id="Wt.Auth.template.password-prompt">
-            <div class="h-screen w-screen px-6 py-12 flex flex-col lg:px-8 bg-white ">
-                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.password-prompt-form-title}</h2>
-                    <p>${tr:Wt.Auth.password-prompt-form-info}</p>
-                    <div class="flex flex-col space-y-2">
-                        <label for="${id:user-name}">
-                            <div>${tr:Wt.Auth.user-name}</div>
-                        </label>
-                        <div>${user-name class="line-edit-style-1"}</div>
-                        <div>
-                            <label for="${id:password}" class=" ">
-                                <div class="flex">
-                                    <div class=" block text-sm font-medium leading-6 text-gray-900 text-nowrap">${tr:Wt.Auth.password}</div>
-                                    <div>${password-info class="font-bold text-red-500 ml-3"}</div>
-                                </div>
-                                <div class=" w-full">${password class="line-edit-style-1" implementation="input:Password"}</div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between my-2">
-                        <div>${cancel-button class="btn-style-1"}</div>
-                        <div>${ok-button class="btn-style-1"}</div>
-                    </div>
-                </div>
-            </div>
-        </message>
+        </div>
     </message>
     <message id="Wt.Auth.template.logged-in">
-        <message id="Wt.Auth.template.logged-in">
-            <div class="">
-                <b>${user-name class="" implementation="text:logged in user Identity"}</b>
-                <div>${logout class="" implementation="button:Logout"}</div>
-            </div>
-        </message>
+        <div class="">
+            <b>${user-name class="" implementation="text:logged in user Identity"}</b>
+            <div>${logout class="" implementation="button:Logout"}</div>
+        </div>
     </message>
 </messages>

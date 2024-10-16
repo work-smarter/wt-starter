@@ -45,7 +45,6 @@ Session::Session(const std::string &sqliteDb)
   auto connection = std::make_unique<Dbo::backend::Postgres>(postgres_conn_str.c_str());
   setConnection(std::move(connection));
 
-  mapClass<StylusSettings>("stylus_settings");
   mapClass<TemplateFile>("template_file");
   mapClass<XmlTemplate>("xml_template");
   mapClass<TemplateApp>("template_app");

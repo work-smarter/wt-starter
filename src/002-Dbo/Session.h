@@ -11,7 +11,6 @@
 #include "101-Stylus/Tables/XmlTemplate.h"
 #include "101-Stylus/Tables/TemplateFile.h"
 #include "101-Stylus/Tables/TemplateApp.h"
-#include "101-Stylus/Tables/StylusSettings.h"
 
 using namespace Wt;
 

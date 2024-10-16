@@ -6,7 +6,7 @@
 QuickCommandsPanel::QuickCommandsPanel(Stylus *stylus)
     : BaseDialogPanel(stylus)
 {
-    addStyleClass("rounded-md z-[999999]");
+    // addStyleClass("rounded-md z-[999999]");
     titleBar()->addStyleClass("!text-black rounded-t-md");
     contents()->addStyleClass("flex items-stretch !text-black rounded-b-md");
     setOffsets(300, Wt::Side::Bottom);
