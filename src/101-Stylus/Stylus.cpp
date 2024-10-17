@@ -48,10 +48,16 @@ void Stylus::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 {
     std::cout << "\n\n setXmlBrain \n\n";
 
-    if (xml_brain_ && xml_brain_ != xml_brain)
+    if (xml_brain_)
     {
-        xml_brain_->selected_node_ = nullptr;
-        node_selected().emit();
+        if (xml_brain_ != xml_brain)
+        {
+            if (xml_brain_->dbo_temp_data_.temp_type == xml_brain->dbo_temp_data_.temp_type)
+            {
+                xml_brain_->selected_node_ = nullptr;
+                node_selected().emit();
+            }
+        }
     }
 
     xml_brain_ = xml_brain;
