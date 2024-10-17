@@ -1,5 +1,5 @@
 <messages>
-    <message id="Wt.Auth.template.login">
+    <message dbo_id="1" id="Wt.Auth.template.login">
         <div class="px-6 py-12 min-h-full flex-col flex lg:px-8 bg-white">
             <div class=" sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.login-form-title}</h2>
@@ -51,7 +51,7 @@
             </div>
         </div>
     </message>
-    <message id="Wt.Auth.template.registration">
+    <message dbo_id="2" id="Wt.Auth.template.registration">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.registration-form-title}</h2>
             <p>${tr:Wt.Auth.registration-form-info}</p>
@@ -139,7 +139,7 @@
             </div>
         </div>
     </message>
-    <message id="Wt.Auth.template.update-password">
+    <message dbo_id="3" id="Wt.Auth.template.update-password">
         <div class="">
             <h2>${tr:Wt.Auth.update-password-form-title}</h2>
             <p>${tr:Wt.Auth.update-password-form-info}</p>
@@ -176,7 +176,7 @@
             </div>
         </div>
     </message>
-    <message id="Wt.Auth.template.lost-password">
+    <message dbo_id="4" id="Wt.Auth.template.lost-password">
         <div class="Wt-form Wt-auth-lost-password">
             <h2>${tr:Wt.Auth.lost-password-form-title}</h2>
             <p>${tr:Wt.Auth.lost-password-form-info}</p>
@@ -193,7 +193,7 @@
             </div>
         </div>
     </message>
-    <message id="Wt.Auth.template.password-prompt">
+    <message dbo_id="5" id="Wt.Auth.template.password-prompt">
         <div class="h-screen w-screen px-6 py-12 flex flex-col lg:px-8 bg-white ">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 class="text-2xl font-bold tracking-tight leading-9 text-center text-gray-900 mt-10">${tr:Wt.Auth.password-prompt-form-title}</h2>
@@ -220,7 +220,7 @@
             </div>
         </div>
     </message>
-    <message id="Wt.Auth.template.logged-in">
+    <message dbo_id="6" id="Wt.Auth.template.logged-in">
         <div class="">
             <b>${user-name class="" implementation="text:logged in user Identity"}</b>
             <div>${logout class="" implementation="button:Logout"}</div>

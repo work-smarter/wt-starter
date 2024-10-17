@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+  <message id="test.2">
+    <div class="p-12 bg-red-200 border-4 border-solid border-green-500">
+      <div class="p-4 bg-yellow-500 ">1</div>
+      <div class="p-4 bg-yellow-500 ">2</div>
+    </div>
+  </message>
+</messages>

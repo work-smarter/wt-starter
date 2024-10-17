@@ -42,6 +42,9 @@ set(SOURCES
     ${SOURCE_DIR}/100-Utils/AwsConnect.cpp
     ${SOURCE_DIR}/100-Utils/tinyxml2/tinyxml2.cpp
     ${SOURCE_DIR}/101-Stylus/Stylus.cpp
+    ${SOURCE_DIR}/101-Stylus/XMLBrain.cpp
+    ${SOURCE_DIR}/101-Stylus/Preview/PWidget.cpp
+    ${SOURCE_DIR}/101-Stylus/Preview/PElement.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/BaseDialogPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/LeftPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/RightPanel.cpp

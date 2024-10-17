@@ -72,6 +72,7 @@
         "future": "cpp",
         "CalendarCell.C": "cpp",
         "AllEntriesDialog.C": "cpp",
-        "EntryDialog.C": "cpp"
+        "EntryDialog.C": "cpp",
+        "WidgetFunction.C": "cpp"
     }
 }
