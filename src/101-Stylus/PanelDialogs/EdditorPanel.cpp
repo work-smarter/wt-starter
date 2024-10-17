@@ -74,6 +74,7 @@ void EdditorPanel::createDefaultDisplay()
         {
             XmlDboRecord temp_obj;
             temp_obj.temp_type = XMLTempType::DEFAULT;
+            temp_obj.temp_file = file->name;
             temp_obj.id = std::to_string(xml_template.id());
             temp_obj.temp_id = xml_template->temp_id;
             temp_obj.xml_temp = xml_template->xml_temp;
@@ -115,6 +116,8 @@ void EdditorPanel::createAppDisplay(Wt::WString app_name)
         {
             XmlDboRecord temp_obj;
             temp_obj.temp_type = XMLTempType::APP;
+            temp_obj.temp_file = app_file->name;
+            temp_obj.app_name = app_name;
             temp_obj.id = std::to_string(xml_template.id());
             temp_obj.temp_id = xml_template->temp_id;
             temp_obj.xml_temp = xml_template->xml_temp;

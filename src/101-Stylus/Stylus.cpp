@@ -50,12 +50,18 @@ void Stylus::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 
     if (xml_brain_)
     {
+        std::cout << "\n xml_brain_ is not null \n";
         if (xml_brain_ != xml_brain)
         {
+            std::cout << "\n xml_brain_ is not equal to xml_brain \n";
             if (xml_brain_->dbo_temp_data_.temp_type == xml_brain->dbo_temp_data_.temp_type)
             {
-                if (xml_brain_->dbo_temp_data_.temp_file.toUTF8().compare(xml_brain->dbo_temp_data_.temp_file.toUTF8()))
+                std::cout << "\n xml_brain_ is equal to xml_brain \n";
+                std::cout << "\n param brain = <" << xml_brain->dbo_temp_data_.temp_file.toUTF8() << ">\n";
+                std::cout << "\n xml_brain_ = <" << xml_brain_->dbo_temp_data_.temp_file.toUTF8() << ">\n";
+                if (xml_brain_->dbo_temp_data_.temp_file.toUTF8().compare(xml_brain->dbo_temp_data_.temp_file.toUTF8()) == 0)
                 {
+                    std::cout << "\n xml_brain_ is equal to xml_brain \n";
                     xml_brain_->selected_node_ = nullptr;
                     node_selected().emit();
                 }
