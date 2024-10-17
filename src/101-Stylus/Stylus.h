@@ -1,8 +1,6 @@
 #pragma once
 #include "002-Dbo/Session.h"
-#include "101-Stylus/Tables/XmlTemplate.h"
-#include "101-Stylus/Tables/TemplateFile.h"
-#include "101-Stylus/Tables/TemplateApp.h"
+#include "101-Stylus/Tables.h"
 #include "101-Stylus/XMLBrain.h"
 
 #include <Wt/WSignal.h>
@@ -18,11 +16,8 @@ class Stylus
 public:
     Stylus(Session &session, Wt::WString app_name, Wt::WString templates_root_path);
 
-    void readDefaultXmlFile(Wt::WString file_path);
-
-    void writeDefaultFile(Wt::WString file_name, Wt::WString destination_file_path);
-    void writeAppFile(Wt::WString app_name, Wt::WString file_name, Wt::WString destination_file_path);
-    void readAppXmlFile(Wt::WString app_name, Wt::WString file_path);
+    void addFileToDbo(Wt::WString folder_name, Wt::WString file_path);
+    void saveFileFromDbo(Wt::WString folder_name, Wt::WString file_name);
 
     LeftPanel *left_panel_;
     RightPanel *right_panel_;
@@ -42,5 +37,4 @@ public:
 private:
     void processKeyEvent(Wt::WKeyEvent e);
     Wt::Signal<> node_selected_;
-
 };

@@ -59,3 +59,101 @@ void XMLBrain::saveXmlToDbo()
 
     transaction.commit();
 }
+
+TempVarData tempText(tinyxml2::XMLNode *node)
+{
+    TempVarData temp_var_data;
+    // std::cout << "\n\n------------" << node_->ToText()->Value() << "------------\n\n";
+    if (!node->ToText())
+    {
+        std::cout << "\n\n ERROR TCTemplate node is not text\n\n";
+        return temp_var_data;
+    }
+    // boost::regex template_regex_ = boost::regex(R"(\$\{.*?\})");
+    boost::regex template_regex_ = boost::regex(R"(\$\{[A-Za-z1-9-]*[ ]?(class=\"([^"]*)\")?[ ]?(implementation=\"[A-Za-z1-9 :\-|?]*\")?[ ]?\})");
+    // boost::regex template_regex_ = boost::regex(R"(\$\{[A-Za-z1-9-]*[ ]?(class=\"([^"]*)\")?[ ]?(implementation=\"[A-Za-z-]*\")?[ ]?\})");
+    // boost::regex template_regex_ = boost::regex(R"(\$\{[A-Za-z-]*[ ]\})");
+    std::string node_text = node->ToText()->Value();
+    if (boost::regex_match(node_text, template_regex_))
+    {
+        std::string temp_var = node->ToText()->Value();
+        auto whitespace_pos = temp_var.find(" ");
+
+        // set name_
+        if (whitespace_pos == std::string::npos)
+        {
+            temp_var_data.name_ = temp_var.substr(2, temp_var.size() - 3);
+        }
+        else
+        {
+            temp_var_data.name_ = temp_var.substr(2, whitespace_pos - 2);
+        }
+
+        // set style_classes_
+        auto class_pos = temp_var.find("class=\"");
+        if (class_pos != std::string::npos)
+        {
+            auto class_end_pos = temp_var.find("\"", class_pos + 7);
+            temp_var_data.style_classes_ = temp_var.substr(class_pos + 7, class_end_pos - class_pos - 7);
+        }
+        // set implementation_
+        auto implementation_pos = temp_var.find("implementation=\"");
+        if (implementation_pos != std::string::npos)
+        {
+            // std::cout << "implementation_pos <" << implementation_pos << ">";
+
+            auto implementation_end_pos = temp_var.find("\"", implementation_pos + 16);
+            temp_var_data.implementation_ = temp_var.substr(implementation_pos + 16, implementation_end_pos - implementation_pos - 16);
+        }
+
+        // std::cout << "var name <" << temp_var_data.name_ << "> ----- ";
+        // std::cout << "implementation <" << temp_var_data.implementation_ << ">\n";
+        return temp_var_data;
+    }
+    return temp_var_data;
+}
+
+std::vector<TempVarData> tempTexts(std::string text)
+{
+    std::vector<TempVarData> temp_var_datas;
+    boost::regex template_regex_ = boost::regex(R"(\$\{[A-Za-z1-9-]*[ ]?(class=\"([^"]*)\")?[ ]?(implementation=\"[A-Za-z1-9 :\-]*\")?[ ]?\})");
+    // boost::regex template_regex_ = boost::regex(R"(\$\{[A-Za-z1-9-]*[ ]?(class=\"([^"]*)\")?[ ]?(implementation=\"[A-Za-z-]*\")?[ ]?\})");
+    boost::sregex_iterator it(text.begin(), text.end(), template_regex_);
+    boost::sregex_iterator end;
+    while (it != end)
+    {
+        boost::smatch match = *it;
+        std::string temp_var = match.str();
+        TempVarData temp_var_data;
+        auto whitespace_pos = temp_var.find(" ");
+
+        // set name_
+        if (whitespace_pos == std::string::npos)
+        {
+            temp_var_data.name_ = temp_var.substr(2, temp_var.size() - 3);
+        }
+        else
+        {
+            temp_var_data.name_ = temp_var.substr(2, whitespace_pos - 2);
+        }
+
+        // set style_classes_
+        auto class_pos = temp_var.find("class=\"");
+        if (class_pos != std::string::npos)
+        {
+            auto class_end_pos = temp_var.find("\"", class_pos + 7);
+            temp_var_data.style_classes_ = temp_var.substr(class_pos + 7, class_end_pos - class_pos - 7);
+        }
+        // set implementation_
+        auto implementation_pos = temp_var.find("implementation=\"");
+        if (implementation_pos != std::string::npos)
+        {
+            auto implementation_end_pos = temp_var.find("\"", implementation_pos + 16);
+            temp_var_data.implementation_ = temp_var.substr(implementation_pos + 16, implementation_end_pos - implementation_pos - 16);
+        }
+
+        temp_var_datas.push_back(temp_var_data);
+        ++it;
+    }
+    return temp_var_datas;
+}

@@ -18,8 +18,7 @@ private:
     Wt::WContainerWidget *header_wrapper_;
     Wt::WContainerWidget *content_wrapper_;
 
-    void createDefaultDisplay();
-    void createAppDisplay(Wt::WString app_name);
+    void createFolderDisplay(Wt::WString app_name);
 
     void createFileTemplates(std::vector<XmlDboRecord> xml_temp_objects, Wt::WContainerWidget *wrapper);
 };

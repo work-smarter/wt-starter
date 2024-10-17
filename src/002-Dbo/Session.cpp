@@ -45,11 +45,9 @@ Session::Session(const std::string &sqliteDb)
   auto connection = std::make_unique<Dbo::backend::Postgres>(postgres_conn_str.c_str());
   setConnection(std::move(connection));
 
-  mapClass<TemplateFile>("template_file");
   mapClass<XmlTemplate>("xml_template");
-  mapClass<TemplateApp>("template_app");
-  mapClass<AppTemplateFile>("app_template_file");
-  mapClass<AppXmlTemplate>("app_xml_template");
+  mapClass<TemplateFile>("template_file");
+  mapClass<TemplateFolder>("template_folder");
 
   mapClass<CalendarEntry>("calendar_entry");
 
@@ -109,6 +107,9 @@ void Session::createInitialData()
 
   auto dbo_user_info = users_->find(new_user);
   dbo_user_info.modify()->setUser(dbo_user);
+
+  dbo::ptr<TemplateFolder> template_folder = add(std::make_unique<TemplateFolder>());
+  template_folder.modify()->folder_name = "default";
 
   // t.commit();
 }

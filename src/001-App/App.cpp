@@ -152,11 +152,11 @@ void App::createTest()
     file_to_dbo_btn->setStyleClass("btn-green");
     file_to_dbo_btn->clicked().connect([=]
                                        {
-                                           stylus_.readDefaultXmlFile("overide-wt/test.xml");
+                                           //    stylus_.readDefaultXmlFile("overide-wt/test.xml");
                                            // stylus_.readDefaultXmlFile("overide-wt/auth.xml");
                                            // stylus_.readDefaultXmlFile("overide-wt/auth_strings.xml");
 
-                                           // stylus_.readAppXmlFile("starter", "app/app.xml");
+                                           stylus_.addFileToDbo("default", "overide-wt/test.xml");
                                            // stylus_.readAppXmlFile("starter", "app/calendar.xml");
                                            // stylus_.readAppXmlFile("starter", "app/inputs.xml");
                                            // stylus_.readAppXmlFile("starter", "app/strings.xml");
@@ -169,8 +169,7 @@ void App::createTest()
                                        {
                                            // stylus_.writeAppFile("starter", "app.xml", "app.xml");
                                            // stylus_.writeDefaultFile("auth.xml", "auth_test.xml");
-                                           stylus_.writeDefaultFile("test.xml", "test.xml");
-                                       });
+                                           stylus_.saveFileFromDbo("default", "test.xml"); });
 }
 
 void App::createProfile()

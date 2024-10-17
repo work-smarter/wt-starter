@@ -1,9 +1,30 @@
 #pragma once
 #include "100-Utils/tinyxml2/tinyxml2.h"
 #include <Wt/WString.h>
+#include <boost/regex.hpp>
 
 class Session;
 class Stylus;
+
+enum TempVarImplementationType
+{
+    TEMPLATE = 10,
+    TEXT = 11,
+    INPUT = 12,
+    TEXTAREA = 13,
+    BUTTON = 14,
+    CHECKBOX = 15,
+    RADIO = 16,
+};
+
+struct TempVarData
+{
+    std::string name_ = "";
+    std::string style_classes_ = "";
+    std::string implementation_ = "";
+    TempVarImplementationType implementation_type_ = TempVarImplementationType::TEXT;
+    std::string implementation_text_ = "";
+};
 
 enum XMLTempType
 {
@@ -17,10 +38,13 @@ struct XmlDboRecord
     Wt::WString id;
     Wt::WString temp_id;
     Wt::WString temp_file;
-    Wt::WString app_name;
+    Wt::WString folder_name;
     Wt::WString xml_temp;
     XMLTempType temp_type;
 };
+
+TempVarData tempText(tinyxml2::XMLNode *node);
+std::vector<TempVarData> tempTexts(std::string text);
 
 class XMLBrain
 {

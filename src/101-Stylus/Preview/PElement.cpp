@@ -6,7 +6,16 @@ PElement::PElement(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
     : PWidget(xml_brain, node)
 {
     // setStyleClass("p-4 bg-red-200");
-
+    if (xml_brain_->selected_node_ == node)
+    {
+        setStyleClass("?");
+    }
+    mouseWentOver().preventPropagation();
+    mouseWentOver().connect([=]
+                            { toggleStyleClass("??", true); });
+    mouseWentOut().preventPropagation();
+    mouseWentOut().connect([=]
+                           { toggleStyleClass("??", false); });
     if (node->ToElement() == xml_brain_->message_node_)
     {
         // std::cout << "\n\n message node found with id " << xml_brain_->dbo_temp_data_.temp_id << "\n";
