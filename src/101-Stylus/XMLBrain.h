@@ -16,6 +16,8 @@ struct XmlDboRecord
 {
     Wt::WString id;
     Wt::WString temp_id;
+    Wt::WString temp_file;
+    Wt::WString app_name;
     Wt::WString xml_temp;
     XMLTempType temp_type;
 };

@@ -54,8 +54,11 @@ void Stylus::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
         {
             if (xml_brain_->dbo_temp_data_.temp_type == xml_brain->dbo_temp_data_.temp_type)
             {
-                xml_brain_->selected_node_ = nullptr;
-                node_selected().emit();
+                if (xml_brain_->dbo_temp_data_.temp_file.toUTF8().compare(xml_brain->dbo_temp_data_.temp_file.toUTF8()))
+                {
+                    xml_brain_->selected_node_ = nullptr;
+                    node_selected().emit();
+                }
             }
         }
     }
