@@ -15,7 +15,19 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
 
     header_wrapper_ = contents()->addWidget(std::make_unique<Wt::WContainerWidget>());
     content_wrapper_ = contents()->addWidget(std::make_unique<Wt::WContainerWidget>());
-    header_wrapper_->setStyleClass("flex items-start border-solid border-b border-gray-600");
+    header_wrapper_->setStyleClass("flex justify-between border-solid border-b border-gray-600");
+    auto button_btn_group_wrapper = header_wrapper_->addWidget(std::make_unique<Wt::WContainerWidget>());
+    auto test_btns_wrapper = header_wrapper_->addWidget(std::make_unique<Wt::WContainerWidget>());
+    auto add_temps_to_dbo_btn = test_btns_wrapper->addWidget(std::make_unique<Wt::WPushButton>("Add Temps"));
+    add_temps_to_dbo_btn->clicked().connect([=]()
+                                            { stylus_->addFileToDbo("default", "overide-wt/test.xml"); });
+    auto get_temps_from_dbo_btn = test_btns_wrapper->addWidget(std::make_unique<Wt::WPushButton>("Get Temps"));
+    get_temps_from_dbo_btn->clicked().connect([=]()
+                                              { stylus_->saveFileFromDbo("default", "test.xml"); });
+    button_btn_group_wrapper->setStyleClass("flex");
+    test_btns_wrapper->setStyleClass("flex");
+    add_temps_to_dbo_btn->setStyleClass("btn-style-1 !p-0.5 mr-3");
+    get_temps_from_dbo_btn->setStyleClass("btn-style-1 !p-0.5 mr-3");
     content_wrapper_->setStyleClass("flex items-start h-[calc(100%-31px)]");
     auto radio_checkbox_btn_styles_ = "[&>input]:hidden "
                                       "m-0.5 mb-1 "
@@ -35,7 +47,7 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
     dbo::collection<dbo::ptr<TemplateFolder>> template_folders = stylus_->session_.find<TemplateFolder>();
     for (auto folder : template_folders)
     {
-        auto app_btn = header_wrapper_->addWidget(std::make_unique<Wt::WRadioButton>(folder->folder_name));
+        auto app_btn = button_btn_group_wrapper->addWidget(std::make_unique<Wt::WRadioButton>(folder->folder_name));
         app_btn->setStyleClass(radio_checkbox_btn_styles_);
         display_set_group_->addButton(app_btn);
         app_btn->checked().connect([=]
