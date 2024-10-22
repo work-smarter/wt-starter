@@ -8,8 +8,8 @@ class LeftPanel : public BaseDialogPanel
 public:
     LeftPanel(Stylus *stylus_brain);
 
-    void createTree(std::shared_ptr<XMLBrain> xml_brain);
-    
+    void createTree(std::shared_ptr<XMLBrain> xml_brain = nullptr);
+
 private:
     XMLBrain *xml_brain_;
 };

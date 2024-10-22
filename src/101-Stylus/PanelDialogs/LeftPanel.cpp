@@ -13,5 +13,8 @@ LeftPanel::LeftPanel(Stylus *stylus)
 void LeftPanel::createTree(std::shared_ptr<XMLBrain> xml_brain)
 {
     contents()->clear();
-    contents()->addWidget(std::make_unique<PTree>(xml_brain, xml_brain->message_node_));
+    if (xml_brain)
+    {
+        contents()->addWidget(std::make_unique<PTree>(xml_brain, xml_brain->message_node_));
+    }
 }

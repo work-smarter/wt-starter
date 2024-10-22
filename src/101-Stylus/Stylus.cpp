@@ -47,31 +47,22 @@ Stylus::Stylus(Session &session, Wt::WString app_name, Wt::WString templates_roo
 void Stylus::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 {
     std::cout << "\n\n setXmlBrain \n\n";
-
-    if (xml_brain_)
-    {
-        std::cout << "\n xml_brain_ is not null \n";
-        if (xml_brain_ != xml_brain)
-        {
-            std::cout << "\n xml_brain_ is not equal to xml_brain \n";
-            if (xml_brain_->dbo_temp_data_.temp_type == xml_brain->dbo_temp_data_.temp_type)
-            {
-                std::cout << "\n xml_brain_ is equal to xml_brain \n";
-                std::cout << "\n param brain = <" << xml_brain->dbo_temp_data_.temp_file.toUTF8() << ">\n";
-                std::cout << "\n xml_brain_ = <" << xml_brain_->dbo_temp_data_.temp_file.toUTF8() << ">\n";
-                if (xml_brain_->dbo_temp_data_.temp_file.toUTF8().compare(xml_brain->dbo_temp_data_.temp_file.toUTF8()) == 0)
-                {
-                    std::cout << "\n xml_brain_ is equal to xml_brain \n";
-                    xml_brain_->selected_node_ = nullptr;
-                    node_selected().emit();
-                }
-            }
-        }
-    }
+    // if (xml_brain_)
+    // {
+    // std::cout << "\n xml_brain_ is not null \n";
+    // if (xml_brain_ != xml_brain)
+    // {
+    //     if (xml_brain_->dbo_temp_data_.dbo_folder_id == xml_brain->dbo_temp_data_.dbo_folder_id && xml_brain_->dbo_temp_data_.dbo_file_id == xml_brain->dbo_temp_data_.dbo_file_id)
+    //     {
+    // xml_brain_->selected_node_ = nullptr;
+    // xml_brain_->node_selected().emit();
+    // }
+    // }
+    // }
 
     xml_brain_ = xml_brain;
-    node_selected().emit();
     left_panel_->createTree(xml_brain_);
+    xml_brain_->selected_node_->node_selected().emit(true);
 }
 
 void Stylus::addFileToDbo(Wt::WString folder_name, Wt::WString file_path)
@@ -86,12 +77,13 @@ void Stylus::addFileToDbo(Wt::WString folder_name, Wt::WString file_path)
     if (!template_folder)
     {
         std::cerr << "\n Error: No app found with the name: " << folder_name << "\n";
-        return;
+        template_folder = session_.add(std::make_unique<TemplateFolder>());
+        template_folder.modify()->folder_name = folder_name;
     }
 
     tinyxml2::XMLDocument doc;
     doc.LoadFile(file_path.toUTF8().c_str());
-    std::cout << "\n\n file_path: " << file_path.toUTF8() << "\n\n";
+    // std::cout << "\n\n file_path: " << file_path.toUTF8() << "\n\n";
     tinyxml2::XMLElement *messages = doc.FirstChildElement("messages");
     if (!messages)
     {
@@ -116,7 +108,7 @@ void Stylus::addFileToDbo(Wt::WString folder_name, Wt::WString file_path)
             node->Accept(&printer);
             value += printer.CStr();
         }
-        std::cout << "\n id: " << id << " value: " << value;
+        std::cout << "\n id: " << id << "\n";
         auto xml_template = std::make_unique<XmlTemplate>();
         xml_template->temp_id = id;
         xml_template->xml_temp = value;
@@ -170,7 +162,7 @@ void Stylus::saveFileFromDbo(Wt::WString folder_name, Wt::WString file_name)
     }
 
     doc.SaveFile(destination_file_path.toUTF8().c_str());
-    std::cout << "\n\n file saved to: " << destination_file_path.toUTF8().c_str() << "\n\n";
+    std::cout << "\n file saved to: " << destination_file_path.toUTF8().c_str() << "\n";
     transaction.commit();
 }
 

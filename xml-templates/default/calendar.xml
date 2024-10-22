@@ -1,0 +1,33 @@
+<messages>
+    <message dbo_id="525" id="calendar.entry.title"/>
+    <message dbo_id="526" id="calendar.entry">
+        <div class="entry-dialog">
+            <div class="line">
+                <label>Summary: ${summary}</label>
+            </div>
+            <div class="line">
+                <label>From${start}</label>
+                <label>to${stop}</label>
+            </div>
+            <div class="line">
+                <div>
+                    <label>Description:</label>
+                </div>
+                <div>${description}</div>
+            </div>
+            <div class="buttons">${ok} ${cancel}</div>
+        </div>
+    </message>
+    <message dbo_id="527" id="calendar.all-entries">
+        <div>
+            <div class="">${entries}</div>
+            <div class="">${close class="btn-green"}</div>
+        </div>
+    </message>
+    <message dbo_id="528" id="calendar.entry.ok"/>
+    <message dbo_id="529" id="calendar.entry.cancel"/>
+    <message dbo_id="530" id="calendar.cell.extra"/>
+    <message dbo_id="531" id="calendar.cell.tooltip"/>
+    <message dbo_id="532" id="calendar.cell.all-entries.title"/>
+    <message dbo_id="533" id="calendar.cell.all-entries.close"/>
+</messages>

@@ -35,11 +35,11 @@ XMLBrain::XMLBrain(Session &session, XmlDboRecord dbo_temp_data, Stylus *stylus)
 void XMLBrain::saveXmlToDbo()
 {
     auto transaction = Dbo::Transaction(session_);
-    dbo::ptr<XmlTemplate> xml_template = session_.find<XmlTemplate>().where("id = ?").bind(dbo_temp_data_.id).resultValue();
+    dbo::ptr<XmlTemplate> xml_template = session_.find<XmlTemplate>().where("id = ?").bind(dbo_temp_data_.dbo_temp_id).resultValue();
 
     if (!xml_template)
     {
-        std::cout << "\n\n no xml template found with the temp_id: " << dbo_temp_data_.temp_id << "\n\n";
+        std::cout << "\n\n no xml template found with the temp_id: " << dbo_temp_data_.dbo_temp_id << "\n\n";
     }
     else
     {

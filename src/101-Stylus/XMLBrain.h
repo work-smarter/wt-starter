@@ -3,6 +3,8 @@
 #include <Wt/WString.h>
 #include <boost/regex.hpp>
 
+#include <Wt/WSignal.h>
+
 class Session;
 class Stylus;
 
@@ -26,21 +28,17 @@ struct TempVarData
     std::string implementation_text_ = "";
 };
 
-enum XMLTempType
-{
-    DEFAULT = 10,
-    APP = 11,
-    STYLUS = 12,
-};
-
 struct XmlDboRecord
 {
-    Wt::WString id;
-    Wt::WString temp_id;
-    Wt::WString temp_file;
+    int dbo_temp_id;
+    int dbo_file_id;
+    int dbo_folder_id;
+
+    Wt::WString file_name;
     Wt::WString folder_name;
+    Wt::WString temp_id;
+
     Wt::WString xml_temp;
-    XMLTempType temp_type;
 };
 
 TempVarData tempText(tinyxml2::XMLNode *node);
@@ -59,7 +57,9 @@ public:
     XmlDboRecord dbo_temp_data_;
 
     Stylus *stylus_;
+    Wt::Signal<> &node_selected() { return node_selected_; }
 
 private:
     Session &session_;
+    Wt::Signal<> node_selected_;
 };

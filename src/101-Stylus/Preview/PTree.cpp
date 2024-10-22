@@ -1,4 +1,5 @@
 #include "101-Stylus/Preview/PTree.h"
+#include "101-Stylus/Stylus.h"
 
 PTree::PTree(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
     : PWidget(xml_brain, node)
@@ -22,6 +23,11 @@ PTree::PTree(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
     mouseWentOut().preventPropagation();
     mouseWentOut().connect([=]
                            { titleBar_->toggleStyleClass("??", false); });
+
+    // clicked().connect([=]
+    //                   {
+    //       xml_brain_->selected_node_ = node;
+    //       xml_brain_->stylus_->setXmlBrain(xml_brain_); });
 
     auto title = titleBar_->addWidget(std::make_unique<Wt::WText>(""));
     title->setStyleClass("pl-1 font-bold");

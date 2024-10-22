@@ -9,7 +9,10 @@ PWidget::PWidget(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
   doubleClicked().preventPropagation();
 
   clicked().connect([=]
-                    { 
-          xml_brain_->selected_node_ = node;
-          xml_brain_->stylus_->setXmlBrain(xml_brain_); });
+                    {
+                        if(xml_brain_->stylus_->xml_brain_){
+                            xml_brain_->stylus_->xml_brain_->selected_node_->node_selected().emit(false);
+                        }
+                        xml_brain_->selected_node_ = node;
+                        xml_brain_->stylus_->setXmlBrain(xml_brain_); });
 }

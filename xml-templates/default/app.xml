@@ -1,5 +1,5 @@
 <messages>
-    <message dbo_id="1" id="starter.app">
+    <message dbo_id="425" id="starter.app">
         <div class="container h-full mx-auto">
             <div class="my-1">${navbar class=" " implementation="text:app navigation"}</div>
             <div class="mb-8 rounded-lg bg-white p-2">
@@ -7,7 +7,7 @@
             </div>
         </div>
     </message>
-    <message dbo_id="2" id="starter.navbar">
+    <message dbo_id="426" id="starter.navbar">
         <ul class="flex items-center bg-gray-200 w-full shadow-md rounded-md p-1.5 text-nowrap overflow-y-auto">
             <li class="mr-2 ml-1">
                 <span class="text-md sm:text-xl font-bold hidden mr-4 sm:!block cursor-default">${title}</span>
@@ -25,7 +25,7 @@
             </li>
         </ul>
     </message>
-    <message dbo_id="3" id="starter.settings">
+    <message dbo_id="427" id="starter.settings">
         <div class="max-w-[320px] shadow-md border border-solid border-gray-200 mx-auto">
             <div class="flex bg-blue-200 w-full px-2 rounded-md">
                 <div class="flex justify-start items-centers w-full">
@@ -54,7 +54,7 @@
             <div>${user-settings-form}</div>
         </div>
     </message>
-    <message dbo_id="4" id="starter.user.settings.form">
+    <message dbo_id="428" id="starter.user.settings.form">
         <div class="">${test-btn class="btn-green"}</div>
         <div class="flex flex-col sm:!flex-row justify-center align-center w-full">
             <div class="sm:w-1/2 flex items-center justify-center lg:!justify-end p-4">${file-upload class=""}</div>
@@ -114,7 +114,7 @@
             </div>
         </div>
     </message>
-    <message dbo_id="5" id="starter.photo.upload">
+    <message dbo_id="429" id="starter.photo.upload">
         <div class="relative w-fit">
             <div>${file-info-1}</div>
             <div>${file-info-2}</div>
@@ -127,7 +127,7 @@
             <div>${progress-bar class="w-full"}</div>
         </div>
     </message>
-    <message dbo_id="6" id="starter.svg.edit">
+    <message dbo_id="430" id="starter.svg.edit">
         <svg fill="#000000" class="w-fit h-fit" viewBox="-4 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <title>edit</title>
             <path d="M17.438 22.469v-4.031l2.5-2.5v7.344c0 1.469-1.219 2.688-2.656 2.688h-14.625c-1.469 0-2.656-1.219-2.656-2.688v-14.594c0-1.469 1.188-2.688 2.656-2.688h14.844v0.031l-2.5 2.469h-11.5c-0.531 0-1 0.469-1 1.031v12.938c0 0.563 0.469 1 1 1h12.938c0.531 0 1-0.438 1-1zM19.813 7.219l2.656 2.656 1.219-1.219-2.656-2.656zM10.469 16.594l2.625 2.656 8.469-8.469-2.625-2.656zM8.594 21.094l3.625-0.969-2.656-2.656z"/>

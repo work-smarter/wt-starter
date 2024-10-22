@@ -3,8 +3,6 @@
 #include "101-Stylus/Tables.h"
 #include "101-Stylus/XMLBrain.h"
 
-#include <Wt/WSignal.h>
-
 class LeftPanel;
 class RightPanel;
 class EdditorPanel;
@@ -30,11 +28,9 @@ public:
     Wt::WString default_folder_name = "default";
 
     void setXmlBrain(std::shared_ptr<XMLBrain> xml_brain);
-    Wt::Signal<> &node_selected() { return node_selected_; }
 
     std::shared_ptr<XMLBrain> xml_brain_;
 
 private:
     void processKeyEvent(Wt::WKeyEvent e);
-    Wt::Signal<> node_selected_;
 };

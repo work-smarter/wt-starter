@@ -1,6 +1,6 @@
 #include "101-Stylus/Preview/PElement.h"
 #include <Wt/WText.h>
-// #include "101-Stylus/Stylus.h"
+#include "101-Stylus/Stylus.h"
 
 PElement::PElement(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
     : PWidget(xml_brain, node)
@@ -16,6 +16,10 @@ PElement::PElement(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
     mouseWentOut().preventPropagation();
     mouseWentOut().connect([=]
                            { toggleStyleClass("??", false); });
+
+    node_->node_selected().connect([=](bool selected)
+                                   { toggleStyleClass("?", selected); });
+
     if (node->ToElement() == xml_brain_->message_node_)
     {
         // std::cout << "\n\n message node found with id " << xml_brain_->dbo_temp_data_.temp_id << "\n";

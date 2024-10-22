@@ -20,6 +20,7 @@ must not be misrepresented as being the original software.
 3. This notice may not be removed or altered from any source
 distribution.
 */
+#include <Wt/WSignal.h>
 
 #ifndef TINYXML2_INCLUDED
 #define TINYXML2_INCLUDED
@@ -947,6 +948,8 @@ public:
 	*/
 	void* GetUserData() const			{ return _userData; }
 
+    Wt::Signal<bool> &node_selected() { return node_selected_; }
+    
 protected:
     explicit XMLNode( XMLDocument* );
     virtual ~XMLNode();
@@ -965,8 +968,11 @@ protected:
     XMLNode*		_next;
 
 	void*			_userData;
+    
 
 private:
+    Wt::Signal<bool> node_selected_;
+
     MemPool*		_memPool;
     void Unlink( XMLNode* child );
     static void DeleteNode( XMLNode* node );

@@ -17,8 +17,14 @@ private:
 
     Wt::WContainerWidget *header_wrapper_;
     Wt::WContainerWidget *content_wrapper_;
+    Wt::WContainerWidget *files_menu_;
+    Wt::WContainerWidget *file_content_;
 
-    void createFolderDisplay(Wt::WString app_name);
+    Wt::WContainerWidget *button_btn_group_wrapper_;
 
-    void createFileTemplates(std::vector<XmlDboRecord> xml_temp_objects, Wt::WContainerWidget *wrapper);
+    Wt::WString radio_checkbox_btn_styles_;
+
+    void createFoldersMenu();
+    void createFolderDisplay(int folder_id);
+    void createFileTemplates(int file_id);
 };
