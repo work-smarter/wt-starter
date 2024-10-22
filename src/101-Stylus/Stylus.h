@@ -2,6 +2,7 @@
 #include "002-Dbo/Session.h"
 #include "101-Stylus/Tables.h"
 #include "101-Stylus/XMLBrain.h"
+#include "101-Stylus/Tailwind/TailwindConfig.h"
 
 class LeftPanel;
 class RightPanel;
@@ -12,7 +13,9 @@ class QuickCommandsPanel;
 class Stylus
 {
 public:
-    Stylus(Session &session, Wt::WString app_name, Wt::WString templates_root_path);
+    Stylus(Session &session, Wt::WString templates_root_path);
+
+    TailwindConfig *tailwind_config_;
 
     void addFileToDbo(Wt::WString folder_name, Wt::WString file_path);
     void saveFileFromDbo(Wt::WString folder_name, Wt::WString file_name);

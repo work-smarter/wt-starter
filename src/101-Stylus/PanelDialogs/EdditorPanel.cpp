@@ -8,9 +8,9 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
 {
     // contents()->addStyleClass("!text-black flex border-x border-solid border-gray-400");
     // titleBar()->addStyleClass("!text-black");
-    setOffsets(0, Wt::Side::Top | Wt::Side::Bottom | Wt::Side::Right);
-    // setOffsets(0, Wt::Side::Top | Wt::Side::Bottom);
-    // setOffsets(450, Wt::Side::Right);
+    // setOffsets(0, Wt::Side::Top | Wt::Side::Bottom | Wt::Side::Right);
+    setOffsets(0, Wt::Side::Top | Wt::Side::Bottom);
+    setOffsets(450, Wt::Side::Right);
     setOffsets(380, Wt::Side::Left);
 
     header_wrapper_ = contents()->addWidget(std::make_unique<Wt::WContainerWidget>());
@@ -28,8 +28,9 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
                                             {
                                                 stylus_->addFileToDbo("default", "overide-wt/test.xml");
                                                 stylus_->addFileToDbo("default", "../base-templates/default/app.xml");
-                                                stylus_->addFileToDbo("default", "../base-templates/default/auth_strings.xml");
+                                                stylus_->addFileToDbo("default", "../base-templates/default/strings.xml");
                                                 stylus_->addFileToDbo("default", "../base-templates/default/auth.xml");
+                                                stylus_->addFileToDbo("default", "../base-templates/default/auth_strings.xml");
                                                 stylus_->addFileToDbo("default", "../base-templates/default/calendar.xml");
 
                                                 stylus_->addFileToDbo("stylus", "../base-templates/stylus/stylus-flex-and-grid-svgs.xml");

@@ -43,15 +43,42 @@ set(SOURCES
     ${SOURCE_DIR}/100-Utils/tinyxml2/tinyxml2.cpp
     ${SOURCE_DIR}/101-Stylus/Stylus.cpp
     ${SOURCE_DIR}/101-Stylus/XMLBrain.cpp
-    ${SOURCE_DIR}/101-Stylus/Preview/PWidget.cpp
-    ${SOURCE_DIR}/101-Stylus/Preview/PElement.cpp
-    ${SOURCE_DIR}/101-Stylus/Preview/PTree.cpp
+    
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/BaseDialogPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/LeftPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/RightPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/EdditorPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/SettingsPanel.cpp
     ${SOURCE_DIR}/101-Stylus/PanelDialogs/QuickCommandsPanel.cpp
+    
+    ${SOURCE_DIR}/101-Stylus/Preview/PWidget.cpp
+    ${SOURCE_DIR}/101-Stylus/Preview/PElement.cpp
+    ${SOURCE_DIR}/101-Stylus/Preview/PTree.cpp
+
+    ${SOURCE_DIR}/101-Stylus/Tailwind/Base.cpp
+    ${SOURCE_DIR}/101-Stylus/Tailwind/TailwindConfig.cpp
+    ${SOURCE_DIR}/101-Stylus/Tailwind/Category.cpp
+    
+    ${SOURCE_DIR}/101-Stylus/ClassChangers/SelectionBoxClassChanger.cpp
+    ${SOURCE_DIR}/101-Stylus/ClassChangers/ComboBoxClassChanger.cpp
+    ${SOURCE_DIR}/101-Stylus/ClassChangers/ColorsWidget.cpp
+
+    ${SOURCE_DIR}/101-Stylus/TCategory/BasePanel.cpp
+    ${SOURCE_DIR}/101-Stylus/TCategory/SpacingP.cpp
+    ${SOURCE_DIR}/101-Stylus/TCategory/SizingP.cpp
+    ${SOURCE_DIR}/101-Stylus/TCategory/TransitionsAndAnimationP.cpp
+    ${SOURCE_DIR}/101-Stylus/TCategory/AccesibilityP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/BackgroundP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/BordersP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/EffectsP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/FiltersP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/FlexAndGridP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/InteractivityP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/LayoutP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/SvgP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/TablesP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/TransformsP.cpp 
+    ${SOURCE_DIR}/101-Stylus/TCategory/TypographyP.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

@@ -26,7 +26,7 @@ public:
     Wt::WCheckBox *quick_commands_toggler_;
     Wt::WCheckBox *edditor_toggler_;
 
-    // BasePanelMode right_dialog_panels_mode_;
+    // RIGHT_PANEL_MODE right_dialog_panels_mode_;
 
     // void createRefreshSessionsWidget();
 

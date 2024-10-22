@@ -1,111 +1,111 @@
 <messages>
-    <message dbo_id="431" id="Wt.Auth.error-invalid-token"/>
-    <message dbo_id="432" id="Wt.Auth.error-token-expired"/>
-    <message dbo_id="433" id="Wt.Auth.mail-sent"/>
-    <message dbo_id="434" id="Wt.Auth.info-email-confirmed"/>
-    <message dbo_id="435" id="Wt.Auth.passwdqc.reason-error"/>
-    <message dbo_id="436" id="Wt.Auth.passwdqc.reason-same"/>
-    <message dbo_id="437" id="Wt.Auth.passwdqc.reason-similar"/>
-    <message dbo_id="438" id="Wt.Auth.passwdqc.reason-short"/>
-    <message dbo_id="439" id="Wt.Auth.passwdqc.reason-long"/>
-    <message dbo_id="440" id="Wt.Auth.passwdqc.reason-simpleshort"/>
-    <message dbo_id="441" id="Wt.Auth.passwdqc.reason-simple"/>
-    <message dbo_id="442" id="Wt.Auth.passwdqc.reason-personal"/>
-    <message dbo_id="443" id="Wt.Auth.passwdqc.reason-word"/>
-    <message dbo_id="444" id="Wt.Auth.passwdqc.reason-seq"/>
-    <message dbo_id="445" id="Wt.Auth.passwdqc.reason-ok"/>
-    <message dbo_id="446" id="Wt.Auth.GoogleService.badresponse">
+    <message dbo_id="1345" id="Wt.Auth.user-name-tooshort"/>
+    <message dbo_id="1346" id="Wt.Auth.password-tooshort"/>
+    <message dbo_id="1347" id="Wt.Auth.passwords-dont-match"/>
+    <message dbo_id="1348" id="Wt.Auth.registration"/>
+    <message dbo_id="1349" id="Wt.Auth.register"/>
+    <message dbo_id="1350" id="Wt.Auth.error-user-invalid"/>
+    <message dbo_id="1351" id="Wt.Auth.email-unverified"/>
+    <message dbo_id="1352" id="Wt.Auth.confirm-email-first">
+        <h5>Welcome!</h5>
+        <span>You will be able to login after confirming your email address using the email we've just sent you.</span>
+    </message>
+    <message dbo_id="1353" id="Wt.Auth.enter-password"/>
+    <message dbo_id="1354" id="Wt.Auth.password-prompt-form-title"/>
+    <message dbo_id="1355" id="Wt.Auth.password-prompt-form-info"/>
+    <message dbo_id="1356" id="Wt.Auth.password-invalid"/>
+    <message dbo_id="1357" id="Wt.Auth.updatepassword"/>
+    <message dbo_id="1358" id="Wt.Auth.update-password-form-title"/>
+    <message dbo_id="1359" id="Wt.Auth.update-password-form-info"/>
+    <message dbo_id="1360" id="Wt.Auth.lostpassword"/>
+    <message dbo_id="1361" id="Wt.Auth.lost-password-form-title"/>
+    <message dbo_id="1362" id="Wt.Auth.lost-password-form-info"/>
+    <message dbo_id="1363" id="Wt.Auth.send"/>
+    <message dbo_id="1364" id="Wt.Auth.error"/>
+    <message dbo_id="1365" id="Wt.Auth.notice"/>
+    <message dbo_id="1366" id="Wt.Auth.confirmmail.subject"/>
+    <message dbo_id="1367" id="Wt.Auth.confirmmail.body"/>
+    <message dbo_id="1284" id="Wt.Auth.error-invalid-token"/>
+    <message dbo_id="1285" id="Wt.Auth.error-token-expired"/>
+    <message dbo_id="1286" id="Wt.Auth.mail-sent"/>
+    <message dbo_id="1287" id="Wt.Auth.info-email-confirmed"/>
+    <message dbo_id="1288" id="Wt.Auth.passwdqc.reason-error"/>
+    <message dbo_id="1289" id="Wt.Auth.passwdqc.reason-same"/>
+    <message dbo_id="1290" id="Wt.Auth.passwdqc.reason-similar"/>
+    <message dbo_id="1291" id="Wt.Auth.passwdqc.reason-short"/>
+    <message dbo_id="1292" id="Wt.Auth.passwdqc.reason-long"/>
+    <message dbo_id="1293" id="Wt.Auth.passwdqc.reason-simpleshort"/>
+    <message dbo_id="1294" id="Wt.Auth.passwdqc.reason-simple"/>
+    <message dbo_id="1295" id="Wt.Auth.passwdqc.reason-personal"/>
+    <message dbo_id="1296" id="Wt.Auth.passwdqc.reason-word"/>
+    <message dbo_id="1297" id="Wt.Auth.passwdqc.reason-seq"/>
+    <message dbo_id="1298" id="Wt.Auth.passwdqc.reason-ok"/>
+    <message dbo_id="1299" id="Wt.Auth.GoogleService.badresponse">
         <p>Sorry, could not login using your Google account.</p>
         <small>
             <p>Google's identification server generated an unexpected
         response.</p>
         </small>
     </message>
-    <message dbo_id="447" id="Wt.Auth.FacebookService.badresponse">
+    <message dbo_id="1300" id="Wt.Auth.FacebookService.badresponse">
         <p>Sorry, could not login using your Facebook account.</p>
         <small>
             <p>Facebook's identification server generated an unexpected
         response.</p>
         </small>
     </message>
-    <message dbo_id="448" id="Wt.Auth.login-form-title"/>
-    <message dbo_id="449" id="Wt.Auth.login-form-info"/>
-    <message dbo_id="450" id="Wt.Auth.user-name"/>
-    <message dbo_id="451" id="Wt.Auth.user-name-info"/>
-    <message dbo_id="452" id="Wt.Auth.user-name-invalid"/>
-    <message dbo_id="453" id="Wt.Auth.email"/>
-    <message dbo_id="454" id="Wt.Auth.email-info"/>
-    <message dbo_id="455" id="Wt.Auth.optional-email-info"/>
-    <message dbo_id="456" id="Wt.Auth.password"/>
-    <message dbo_id="457" id="Wt.Auth.password-info"/>
-    <message dbo_id="458" id="Wt.Auth.remember-me"/>
-    <message dbo_id="459" id="Wt.Auth.remember-me-info.days">
+    <message dbo_id="1301" id="Wt.Auth.login-form-title"/>
+    <message dbo_id="1302" id="Wt.Auth.login-form-info"/>
+    <message dbo_id="1303" id="Wt.Auth.user-name"/>
+    <message dbo_id="1304" id="Wt.Auth.user-name-info"/>
+    <message dbo_id="1305" id="Wt.Auth.user-name-invalid"/>
+    <message dbo_id="1306" id="Wt.Auth.email"/>
+    <message dbo_id="1307" id="Wt.Auth.email-info"/>
+    <message dbo_id="1308" id="Wt.Auth.optional-email-info"/>
+    <message dbo_id="1309" id="Wt.Auth.password"/>
+    <message dbo_id="1310" id="Wt.Auth.password-info"/>
+    <message dbo_id="1311" id="Wt.Auth.remember-me"/>
+    <message dbo_id="1312" id="Wt.Auth.remember-me-info.days">
         <plural case="0">Remember me for one day</plural>
         <plural case="1">Remember me for <span>{1}</span>days</plural>
     </message>
-    <message dbo_id="460" id="Wt.Auth.remember-me-info.weeks">
+    <message dbo_id="1313" id="Wt.Auth.remember-me-info.weeks">
         <plural case="0">Remember me for one week</plural>
         <plural case="1">Remember me for <span>{1}</span> weeks</plural>
     </message>
-    <message dbo_id="461" id="Wt.Auth.lost-password"/>
-    <message dbo_id="462" id="Wt.Auth.login"/>
-    <message dbo_id="463" id="Wt.Auth.logout"/>
-    <message dbo_id="464" id="Wt.Auth.throttle-retry">Retry in <span>{1}s</span>
+    <message dbo_id="1314" id="Wt.Auth.lost-password"/>
+    <message dbo_id="1315" id="Wt.Auth.login"/>
+    <message dbo_id="1316" id="Wt.Auth.logout"/>
+    <message dbo_id="1317" id="Wt.Auth.throttle-retry">Retry in <span>{1}s</span>
     </message>
-    <message dbo_id="465" id="Wt.Auth.resend-email-verification"/>
-    <message dbo_id="466" id="Wt.Auth.resend-verification-title"/>
-    <message dbo_id="467" id="Wt.Auth.resend-verification-msg"/>
-    <message dbo_id="468" id="Wt.Auth.resend-email-error"/>
-    <message dbo_id="469" id="Wt.Auth.verification-sent-title"/>
-    <message dbo_id="470" id="Wt.Auth.registration-form-title"/>
-    <message dbo_id="471" id="Wt.Auth.registration-form-info"/>
-    <message dbo_id="472" id="Wt.Auth.password-registration"/>
-    <message dbo_id="473" id="Wt.Auth.oauth-registration"/>
-    <message dbo_id="474" id="Wt.Auth.or-oauth-registration"/>
-    <message dbo_id="475" id="Wt.Auth.valid"/>
-    <message dbo_id="476" id="Wt.Auth.choose-password"/>
-    <message dbo_id="477" id="Wt.Auth.choose-password-info"/>
-    <message dbo_id="478" id="Wt.Auth.repeat-password"/>
-    <message dbo_id="479" id="Wt.Auth.repeat-password-info"/>
-    <message dbo_id="480" id="Wt.Auth.first-name"/>
-    <message dbo_id="481" id="Wt.Auth.first-name-info"/>
-    <message dbo_id="482" id="Wt.Auth.last-name"/>
-    <message dbo_id="483" id="Wt.Auth.last-name-info"/>
-    <message dbo_id="484" id="Wt.Auth.phone"/>
-    <message dbo_id="485" id="Wt.Auth.phone-info"/>
-    <message dbo_id="486" id="Wt.Auth.email-invalid"/>
-    <message dbo_id="487" id="Wt.Auth.email-exists"/>
-    <message dbo_id="488" id="Wt.Auth.oauth"/>
-    <message dbo_id="489" id="Wt.Auth.oauth-info"/>
-    <message dbo_id="490" id="Wt.Auth.user-name-exists"/>
-    <message dbo_id="491" id="Wt.Auth.confirm-is-you"/>
-    <message dbo_id="492" id="Wt.Auth.user-name-tooshort"/>
-    <message dbo_id="493" id="Wt.Auth.password-tooshort"/>
-    <message dbo_id="494" id="Wt.Auth.passwords-dont-match"/>
-    <message dbo_id="495" id="Wt.Auth.registration"/>
-    <message dbo_id="496" id="Wt.Auth.register"/>
-    <message dbo_id="497" id="Wt.Auth.error-user-invalid"/>
-    <message dbo_id="498" id="Wt.Auth.email-unverified"/>
-    <message dbo_id="499" id="Wt.Auth.confirm-email-first">
-        <h5>Welcome!</h5>
-        <span>You will be able to login after confirming your email address using the email we've just sent you.</span>
-    </message>
-    <message dbo_id="500" id="Wt.Auth.enter-password"/>
-    <message dbo_id="501" id="Wt.Auth.password-prompt-form-title"/>
-    <message dbo_id="502" id="Wt.Auth.password-prompt-form-info"/>
-    <message dbo_id="503" id="Wt.Auth.password-invalid"/>
-    <message dbo_id="504" id="Wt.Auth.updatepassword"/>
-    <message dbo_id="505" id="Wt.Auth.update-password-form-title"/>
-    <message dbo_id="506" id="Wt.Auth.update-password-form-info"/>
-    <message dbo_id="507" id="Wt.Auth.lostpassword"/>
-    <message dbo_id="508" id="Wt.Auth.lost-password-form-title"/>
-    <message dbo_id="509" id="Wt.Auth.lost-password-form-info"/>
-    <message dbo_id="510" id="Wt.Auth.send"/>
-    <message dbo_id="511" id="Wt.Auth.error"/>
-    <message dbo_id="512" id="Wt.Auth.notice"/>
-    <message dbo_id="513" id="Wt.Auth.confirmmail.subject"/>
-    <message dbo_id="514" id="Wt.Auth.confirmmail.body"/>
-    <message dbo_id="515" id="Wt.Auth.confirmmail.htmlbody">
+    <message dbo_id="1318" id="Wt.Auth.resend-email-verification"/>
+    <message dbo_id="1319" id="Wt.Auth.resend-verification-title"/>
+    <message dbo_id="1320" id="Wt.Auth.resend-verification-msg"/>
+    <message dbo_id="1321" id="Wt.Auth.resend-email-error"/>
+    <message dbo_id="1322" id="Wt.Auth.verification-sent-title"/>
+    <message dbo_id="1323" id="Wt.Auth.registration-form-title"/>
+    <message dbo_id="1324" id="Wt.Auth.registration-form-info"/>
+    <message dbo_id="1325" id="Wt.Auth.password-registration"/>
+    <message dbo_id="1326" id="Wt.Auth.oauth-registration"/>
+    <message dbo_id="1327" id="Wt.Auth.or-oauth-registration"/>
+    <message dbo_id="1328" id="Wt.Auth.valid"/>
+    <message dbo_id="1329" id="Wt.Auth.choose-password"/>
+    <message dbo_id="1330" id="Wt.Auth.choose-password-info"/>
+    <message dbo_id="1331" id="Wt.Auth.repeat-password"/>
+    <message dbo_id="1332" id="Wt.Auth.repeat-password-info"/>
+    <message dbo_id="1333" id="Wt.Auth.first-name"/>
+    <message dbo_id="1334" id="Wt.Auth.first-name-info"/>
+    <message dbo_id="1335" id="Wt.Auth.last-name"/>
+    <message dbo_id="1336" id="Wt.Auth.last-name-info"/>
+    <message dbo_id="1337" id="Wt.Auth.phone"/>
+    <message dbo_id="1338" id="Wt.Auth.phone-info"/>
+    <message dbo_id="1339" id="Wt.Auth.email-invalid"/>
+    <message dbo_id="1340" id="Wt.Auth.email-exists"/>
+    <message dbo_id="1341" id="Wt.Auth.oauth"/>
+    <message dbo_id="1342" id="Wt.Auth.oauth-info"/>
+    <message dbo_id="1343" id="Wt.Auth.user-name-exists"/>
+    <message dbo_id="1344" id="Wt.Auth.confirm-is-you"/>
+    <message dbo_id="1368" id="Wt.Auth.confirmmail.htmlbody">
         <h3>Hello <span>{1}</span>,
     </h3>
         <p>Thank you for joining!</p>
@@ -129,9 +129,9 @@
         <p>Good luck with your Wt application,</p>
         <p>The Wt team.</p>
     </message>
-    <message dbo_id="516" id="Wt.Auth.lostpasswordmail.subject"/>
-    <message dbo_id="517" id="Wt.Auth.lostpasswordmail.body"/>
-    <message dbo_id="518" id="Wt.Auth.lostpasswordmail.htmlbody">
+    <message dbo_id="1369" id="Wt.Auth.lostpasswordmail.subject"/>
+    <message dbo_id="1370" id="Wt.Auth.lostpasswordmail.body"/>
+    <message dbo_id="1371" id="Wt.Auth.lostpasswordmail.htmlbody">
         <h3>Hello <span>{1}</span>,
     </h3>
         <p>This mail has been sent to you, because someone (presumably

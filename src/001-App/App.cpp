@@ -11,20 +11,22 @@
 App::App(const Wt::WEnvironment &env)
     : WApplication(env),
       session_(appRoot() + "../dbo.db"),
-      stylus_(session_, "starter", appRoot() + "../xml-templates/")
+      //   stylus_(std::make_shared<Stylus>(session_, "starter", appRoot() + "../xml-templates/"))
+      stylus_(session_, appRoot() + "../xml-templates/")
 
 {
     setTitle("Starter App");
 
     // messageResourceBundle().use("../xml-templates/app/app-test");
-    messageResourceBundle().use("../xml-templates/app/app");
-    messageResourceBundle().use("../xml-templates/app/inputs");
-    messageResourceBundle().use("../xml-templates/app/strings");
+    messageResourceBundle().use("../xml-templates/default/app");
+    // messageResourceBundle().use("../xml-templates/app/inputs");
+    // messageResourceBundle().use("../xml-templates/default/strings");
     messageResourceBundle().use("../xml-templates/app/calendar");
+    messageResourceBundle().use("../xml-templates/stylus/stylus-flex-and-grid-svgs");
 
     // messageResourceBundle().use("../xml-templates/overide-wt/auth_test");
-    messageResourceBundle().use("../xml-templates/overide-wt/auth");
-    messageResourceBundle().use("../xml-templates/overide-wt/auth_strings");
+    messageResourceBundle().use("../xml-templates/default/auth");
+    messageResourceBundle().use("../xml-templates/default/auth_strings");
 
     // CSS
     require("https://cdn.tailwindcss.com");

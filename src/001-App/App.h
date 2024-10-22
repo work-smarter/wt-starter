@@ -29,6 +29,7 @@ public:
 
     Session session_;
     Stylus stylus_;
+    // std::shared_ptr<Stylus> stylus_;
 
 private:
     void createUi();

@@ -19,6 +19,9 @@ PElement::PElement(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
 
     node_->node_selected().connect([=](bool selected)
                                    { toggleStyleClass("?", selected); });
+    node_->style_class_changed().connect([=](std::string style_class)
+                                         { setStyleClass(style_class);
+                                            toggleStyleClass("?", true); });
 
     if (node->ToElement() == xml_brain_->message_node_)
     {

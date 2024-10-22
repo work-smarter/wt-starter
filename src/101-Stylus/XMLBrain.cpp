@@ -9,8 +9,8 @@ XMLBrain::XMLBrain(Session &session, XmlDboRecord dbo_temp_data, Stylus *stylus)
 {
     xml_doc_ = new tinyxml2::XMLDocument();
     message_node_ = xml_doc_->NewElement("message");
-    // message_node_->SetAttribute("dbo_id", dbo_temp_data_.id.toUTF8().c_str());
-    // message_node_->SetAttribute("id", dbo_temp_data_.temp_id.toUTF8().c_str());
+    message_node_->ToElement()->SetAttribute("dbo_id", dbo_temp_data_.dbo_temp_id);
+    message_node_->ToElement()->SetAttribute("id", dbo_temp_data_.temp_id.toUTF8().c_str());
     xml_doc_->InsertFirstChild(message_node_);
 
     tinyxml2::XMLDocument temp_doc;
@@ -34,6 +34,7 @@ XMLBrain::XMLBrain(Session &session, XmlDboRecord dbo_temp_data, Stylus *stylus)
 
 void XMLBrain::saveXmlToDbo()
 {
+    std::cout << "\n\n saveXmlToDbo() \n\n";
     auto transaction = Dbo::Transaction(session_);
     dbo::ptr<XmlTemplate> xml_template = session_.find<XmlTemplate>().where("id = ?").bind(dbo_temp_data_.dbo_temp_id).resultValue();
 
@@ -55,6 +56,7 @@ void XMLBrain::saveXmlToDbo()
 
         xml_template.modify()->temp_id = dbo_temp_data_.temp_id;
         xml_template.modify()->xml_temp = dbo_temp_data_.xml_temp;
+        std::cout << "\n\n xml_template->xml_temp: " << xml_template->xml_temp.toUTF8() << "\n\n";
     }
 
     transaction.commit();

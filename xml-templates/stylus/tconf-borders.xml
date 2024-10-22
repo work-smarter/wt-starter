@@ -1,5 +1,10 @@
 <messages>
-    <message dbo_id="574" id="borderRadius">
+    <message dbo_id="1440" id="ringOffsetColor">
+        <tailwind-docs>https://tailwindcss.com/docs/ring-offset-color</tailwind-docs>
+        <reset-command>ring-offset-color-res</reset-command>
+        <classes className="ring-offset" include="colors" customValue="true" canExtend="false"/>
+    </message>
+    <message dbo_id="1423" id="borderRadius">
         <tailwind-docs>https://tailwindcss.com/docs/border-radius</tailwind-docs>
         <reset-command>border-radius-res</reset-command>
         <classes className="rounded" customValue="true" canExtend="true">
@@ -45,7 +50,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="575" id="borderWidth">
+    <message dbo_id="1424" id="borderWidth">
         <tailwind-docs>https://tailwindcss.com/docs/border-width</tailwind-docs>
         <reset-command>border-width-res</reset-command>
         <classes className="border" customValue="true" canExtend="true">
@@ -75,12 +80,12 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="576" id="borderColor">
+    <message dbo_id="1425" id="borderColor">
         <tailwind-docs>https://tailwindcss.com/docs/border-color</tailwind-docs>
         <reset-command>border-color-res</reset-command>
         <classes className="border" include="colors" customValue="true" canExtend="false"/>
     </message>
-    <message dbo_id="577" id="borderStyle">
+    <message dbo_id="1426" id="borderStyle">
         <tailwind-docs>https://tailwindcss.com/docs/border-style</tailwind-docs>
         <reset-command>border-style-res</reset-command>
         <classes className="border" customValue="false" canExtend="false">
@@ -114,7 +119,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="578" id="divideWidth">
+    <message dbo_id="1427" id="divideWidth">
         <tailwind-docs>https://tailwindcss.com/docs/divide-width</tailwind-docs>
         <reset-command>divide-width-res</reset-command>
         <classes className="divide" customValue="true" canExtend="true">
@@ -144,7 +149,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="579" id="divideXReverse">
+    <message dbo_id="1428" id="divideXReverse">
         <tailwind-docs>https://tailwindcss.com/docs/divide</tailwind-docs>
         <reset-command>divide-x-reverse-res</reset-command>
         <classes className="divide-x" customValue="false" canExtend="false">
@@ -154,7 +159,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="580" id="divideYReverse">
+    <message dbo_id="1429" id="divideYReverse">
         <tailwind-docs>https://tailwindcss.com/docs/divide</tailwind-docs>
         <reset-command>divide-y-reverse-res</reset-command>
         <classes className="divide-y" customValue="false" canExtend="false">
@@ -164,12 +169,12 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="581" id="divideColor">
+    <message dbo_id="1430" id="divideColor">
         <tailwind-docs>https://tailwindcss.com/docs/divide-color</tailwind-docs>
         <reset-command>divide-color-res</reset-command>
         <classes className="divide" include="colors" customValue="true" canExtend="false"/>
     </message>
-    <message dbo_id="582" id="divideStyle">
+    <message dbo_id="1431" id="divideStyle">
         <tailwind-docs>https://tailwindcss.com/docs/divide-style</tailwind-docs>
         <reset-command>divide-style-res</reset-command>
         <classes className="divide" customValue="false" canExtend="false">
@@ -195,7 +200,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="583" id="outlineWidth">
+    <message dbo_id="1432" id="outlineWidth">
         <tailwind-docs>https://tailwindcss.com/docs/outline-width</tailwind-docs>
         <reset-command>outline-width-res</reset-command>
         <classes className="outline" customValue="true" canExtend="true">
@@ -225,12 +230,12 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="584" id="outlineColor">
+    <message dbo_id="1433" id="outlineColor">
         <tailwind-docs>https://tailwindcss.com/docs/outline-color</tailwind-docs>
         <reset-command>outline-color-res</reset-command>
         <classes className="outline" include="colors" customValue="true" canExtend="false"/>
     </message>
-    <message dbo_id="585" id="outlineStyle">
+    <message dbo_id="1434" id="outlineStyle">
         <tailwind-docs>https://tailwindcss.com/docs/outline-style</tailwind-docs>
         <reset-command>outline-style-res</reset-command>
         <classes className="outline" customValue="false" canExtend="false">
@@ -256,7 +261,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="586" id="outlineOffset">
+    <message dbo_id="1435" id="outlineOffset">
         <tailwind-docs>https://tailwindcss.com/docs/outline-offset</tailwind-docs>
         <reset-command>outline-offset-res</reset-command>
         <classes className="outline-offset" customValue="true" canExtend="true">
@@ -286,7 +291,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="587" id="ringWidth">
+    <message dbo_id="1436" id="ringWidth">
         <tailwind-docs>https://tailwindcss.com/docs/ring-width</tailwind-docs>
         <reset-command>ring-width-res</reset-command>
         <classes className="ring" customValue="true" canExtend="true">
@@ -316,7 +321,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="588" id="ringInset">
+    <message dbo_id="1437" id="ringInset">
         <tailwind-docs>https://tailwindcss.com/docs/ring-width</tailwind-docs>
         <reset-command>ring-inset-res</reset-command>
         <classes className="ring" customValue="false" canExtend="false">
@@ -326,7 +331,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="589" id="ringColor">
+    <message dbo_id="1438" id="ringColor">
         <tailwind-docs>https://tailwindcss.com/docs/ring-color</tailwind-docs>
         <reset-command>ring-color-res</reset-command>
         <classes className="ring" include="colors" customValue="true" canExtend="false">
@@ -336,7 +341,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="590" id="ringOffsetWidth">
+    <message dbo_id="1439" id="ringOffsetWidth">
         <tailwind-docs>https://tailwindcss.com/docs/ring-offset-width</tailwind-docs>
         <reset-command>ring-offset-width-res</reset-command>
         <classes className="ring-offset" customValue="true" canExtend="true">
@@ -365,10 +370,5 @@
                 <value>2px</value>
             </class>
         </classes>
-    </message>
-    <message dbo_id="591" id="ringOffsetColor">
-        <tailwind-docs>https://tailwindcss.com/docs/ring-offset-color</tailwind-docs>
-        <reset-command>ring-offset-color-res</reset-command>
-        <classes className="ring-offset" include="colors" customValue="true" canExtend="false"/>
     </message>
 </messages>

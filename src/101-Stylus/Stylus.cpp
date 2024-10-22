@@ -9,10 +9,13 @@
 
 #include <Wt/WApplication.h>
 
-Stylus::Stylus(Session &session, Wt::WString app_name, Wt::WString templates_root_path)
+Stylus::Stylus(Session &session, Wt::WString templates_root_path)
     : session_(session),
+      tailwind_config_(new TailwindConfig(this)),
       templates_root_path_(templates_root_path)
 {
+    tailwind_config_->readConfigurationXMLs();
+
     // auto transaction = Dbo::Transaction(session_);
     // auto app = session_.find<TemplateFolder>().where("folder_name = ?").bind(app_name).resultValue();
     // if (!app)
@@ -62,6 +65,7 @@ void Stylus::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 
     xml_brain_ = xml_brain;
     left_panel_->createTree(xml_brain_);
+    right_panel_->setXMLBrain(xml_brain_);
     xml_brain_->selected_node_->node_selected().emit(true);
 }
 

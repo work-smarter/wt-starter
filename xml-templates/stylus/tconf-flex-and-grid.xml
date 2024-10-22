@@ -1,5 +1,5 @@
 <messages>
-    <message dbo_id="616" id="flexBasis">
+    <message dbo_id="1465" id="flexBasis">
         <tailwind-docs>https://tailwindcss.com/docs/flex-basis</tailwind-docs>
         <reset-command>basis-res</reset-command>
         <classes className="basis" include="spacing" customValue="true" canExtend="true">
@@ -121,7 +121,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="617" id="flexDirection">
+    <message dbo_id="1466" id="flexDirection">
         <tailwind-docs>https://tailwindcss.com/docs/flex-direction</tailwind-docs>
         <reset-command>flex-direction-res</reset-command>
         <classes className="flex" customValue="false" canExtend="false">
@@ -143,7 +143,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="618" id="flexWrap">
+    <message dbo_id="1467" id="flexWrap">
         <tailwind-docs>https://tailwindcss.com/docs/flex-wrap</tailwind-docs>
         <reset-command>flex-wrap-res</reset-command>
         <classes className="flex" customValue="false" canExtend="false">
@@ -161,7 +161,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="619" id="flex">
+    <message dbo_id="1468" id="flex">
         <tailwind-docs>https://tailwindcss.com/docs/flex</tailwind-docs>
         <reset-command>flex-res</reset-command>
         <classes className="flex" customValue="true" canExtend="true">
@@ -187,7 +187,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="620" id="flexGrow">
+    <message dbo_id="1469" id="flexGrow">
         <tailwind-docs>https://tailwindcss.com/docs/flex-grow</tailwind-docs>
         <reset-command>flex-grow-res</reset-command>
         <classes className="grow" customValue="true" canExtend="true">
@@ -205,7 +205,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="621" id="flexShrink">
+    <message dbo_id="1470" id="flexShrink">
         <tailwind-docs>https://tailwindcss.com/docs/flex-shrink</tailwind-docs>
         <reset-command>flex-shrink-res</reset-command>
         <classes className="shrink" customValue="true" canExtend="true">
@@ -223,7 +223,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="622" id="order">
+    <message dbo_id="1471" id="order">
         <tailwind-docs>https://tailwindcss.com/docs/order</tailwind-docs>
         <reset-command>order-res</reset-command>
         <classes className="order" customValue="true" canExtend="true">
@@ -293,7 +293,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="623" id="gridTemplateColumns">
+    <message dbo_id="1472" id="gridTemplateColumns">
         <tailwind-docs>https://tailwindcss.com/docs/grid-template-columns</tailwind-docs>
         <reset-command>grid-cols-res</reset-command>
         <classes className="grid-cols" customValue="true" canExtend="true">
@@ -355,37 +355,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="640" id="alignSelf">
-        <tailwind-docs>https://tailwindcss.com/docs/align-self</tailwind-docs>
-        <reset-command>align-self-res</reset-command>
-        <classes className="self" customValue="false" canExtend="false">
-            <class>
-                <name>auto</name>
-                <value>auto</value>
-            </class>
-            <class>
-                <name>start</name>
-                <value>flex-start</value>
-            </class>
-            <class>
-                <name>end</name>
-                <value>flex-end</value>
-            </class>
-            <class>
-                <name>center</name>
-                <value>center</value>
-            </class>
-            <class>
-                <name>stretch</name>
-                <value>stretch</value>
-            </class>
-            <class>
-                <name>baseline</name>
-                <value>baseline</value>
-            </class>
-        </classes>
-    </message>
-    <message dbo_id="624" id="gridColumn">
+    <message dbo_id="1473" id="gridColumn">
         <tailwind-docs>https://tailwindcss.com/docs/grid-column</tailwind-docs>
         <reset-command>grid-column-res</reset-command>
         <classes className="col" customValue="true" canExtend="true">
@@ -451,7 +421,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="625" id="gridColumnStart">
+    <message dbo_id="1474" id="gridColumnStart">
         <tailwind-docs>https://tailwindcss.com/docs/grid-column-start</tailwind-docs>
         <reset-command>col-start-res</reset-command>
         <classes className="col-start" customValue="true" canExtend="true">
@@ -517,7 +487,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="626" id="gridColumnEnd">
+    <message dbo_id="1475" id="gridColumnEnd">
         <tailwind-docs>https://tailwindcss.com/docs/grid-column-end</tailwind-docs>
         <reset-command>col-end-res</reset-command>
         <classes className="col-end" customValue="true" canExtend="true">
@@ -583,7 +553,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="627" id="gridTemplateRows">
+    <message dbo_id="1476" id="gridTemplateRows">
         <tailwind-docs>https://tailwindcss.com/docs/grid-template-rows</tailwind-docs>
         <reset-command>grid-rows-res</reset-command>
         <classes className="grid-rows" customValue="true" canExtend="true">
@@ -621,7 +591,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="628" id="gridRow">
+    <message dbo_id="1477" id="gridRow">
         <tailwind-docs>https://tailwindcss.com/docs/grid-row</tailwind-docs>
         <reset-command>grid-row-res</reset-command>
         <classes className="row" customValue="true" canExtend="true">
@@ -663,7 +633,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="629" id="gridRowStart">
+    <message dbo_id="1478" id="gridRowStart">
         <tailwind-docs>https://tailwindcss.com/docs/grid-row-start</tailwind-docs>
         <reset-command>row-start-res</reset-command>
         <classes className="row" customValue="true" canExtend="true">
@@ -705,7 +675,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="630" id="gridRowEnd">
+    <message dbo_id="1479" id="gridRowEnd">
         <tailwind-docs>https://tailwindcss.com/docs/grid-row-end</tailwind-docs>
         <reset-command>row-end-res</reset-command>
         <classes className="row" customValue="true" canExtend="true">
@@ -747,7 +717,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="631" id="gridAutoFlow">
+    <message dbo_id="1480" id="gridAutoFlow">
         <tailwind-docs>https://tailwindcss.com/docs/grid-auto-flow</tailwind-docs>
         <reset-command>grid-flow-res</reset-command>
         <classes className="grid-flow" customValue="false" canExtend="false">
@@ -773,7 +743,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="632" id="gridAutoColumns">
+    <message dbo_id="1481" id="gridAutoColumns">
         <tailwind-docs>https://tailwindcss.com/docs/grid-auto-columns</tailwind-docs>
         <reset-command>auto-cols-res</reset-command>
         <classes className="auto-cols" customValue="true" canExtend="true">
@@ -799,7 +769,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="633" id="gridAutoRows">
+    <message dbo_id="1482" id="gridAutoRows">
         <tailwind-docs>https://tailwindcss.com/docs/grid-auto-rows</tailwind-docs>
         <reset-command>auto-rows-res</reset-command>
         <classes className="auto-rows" customValue="true" canExtend="true">
@@ -825,7 +795,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="634" id="gap">
+    <message dbo_id="1483" id="gap">
         <tailwind-docs>https://tailwindcss.com/docs/gap</tailwind-docs>
         <reset-command>gap-res</reset-command>
         <classes className="gap" include="spacing" customValue="true" canExtend="true">
@@ -835,7 +805,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="635" id="justifyContent">
+    <message dbo_id="1484" id="justifyContent">
         <tailwind-docs>https://tailwindcss.com/docs/justify-content</tailwind-docs>
         <reset-command>justify-res</reset-command>
         <classes className="justify" customValue="false" canExtend="false">
@@ -873,7 +843,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="636" id="justifyItems">
+    <message dbo_id="1485" id="justifyItems">
         <tailwind-docs>https://tailwindcss.com/docs/justify-items</tailwind-docs>
         <reset-command>justify-items-res</reset-command>
         <classes className="justify-items" customValue="false" canExtend="false">
@@ -895,7 +865,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="637" id="justifySelf">
+    <message dbo_id="1486" id="justifySelf">
         <tailwind-docs>https://tailwindcss.com/docs/justify-self</tailwind-docs>
         <reset-command>justify-self-res</reset-command>
         <classes className="justify-self" customValue="false" canExtend="false">
@@ -921,7 +891,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="638" id="alignContent">
+    <message dbo_id="1487" id="alignContent">
         <tailwind-docs>https://tailwindcss.com/docs/align-content</tailwind-docs>
         <reset-command>align-content-res</reset-command>
         <classes className="content" customValue="false" canExtend="false">
@@ -963,7 +933,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="639" id="alignItems">
+    <message dbo_id="1488" id="alignItems">
         <tailwind-docs>https://tailwindcss.com/docs/align-items</tailwind-docs>
         <reset-command>align-items-res</reset-command>
         <classes className="items" customValue="false" canExtend="false">
@@ -989,7 +959,37 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="641" id="placeContent">
+    <message dbo_id="1489" id="alignSelf">
+        <tailwind-docs>https://tailwindcss.com/docs/align-self</tailwind-docs>
+        <reset-command>align-self-res</reset-command>
+        <classes className="self" customValue="false" canExtend="false">
+            <class>
+                <name>auto</name>
+                <value>auto</value>
+            </class>
+            <class>
+                <name>start</name>
+                <value>flex-start</value>
+            </class>
+            <class>
+                <name>end</name>
+                <value>flex-end</value>
+            </class>
+            <class>
+                <name>center</name>
+                <value>center</value>
+            </class>
+            <class>
+                <name>stretch</name>
+                <value>stretch</value>
+            </class>
+            <class>
+                <name>baseline</name>
+                <value>baseline</value>
+            </class>
+        </classes>
+    </message>
+    <message dbo_id="1490" id="placeContent">
         <tailwind-docs>https://tailwindcss.com/docs/place-content</tailwind-docs>
         <reset-command>place-content-res</reset-command>
         <classes className="place-content" customValue="false" canExtend="false">
@@ -1027,7 +1027,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="642" id="placeItems">
+    <message dbo_id="1491" id="placeItems">
         <tailwind-docs>https://tailwindcss.com/docs/place-items</tailwind-docs>
         <reset-command>place-items-res</reset-command>
         <classes className="place-items" customValue="false" canExtend="false">
@@ -1053,7 +1053,7 @@
             </class>
         </classes>
     </message>
-    <message dbo_id="643" id="placeSelf">
+    <message dbo_id="1492" id="placeSelf">
         <tailwind-docs>https://tailwindcss.com/docs/place-self</tailwind-docs>
         <reset-command>place-self-res</reset-command>
         <classes className="place-self" customValue="false" canExtend="false">
