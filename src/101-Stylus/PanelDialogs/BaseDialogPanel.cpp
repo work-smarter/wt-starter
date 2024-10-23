@@ -10,6 +10,6 @@ BaseDialogPanel::BaseDialogPanel(Stylus *stylus)
     titleBar()->setStyleClass("p-0 bg-gray-300 flex items-center overflow-x-visible h-[40px]");
     contents()->setStyleClass("h-full bg-gray-200 overflow-y-auto overflow-x-visible");
     setModal(false);
-    setResizable(true);
+    setResizable(false);
     setMovable(false);
 }

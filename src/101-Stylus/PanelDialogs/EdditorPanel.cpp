@@ -2,6 +2,10 @@
 #include "101-Stylus/Stylus.h"
 #include "101-Stylus/PanelDialogs/LeftPanel.h"
 #include "101-Stylus/Preview/PElement.h"
+#include <Wt/WDialog.h>
+#include <Wt/WApplication.h>
+#include <Wt/WLabel.h>
+#include <Wt/WLineEdit.h>
 
 EdditorPanel::EdditorPanel(Stylus *stylus)
     : BaseDialogPanel(stylus)
@@ -20,8 +24,9 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
     files_menu_->setStyleClass("flex flex-col items-start h-full p-2 overflow-y-auto min-w-fit");
     file_content_->setStyleClass("flex flex-col items-start grow h-full p-2 overflow-y-auto");
 
-    header_wrapper_->setStyleClass("flex justify-between border-solid border-b border-gray-600");
+    header_wrapper_->setStyleClass("flex items-center border-solid border-b border-gray-600");
     button_btn_group_wrapper_ = header_wrapper_->addWidget(std::make_unique<Wt::WContainerWidget>());
+    auto utility_btns_wrapper = header_wrapper_->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto test_btns_wrapper = header_wrapper_->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto add_temps_to_dbo_btn = test_btns_wrapper->addWidget(std::make_unique<Wt::WPushButton>("Add Temps"));
     add_temps_to_dbo_btn->clicked().connect([=]()
@@ -77,6 +82,7 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
                                                 stylus_->saveFileFromDbo("stylus", "tconf-variants.xml"); });
     button_btn_group_wrapper_->setStyleClass("flex");
     test_btns_wrapper->setStyleClass("flex");
+    utility_btns_wrapper->setStyleClass("ml-auto mr-3");
     add_temps_to_dbo_btn->setStyleClass("btn-style-1 !p-0.5 mr-3");
     get_temps_from_dbo_btn->setStyleClass("btn-style-1 !p-0.5 mr-3");
     content_wrapper_->setStyleClass("flex items-start h-[calc(100%-31px)]");
@@ -94,9 +100,51 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
                                  "[&>input:checked~span]:bg-gray-900 "
                                  "[&>input:checked~span]:text-gray-200";
     createFoldersMenu();
-    display_set_group_->setCheckedButton(0);
-    display_set_group_->button(0)->setChecked(true);
-    display_set_group_->button(0)->checked().emit();
+
+    // add folder button
+    auto add_folder_btn = utility_btns_wrapper->addWidget(std::make_unique<Wt::WPushButton>("+"));
+    add_folder_btn->setStyleClass("btn-style-1 !p-0.5");
+
+    add_folder_btn->clicked().connect([=]
+                                      {
+                                          auto add_folder_dialog = Wt::WApplication::instance()->root()->addChild(std::make_unique<Wt::WDialog>("Add Folder"));
+                                          add_folder_dialog->setStyleClass("!border-0 shadow-lg rounded-xl overflow-x-visible");
+                                          add_folder_dialog->titleBar()->children()[0]->removeFromParent();
+                                          add_folder_dialog->titleBar()->hide();
+                                          add_folder_dialog->titleBar()->setStyleClass("p-0 bg-gray-500 flex items-center overflow-x-visible h-[40px]");
+                                          add_folder_dialog->contents()->setStyleClass("flex flex-col items-start p-2 h-full bg-gray-800 overflow-y-auto overflow-x-visible");
+
+                                          int zIndex = this->zIndex() + 1;
+                                          add_folder_dialog->setTabIndex(zIndex);
+                                          add_folder_dialog->setModal(false);
+                                          add_folder_dialog->setResizable(false);
+                                          add_folder_dialog->setMovable(false);
+                                          add_folder_dialog->rejectWhenEscapePressed();
+                                          add_folder_dialog->show();
+
+                                          auto label = add_folder_dialog->contents()->addWidget(std::make_unique<Wt::WLabel>("Folder name"));
+                                          auto error_text = add_folder_dialog->contents()->addWidget(std::make_unique<Wt::WText>());
+                                          auto input = add_folder_dialog->contents()->addWidget(std::make_unique<Wt::WLineEdit>());
+                                          label->setStyleClass("text-gray-200");
+                                          error_text->setStyleClass("text-red-500");
+                                          input->setStyleClass("input-style-1");
+                                          label->setBuddy(input);
+
+                                          input->enterPressed().connect([=]()
+                                                                        {
+                                                                            auto transaction = Dbo::Transaction(stylus_->session_);
+                                                                            auto folder_search_result = stylus_->session_.find<TemplateFolder>().where("folder_name = ?").bind(input->text()).resultValue();
+                                                                            if (folder_search_result){
+                                                                                error_text->setText("Folder with the same name already exists");
+                                                                            }else {
+                                                                                auto folder = std::make_unique<TemplateFolder>();
+                                                                                folder->folder_name = input->text();
+                                                                                stylus_->session_.add(std::move(folder));
+                                                                                transaction.commit();
+                                                                                createFoldersMenu();
+                                                                                add_folder_dialog->accept();
+                                                                            }
+                                                                        }); });
 }
 
 void EdditorPanel::createFoldersMenu()
@@ -116,6 +164,10 @@ void EdditorPanel::createFoldersMenu()
     }
 
     transaction.commit();
+
+    display_set_group_->setCheckedButton(0);
+    display_set_group_->button(0)->setChecked(true);
+    display_set_group_->button(0)->checked().emit();
 }
 
 void EdditorPanel::createFolderDisplay(int folder_id)

@@ -125,7 +125,7 @@ Wt::WCheckBox *BasePanel::addToggler(Wt::WWidget *widget, std::string label_text
 	auto toggler_label = extraButtonsWidget->addWidget(std::make_unique<Wt::WLabel>(label_text));
 	toggler_label->setBuddy(return_checkbox);
 	return_checkbox->setStyleClass("peer/a" + return_checkbox->id() + "z hidden");
-	toggler_label->setStyleClass("px-1.5 rounded-lg peer-checked/a" + return_checkbox->id() + "z:bg-gray-700 ");
+	toggler_label->setStyleClass("px-1.5 text-gray-200 rounded-lg peer-checked/a" + return_checkbox->id() + "z:bg-gray-700 ");
 
 	return_checkbox->changed().connect(this, [=]()
 									   {
