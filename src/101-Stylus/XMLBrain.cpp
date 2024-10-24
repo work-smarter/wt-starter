@@ -108,6 +108,34 @@ TempVarData tempText(tinyxml2::XMLNode *node)
             temp_var_data.implementation_ = temp_var.substr(implementation_pos + 16, implementation_end_pos - implementation_pos - 16);
         }
 
+        std::string implementation = temp_var_data.implementation_;
+        auto column_pos = implementation.find(":");
+        std::string widget_type = "";
+        std::string widget_text = "";
+        if (column_pos != std::string::npos)
+        {
+            widget_type = implementation.substr(0, column_pos);
+            widget_text = implementation.substr(column_pos + 1);
+        }
+        else
+            widget_type = implementation;
+
+        temp_var_data.implementation_text_ = widget_text;
+        if (widget_type == "text")
+            temp_var_data.implementation_type_ = TempVarImplementationType::TEXT;
+        else if (widget_type == "input")
+            temp_var_data.implementation_type_ = TempVarImplementationType::INPUT;
+        else if (widget_type == "textarea")
+            temp_var_data.implementation_type_ = TempVarImplementationType::TEXTAREA;
+        else if (widget_type == "button")
+            temp_var_data.implementation_type_ = TempVarImplementationType::BUTTON;
+        else if (widget_type == "checkbox")
+            temp_var_data.implementation_type_ = TempVarImplementationType::CHECKBOX;
+        else if (widget_type == "radio")
+            temp_var_data.implementation_type_ = TempVarImplementationType::RADIO;
+        else
+            temp_var_data.implementation_type_ = TempVarImplementationType::TEXT;
+
         // std::cout << "var name <" << temp_var_data.name_ << "> ----- ";
         // std::cout << "implementation <" << temp_var_data.implementation_ << ">\n";
         return temp_var_data;

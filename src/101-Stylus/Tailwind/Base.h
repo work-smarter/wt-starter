@@ -46,7 +46,7 @@ struct ProprietyData
 class Propriety
 {
 public:
-    Propriety(TailwindConfig *tailwind_config) : tailwind_config_(tailwind_config) {};
+    Propriety(TailwindConfig *tailwind_config) : tailwind_config_(tailwind_config), regex(boost::regex("")) {};
     Propriety() {};
     // pair of the class name variant and the value that it applies
     std::vector<variant_and_value_pair> variant_value_pairs;

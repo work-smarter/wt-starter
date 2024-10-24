@@ -70,6 +70,7 @@ public:
           textUnderlineOffset(tailwind_config),
           textTransform(tailwind_config),
           textOverflow(tailwind_config),
+          textWrap(tailwind_config),
           textIndent(tailwind_config),
           verticalAlign(tailwind_config),
           whitespace(tailwind_config),
@@ -98,6 +99,7 @@ public:
     Propriety textUnderlineOffset;
     Propriety textTransform;
     Propriety textOverflow;
+    Propriety textWrap;
     Propriety textIndent;
     Propriety verticalAlign;
     Propriety whitespace;

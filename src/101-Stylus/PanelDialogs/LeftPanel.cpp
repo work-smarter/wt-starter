@@ -10,7 +10,7 @@ LeftPanel::LeftPanel(Stylus *stylus)
     contents()->addStyleClass("!bg-gray-800");
 }
 
-void LeftPanel::createTree(std::shared_ptr<XMLBrain> xml_brain)
+void LeftPanel::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 {
     contents()->clear();
     if (xml_brain)

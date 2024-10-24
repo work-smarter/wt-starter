@@ -16,21 +16,6 @@ Stylus::Stylus(Session &session, Wt::WString templates_root_path)
 {
     tailwind_config_->readConfigurationXMLs();
 
-    // auto transaction = Dbo::Transaction(session_);
-    // auto app = session_.find<TemplateFolder>().where("folder_name = ?").bind(app_name).resultValue();
-    // if (!app)
-    // {
-    //     std::cerr << "\n No app found with the name:\n creating app record: " << app_name << "\n\n";
-    //     auto app_ptr = std::make_unique<TemplateApp>();
-    //     app_ptr->app_name = app_name;
-    //     app = session_.add(std::move(app_ptr));
-    // }
-    // else
-    // {
-    //     std::cerr << "\n App found with the name: " << app_name << "app id is: " << app.id() << "\n\n";
-    // }
-    // transaction.commit();
-
     left_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<LeftPanel>(this));
     right_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<RightPanel>(this));
     edditor_panel_ = Wt::WApplication::instance()->root()->addChild(std::make_unique<EdditorPanel>(this));
@@ -50,22 +35,10 @@ Stylus::Stylus(Session &session, Wt::WString templates_root_path)
 void Stylus::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 {
     std::cout << "\n\n setXmlBrain \n\n";
-    // if (xml_brain_)
-    // {
-    // std::cout << "\n xml_brain_ is not null \n";
-    // if (xml_brain_ != xml_brain)
-    // {
-    //     if (xml_brain_->dbo_temp_data_.dbo_folder_id == xml_brain->dbo_temp_data_.dbo_folder_id && xml_brain_->dbo_temp_data_.dbo_file_id == xml_brain->dbo_temp_data_.dbo_file_id)
-    //     {
-    // xml_brain_->selected_node_ = nullptr;
-    // xml_brain_->node_selected().emit();
-    // }
-    // }
-    // }
 
     xml_brain_ = xml_brain;
-    left_panel_->createTree(xml_brain_);
-    right_panel_->setXMLBrain(xml_brain_);
+    left_panel_->setXmlBrain(xml_brain_);
+    right_panel_->setXmlBrain(xml_brain_);
     xml_brain_->selected_node_->node_selected().emit(true);
 }
 

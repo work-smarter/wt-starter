@@ -32,7 +32,7 @@ public:
     std::unordered_map<std::string, std::unordered_map<std::string, std::string>> category_classes_data_map_;
 
     std::shared_ptr<XMLBrain> xml_brain_;
-    void setXMLBrain(std::shared_ptr<XMLBrain> xml_brain);
+    void setXmlBrain(std::shared_ptr<XMLBrain> xml_brain = nullptr);
 
     Wt::WContainerWidget *panelsWrapper;
     FlexAndGridP *flexAndGridWidget_;

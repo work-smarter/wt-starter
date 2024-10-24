@@ -547,6 +547,28 @@
             </class>
         </classes>
     </message>
+    <message id="textWrap">
+        <tailwind-docs>https://tailwindcss.com/docs/text-wrap</tailwind-docs>
+        <reset-command>text-wrap-res</reset-command>
+        <classes className="text" custom_value="false" canExtend="false">
+            <class>
+                <name>wrap</name>
+                <value>wrap</value>
+            </class>
+            <class>
+                <name>nowrap</name>
+                <value>nowrap</value>
+            </class>
+            <class>
+                <name>balance</name>
+                <value>balance</value>
+            </class>
+            <class>
+                <name>pretty</name>
+                <value>pretty</value>
+            </class>
+        </classes>
+    </message>
     <message id="textIndent" height="300px">
         <tailwind-docs>https://tailwindcss.com/docs/text-indent</tailwind-docs>
         <reset-command>text-indent-res</reset-command>

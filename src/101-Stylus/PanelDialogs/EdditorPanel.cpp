@@ -1,6 +1,7 @@
 #include "101-Stylus/PanelDialogs/EdditorPanel.h"
 #include "101-Stylus/Stylus.h"
 #include "101-Stylus/PanelDialogs/LeftPanel.h"
+#include "101-Stylus/PanelDialogs/RightPanel.h"
 #include "101-Stylus/Preview/PElement.h"
 #include <Wt/WDialog.h>
 #include <Wt/WApplication.h>
@@ -86,19 +87,7 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
     add_temps_to_dbo_btn->setStyleClass("btn-style-1 !p-0.5 mr-3");
     get_temps_from_dbo_btn->setStyleClass("btn-style-1 !p-0.5 mr-3");
     content_wrapper_->setStyleClass("flex items-start h-[calc(100%-31px)]");
-    radio_checkbox_btn_styles_ = "[&>input]:hidden "
-                                 "m-0.5 mb-1 "
-                                 "[&>span]:bg-gray-200 "
-                                 "[&>span]:text-bold "
-                                 "[&>span]:text-gray-900 "
-                                 "[&>span]:p-0.5 "
-                                 "[&>span]:px-1 "
-                                 "[&>span]:border-2 "
-                                 "[&>span]:border-solid "
-                                 "[&>span]:border-gray-600 "
-                                 "[&>span]:rounded-md "
-                                 "[&>input:checked~span]:bg-gray-900 "
-                                 "[&>input:checked~span]:text-gray-200";
+
     createFoldersMenu();
 
     // add folder button
@@ -144,6 +133,7 @@ EdditorPanel::EdditorPanel(Stylus *stylus)
                                                                                 createFoldersMenu();
                                                                                 add_folder_dialog->accept();
                                                                             }
+                                                                            transaction.commit();
                                                                         }); });
 }
 
@@ -153,80 +143,125 @@ void EdditorPanel::createFoldersMenu()
     button_btn_group_wrapper_->clear();
 
     auto transaction = Dbo::Transaction(stylus_->session_);
-    dbo::collection<dbo::ptr<TemplateFolder>> template_folders = stylus_->session_.find<TemplateFolder>();
+    dbo::collection<dbo::ptr<TemplateFolder>> template_folders = stylus_->session_.find<TemplateFolder>().orderBy("id").resultList();
     for (auto folder : template_folders)
     {
-        auto folder_btn = button_btn_group_wrapper_->addWidget(std::make_unique<Wt::WRadioButton>(folder->folder_name));
-        folder_btn->setStyleClass(radio_checkbox_btn_styles_);
-        display_set_group_->addButton(folder_btn);
-        folder_btn->checked().connect([=]
-                                      { createFolderDisplay(folder.id()); });
+        auto folder_radio_btn = button_btn_group_wrapper_->addWidget(std::make_unique<Wt::WRadioButton>());
+        auto folder_btn = button_btn_group_wrapper_->addWidget(std::make_unique<Wt::WPushButton>(folder->folder_name));
+
+        auto folder_btn_styles = "m-0.5 mb-1 p-0.5 px-1 "
+                                 "bg-gray-200 "
+                                 "text-sm text-bold text-gray-900 "
+                                 "border-2 border-solid border-gray-600 rounded-md "
+                                 "peer-checked/a" +
+                                 folder_radio_btn->id() + "z:bg-gray-900 "
+                                                          "peer-checked/a" +
+                                 folder_radio_btn->id() + "z:text-gray-200";
+
+        folder_radio_btn->setStyleClass("hidden peer/a" + folder_radio_btn->id() + "z ");
+        folder_btn->setStyleClass(folder_btn_styles);
+        display_set_group_->addButton(folder_radio_btn);
+        folder_radio_btn->checked().connect([=]
+                                            {
+            if (folder.id() != selected_folder_id_)
+            {
+                createFolderDisplay(folder.id());
+            } });
+
+        folder_btn->clicked().connect([=]
+                                      {
+            folder_radio_btn->setChecked(true);
+            folder_radio_btn->checked().emit(); });
+        folder_btn->setAttributeValue("oncontextmenu ", "event.cancelBubble = true; event.returnValue = false; return false;");
+        folder_btn->doubleClicked().connect([=](Wt::WMouseEvent e)
+                                            {
+            std::cout << "\n folder btn clicked \n";
+            if (e.button() == Wt::MouseButton::Right)
+            {
+                std::cout << "\n Right clicked on folder \n";
+            }
+            else if (e.button() == Wt::MouseButton::Left)
+            {
+                std::cout << "\n Left clicked on folder \n";
+            }
+            else if (e.button() == Wt::MouseButton::Middle)
+            {
+                std::cout << "\n Middle clicked on folder \n";
+            }
+            else if (e.button() == Wt::MouseButton::None)
+            {
+                std::cout << "\n None clicked on folder \n";
+            } });
     }
 
     transaction.commit();
 
-    display_set_group_->setCheckedButton(0);
-    display_set_group_->button(0)->setChecked(true);
-    display_set_group_->button(0)->checked().emit();
+    if (display_set_group_->buttons().size() > 0)
+    {
+
+        display_set_group_->setCheckedButton(0);
+        display_set_group_->button(0)->setChecked(true);
+        display_set_group_->button(0)->checked().emit();
+    }
 }
 
 void EdditorPanel::createFolderDisplay(int folder_id)
 {
-    files_menu_->clear();
-    file_content_->clear();
-
-    auto transaction = Dbo::Transaction(stylus_->session_);
-    dbo::ptr<TemplateFolder> template_folder = stylus_->session_.find<TemplateFolder>().where("id = ?").bind(std::to_string(folder_id)).resultValue();
-    if (!template_folder)
+    if (selected_folder_id_ == folder_id)
     {
-        std::cerr << "\n Error: No folder found with the id: " << folder_id << "\n";
         return;
     }
+    selected_folder_id_ = folder_id;
+    files_menu_->clear();
+    file_content_->clear();
+    auto transaction = Dbo::Transaction(stylus_->session_);
 
-    dbo::collection<dbo::ptr<TemplateFile>> template_files = template_folder->template_files;
+    dbo::collection<dbo::ptr<TemplateFile>> template_files = stylus_->session_.find<TemplateFile>().where("template_folder_id = ?").bind(std::to_string(folder_id)).orderBy("id").resultList();
     for (auto file : template_files)
     {
         auto file_btn = files_menu_->addWidget(std::make_unique<Wt::WText>(file->file_name));
         file_btn->setStyleClass("cursor-pointer hover:bg-gray-300 p-1 bg-gray-1000 rounded-md w-full");
         file_btn->clicked().connect([=]
                                     { 
-                                        createFileTemplates(file.id());
-                                        stylus_->xml_brain_ = nullptr;
-                                        stylus_->left_panel_->createTree(); });
+                                        if(file.id() != selected_file_id_){
+                                            createFileTemplates(file.id());
+                                            stylus_->xml_brain_ = nullptr;
+                                            stylus_->left_panel_->setXmlBrain();
+                                            stylus_->right_panel_->setXmlBrain();
+                                        } });
     }
     transaction.commit();
 }
 
 void EdditorPanel::createFileTemplates(int file_id)
 {
-    auto transaction = Dbo::Transaction(stylus_->session_);
-
-    auto file = stylus_->session_.find<TemplateFile>().where("id = ?").bind(std::to_string(file_id)).resultValue();
-
-    if (!file)
+    if (selected_file_id_ == file_id)
     {
-        std::cerr << "\n Error: No file found with the id: " << file_id << "\n";
         return;
     }
+    selected_file_id_ = file_id;
+    auto transaction = Dbo::Transaction(stylus_->session_);
+
+    auto file_templates = stylus_->session_.find<XmlTemplate>().where("template_file_id = ?").bind(std::to_string(file_id)).orderBy("id").resultList();
 
     file_content_->clear();
-    for (auto xml_template : file->xml_templates)
+    for (auto xml_template : file_templates)
     {
         auto temp_wrapper = file_content_->addWidget(std::make_unique<Wt::WContainerWidget>());
         auto temp = temp_wrapper->addWidget(std::make_unique<Wt::WTemplate>(xml_template->xml_temp));
         temp->addFunction("tr", &WTemplate::Functions::tr);
-        temp_wrapper->setStyleClass("relative p-2 rounded-md m-2 border border-solid border-gray-500 bg-white min-w-fit");
+        temp_wrapper->setStyleClass("relative p-2 rounded-md m-2 border border-solid border-gray-500 bg-white min-w-fill-available");
         auto temp_id_widget = temp_wrapper->addWidget(std::make_unique<Wt::WText>(std::to_string(xml_template.id())));
-        temp_id_widget->setStyleClass("absolute -top-4 left-6 bg-gray-300 p-0.5 rounded-md text-nowrap");
+        temp_id_widget->setStyleClass("absolute -top-4 right-6 bg-gray-300 p-0.5 rounded-md text-nowrap");
         auto temp_dbo_id_widget = temp_wrapper->addWidget(std::make_unique<Wt::WText>(xml_template->temp_id));
         temp_dbo_id_widget->setStyleClass("absolute -top-4 left-0 bg-gray-300 p-0.5 px-1 rounded-md text-nowrap cursor-pointer");
 
         XmlDboRecord xml_temp_obj;
-        xml_temp_obj.dbo_folder_id = file->template_folder.id();
-        xml_temp_obj.dbo_file_id = file.id();
+        xml_temp_obj.dbo_folder_id = xml_template->template_files->template_folder.id();
+        xml_temp_obj.dbo_file_id = xml_template->template_files.id();
         xml_temp_obj.dbo_temp_id = xml_template.id();
-        xml_temp_obj.file_name = file->file_name;
-        xml_temp_obj.folder_name = file->template_folder->folder_name;
+        xml_temp_obj.file_name = xml_template->template_files->file_name;
+        xml_temp_obj.folder_name = xml_template->template_files->template_folder->folder_name;
         xml_temp_obj.temp_id = xml_template->temp_id;
         xml_temp_obj.xml_temp = xml_template->xml_temp;
 
@@ -249,61 +284,3 @@ void EdditorPanel::createFileTemplates(int file_id)
     }
     transaction.commit();
 }
-// for (auto xml_temp_obj : xml_temp_objects)
-// {
-// auto temp_wrapper = wrapper->addWidget(std::make_unique<Wt::WContainerWidget>());
-// auto temp = temp_wrapper->addWidget(std::make_unique<Wt::WTemplate>(xml_temp_obj.xml_temp));
-// temp->addFunction("tr", &WTemplate::Functions::tr);
-// temp_wrapper->setStyleClass("relative p-2 rounded-md m-2 border border-solid border-gray-500 bg-white min-w-fit");
-// auto temp_id_widget = temp_wrapper->addWidget(std::make_unique<Wt::WText>(xml_temp_obj.temp_id));
-// temp_id_widget->setStyleClass("absolute -top-4 left-6 bg-gray-300 p-0.5 rounded-md text-nowrap");
-// auto temp_dbo_id_widget = temp_wrapper->addWidget(std::make_unique<Wt::WText>(xml_temp_obj.dbo_temp_id + " "));
-// temp_dbo_id_widget->setStyleClass("absolute -top-4 left-0 bg-gray-300 p-0.5 px-1 rounded-md text-nowrap cursor-pointer");
-
-// temp->hide();
-// std::shared_ptr<XMLBrain> xml_brain = std::make_shared<XMLBrain>(stylus_->session_, xml_temp_obj, stylus_);
-// auto pElem = temp_wrapper->addWidget(std::make_unique<PElement>(xml_brain, xml_brain->message_node_));
-
-// temp_dbo_id_widget->clicked().connect([=]
-//                                       {
-//     if (temp->isHidden())
-//     {
-//         temp->show();
-//         pElem->hide();
-//     }
-//     else
-//     {
-//         temp->hide();
-//         pElem->show();
-//     } });
-//     xml_brain->node_selected().connect([=]
-//                                        {
-//                     if(temp_wrapper == nullptr) return;
-//                     std::cout << "\n\n node_selected \n\n";
-//                     temp_wrapper->clear();
-//                     std::cout << "\n\n node_selected \n\n";
-
-//                     auto temp = temp_wrapper->addWidget(std::make_unique<Wt::WTemplate>(xml_temp_obj.xml_temp));
-//                     temp->addFunction("tr", &WTemplate::Functions::tr);
-//                     temp_wrapper->setStyleClass("relative p-2 rounded-md m-2 border border-solid border-gray-500 bg-white");
-//                     auto temp_id_widget = temp_wrapper->addWidget(std::make_unique<Wt::WText>(xml_temp_obj.temp_id));
-//                     temp_id_widget->setStyleClass("absolute -top-4 left-6 bg-gray-300 p-0.5 rounded-md text-nowrap");
-//                     auto temp_dbo_id_widget = temp_wrapper->addWidget(std::make_unique<Wt::WText>(xml_temp_obj.dbo_temp_id + " "));
-//                     temp_dbo_id_widget->setStyleClass("absolute -top-4 left-0 bg-gray-300 p-0.5 px-1 rounded-md text-nowrap cursor-pointer");
-
-//                     temp->hide();
-//                     auto pElem = temp_wrapper->addWidget(std::make_unique<PElement>(xml_brain, xml_brain->message_node_));
-
-//                     temp_dbo_id_widget->clicked().connect([=]
-//                                                             {
-//                             if (temp->isHidden())
-//                             {
-//                                 temp->show();
-//                                 pElem->hide();
-//                             }
-//                             else
-//                             {
-//                                 temp->hide();
-//                                 pElem->show();
-//                     } }); });
-// }

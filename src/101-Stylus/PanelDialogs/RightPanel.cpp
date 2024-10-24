@@ -317,9 +317,14 @@ std::string RightPanel::getStyles()
     return styles + " " + notFoundClasses;
 }
 
-void RightPanel::setXMLBrain(std::shared_ptr<XMLBrain> xml_brain)
+void RightPanel::setXmlBrain(std::shared_ptr<XMLBrain> xml_brain)
 {
-    std::cout << "\n RightPanelDialog::setXMLBrain(std::shared_ptr<XMLBrain> xml_brain) \n";
+    if (xml_brain == nullptr)
+    {
+        setStyleClasses("");
+        return;
+    }
+    std::cout << "\n RightPanelDialog::setXmLBrain(std::shared_ptr<XMLBrain> xml_brain) \n";
     if (xml_brain->selected_node_ == xml_brain->message_node_)
     {
         std::cout << "\n selected is template node\n";
@@ -677,6 +682,7 @@ std::string RightPanel::setTypographyClasses(std::string classes, std::string pr
     classes_data_map["text_underline_offset"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.textUnderlineOffset.regex, classes);
     classes_data_map["text_transform"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.textTransform.regex, classes);
     classes_data_map["text_overflow"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.textOverflow.regex, classes);
+    classes_data_map["text_wrap"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.textWrap.regex, classes);
     classes_data_map["text_indent"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.textIndent.regex, classes);
     classes_data_map["vertical_align"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.verticalAlign.regex, classes);
     classes_data_map["whitespace"] = findAndRemoveMatche(stylus_->tailwind_config_->typography.whitespace.regex, classes);

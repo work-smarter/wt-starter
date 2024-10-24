@@ -166,6 +166,7 @@ void TailwindConfig::readConfigurationXMLs()
         sizing.minHeight.setPropriety(xml_brains_["minHeight"]->message_node_->ToElement());
         sizing.maxHeight.setPropriety(xml_brains_["maxHeight"]->message_node_->ToElement());
     }
+
     // Typography
     {
         typography.fontFamily.setPropriety(xml_brains_["fontFamily"]->message_node_->ToElement());
@@ -189,6 +190,7 @@ void TailwindConfig::readConfigurationXMLs()
         typography.textUnderlineOffset.setPropriety(xml_brains_["textUnderlineOffset"]->message_node_->ToElement());
         typography.textTransform.setPropriety(xml_brains_["textTransform"]->message_node_->ToElement());
         typography.textOverflow.setPropriety(xml_brains_["textOverflow"]->message_node_->ToElement());
+        typography.textWrap.setPropriety(xml_brains_["textWrap"]->message_node_->ToElement());
         typography.textIndent.setPropriety(xml_brains_["textIndent"]->message_node_->ToElement());
         typography.verticalAlign.setPropriety(xml_brains_["verticalAlign"]->message_node_->ToElement());
         typography.whitespace.setPropriety(xml_brains_["whitespace"]->message_node_->ToElement());
@@ -992,6 +994,7 @@ void TailwindConfig::readProprieties()
     proprieties["textUnderlineOffset"] = readXmlProp("textUnderlineOffset");
     proprieties["textTransform"] = readXmlProp("textTransform");
     proprieties["textOverflow"] = readXmlProp("textOverflow");
+    proprieties["textWrap"] = readXmlProp("textWrap");
     proprieties["textIndent"] = readXmlProp("textIndent");
     proprieties["verticalAlign"] = readXmlProp("verticalAlign");
     proprieties["whitespace"] = readXmlProp("whitespace");

@@ -4,6 +4,7 @@
 TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *extra_widgets_wrapper)
     : BasePanel(tailwind_config, extra_widgets_wrapper)
 {
+
     classes_data_map_ = {
         {"font_family", "none"},
         {"font_size", "none"},
@@ -26,6 +27,7 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
         {"text_underline_offset", "none"},
         {"text_transform", "none"},
         {"text_overflow", "none"},
+        {"text_wrap", "none"},
         {"text_indent", "none"},
         {"vertical_align", "none"},
         {"whitespace", "none"},
@@ -55,6 +57,7 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
         {"text_underline_offset", tailwind_config->typography.textUnderlineOffset},
         {"text_transform", tailwind_config->typography.textTransform},
         {"text_overflow", tailwind_config->typography.textOverflow},
+        {"text_wrap", tailwind_config->typography.textWrap},
         {"text_indent", tailwind_config->typography.textIndent},
         {"vertical_align", tailwind_config->typography.verticalAlign},
         {"whitespace", tailwind_config->typography.whitespace},
@@ -89,6 +92,7 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
     auto text_underline_offset_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto text_transform_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto text_overflow_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
+    auto text_wrap_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto text_indent_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto vertical_align_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
     auto whitespace_wrapper = centralWidget->addWidget(std::make_unique<Wt::WContainerWidget>());
@@ -118,6 +122,7 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
     text_underline_offset_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["text_underline_offset"].docs_link, "Underline Offset")));
     text_transform_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["text_transform"].docs_link, "Transform")));
     text_overflow_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["text_overflow"].docs_link, "Overflow")));
+    text_wrap_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["text_wrap"].docs_link, "Wrap")));
     text_indent_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["text_indent"].docs_link, "Indent")));
     vertical_align_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["vertical_align"].docs_link, "Vertical Align")));
     whitespace_wrapper->addWidget(std::move(createAnchorToDocs(classes_vec_map["whitespace"].docs_link, "Whitespace")));
@@ -147,6 +152,7 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
     text_underline_offset_wrapper->setStyleClass(wrapper_classes);
     text_transform_wrapper->setStyleClass(wrapper_classes);
     text_overflow_wrapper->setStyleClass(wrapper_classes);
+    text_wrap_wrapper->setStyleClass(wrapper_classes);
     text_indent_wrapper->setStyleClass(wrapper_classes);
     vertical_align_wrapper->setStyleClass(wrapper_classes);
     whitespace_wrapper->setStyleClass(wrapper_classes);
@@ -175,6 +181,7 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
     combobox_map_["text_underline_offset"] = text_underline_offset_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["text_underline_offset"].getClasses()));
     combobox_map_["text_transform"] = text_transform_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["text_transform"].getClasses()));
     combobox_map_["text_overflow"] = text_overflow_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["text_overflow"].getClasses()));
+    combobox_map_["text_wrap"] = text_wrap_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["text_wrap"].getClasses()));
     combobox_map_["text_indent"] = text_indent_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["text_indent"].getClasses()));
     combobox_map_["vertical_align"] = vertical_align_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["vertical_align"].getClasses()));
     combobox_map_["whitespace"] = whitespace_wrapper->addWidget(std::make_unique<ComboBoxClassChanger>(classes_vec_map["whitespace"].getClasses()));
@@ -224,6 +231,8 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
         combobox_map_["text_transform"]->setCustomValueString(tailwind_config_->typography.textTransform.class_name + "-");
     if (tailwind_config_->typography.textOverflow.custom_value)
         combobox_map_["text_overflow"]->setCustomValueString(tailwind_config_->typography.textOverflow.class_name + "-");
+    if (tailwind_config_->typography.textWrap.custom_value)
+        combobox_map_["text_wrap"]->setCustomValueString(tailwind_config_->typography.textWrap.class_name + "-");
     if (tailwind_config_->typography.textIndent.custom_value)
         combobox_map_["text_indent"]->setCustomValueString(tailwind_config_->typography.textIndent.class_name + "-");
     if (tailwind_config_->typography.verticalAlign.custom_value)
@@ -249,7 +258,6 @@ TypographyP::TypographyP(TailwindConfig *tailwind_config, Wt::WContainerWidget *
         color.second->classChanged().connect(this, [=](std::string className)
                                              {classes_data_map_[color.first] = className; styleChanged_.emit(getStyles()); });
     }
-
     setExtraWidgets(classes_vec_map);
 }
 
@@ -276,6 +284,7 @@ void TypographyP::setCustomTestValues()
     classes_data_map_["text_underline_offset"] = "underline-offset-2";
     classes_data_map_["text_transform"] = "uppercase";
     classes_data_map_["text_overflow"] = "truncate";
+    classes_data_map_["text_wrap"] = "text-nowrap";
     classes_data_map_["text_indent"] = "indent-4";
     classes_data_map_["vertical_align"] = "align-middle";
     classes_data_map_["whitespace"] = "whitespace-nowrap";

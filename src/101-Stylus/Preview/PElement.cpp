@@ -1,5 +1,11 @@
 #include "101-Stylus/Preview/PElement.h"
 #include <Wt/WText.h>
+#include <Wt/WTextArea.h>
+#include <Wt/WLineEdit.h>
+#include <Wt/WPushButton.h>
+#include <Wt/WCheckBox.h>
+#include <Wt/WRadioButton.h>
+
 #include "101-Stylus/Stylus.h"
 
 PElement::PElement(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
@@ -39,32 +45,75 @@ PElement::PElement(std::shared_ptr<XMLBrain> xml_brain, tinyxml2::XMLNode *node)
         }
         else if (node->ToText())
         {
-            auto text_value = node->ToText()->Value();
 
-            auto text_wid_wrapper = addWidget(std::make_unique<Wt::WContainerWidget>());
-            auto text = text_wid_wrapper->addWidget(std::make_unique<Wt::WText>(text_value));
-            auto text_input = text_wid_wrapper->addWidget(std::make_unique<Wt::WTextArea>(text_value));
+            auto temp_var_data = tempText(node_);
+            if (temp_var_data.name_ != "")
+            {
+                if (temp_var_data.implementation_type_ == TempVarImplementationType::TEMPLATE)
+                {
+                    // auto child_temp_xml_brain = xml_brain_->stylus_brain_->getXMLBrain(widget_text);
+                    // if(child_temp_xml_brain != nullptr)
+                    // {
+                    // auto child_temp = addWidget(std::make_unique<PElement>(child_temp_xml_brain, child_temp_xml_brain->message_node_));
+                    // }else addWidget(std::make_unique<Wt::WText>("Template not found"));
+                }
+                else if (temp_var_data.implementation_type_ == TempVarImplementationType::TEXT)
+                {
+                    addWidget(std::make_unique<Wt::WText>(temp_var_data.implementation_text_));
+                }
+                else if (temp_var_data.implementation_type_ == TempVarImplementationType::INPUT)
+                {
+                    addWidget(std::make_unique<Wt::WLineEdit>(temp_var_data.implementation_text_));
+                }
+                else if (temp_var_data.implementation_type_ == TempVarImplementationType::BUTTON)
+                {
+                    addWidget(std::make_unique<Wt::WPushButton>(temp_var_data.implementation_text_));
+                }
+                else if (temp_var_data.implementation_type_ == TempVarImplementationType::TEXTAREA)
+                {
+                    addWidget(std::make_unique<Wt::WTextArea>(temp_var_data.implementation_text_));
+                }
+                else if (temp_var_data.implementation_type_ == TempVarImplementationType::CHECKBOX)
+                {
+                    addWidget(std::make_unique<Wt::WCheckBox>(temp_var_data.implementation_text_));
+                }
+                else if (temp_var_data.implementation_type_ == TempVarImplementationType::RADIO)
+                {
+                    addWidget(std::make_unique<Wt::WRadioButton>(temp_var_data.implementation_text_));
+                }
+                else
+                    addWidget(std::make_unique<Wt::WText>("Widget type not found"));
+            }
+            else
+            {
 
-            text_input->hide();
-            text->doubleClicked().connect([=]
-                                          {
+                auto text_value = node->ToText()->Value();
+
+                auto text_wid_wrapper = addWidget(std::make_unique<Wt::WContainerWidget>());
+                auto text = text_wid_wrapper->addWidget(std::make_unique<Wt::WText>(text_value));
+                auto text_input = text_wid_wrapper->addWidget(std::make_unique<Wt::WTextArea>(text_value));
+
+                text_input->hide();
+                text->doubleClicked().connect([=]
+                                              {
                                               text->hide();
                                               text_input->show(); 
                                               text_input->setFocus(); });
 
-            text_input->enterPressed().connect([=]
-                                               {
+                text_input->enterPressed().connect([=]
+                                                   {
                                                     text->setText(text_input->text());
                                                     text_input->hide();
                                                     text->show();
                                                     node->ToText()->SetValue(text_input->text().toUTF8().c_str());
                                                     xml_brain_->saveXmlToDbo(); });
 
-            text_input->setMinimumSize(Wt::WLength(300, Wt::LengthUnit::Pixel), Wt::WLength::Auto);
-            text_input->escapePressed().connect([=]
-                                                {
+                text_input->setMinimumSize(Wt::WLength(300, Wt::LengthUnit::Pixel), Wt::WLength::Auto);
+                text_input->escapePressed().connect([=]
+                                                    {
                                                     text_input->hide();
                                                     text->show(); });
+            }
         }
     }
 

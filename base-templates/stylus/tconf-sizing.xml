@@ -88,8 +88,8 @@
                 <value>fit-content</value>
             </class>
             <class extends="true">
-                <name>test</name>
-                <value>30%</value>
+                <name>fill-available</name>
+                <value>-webkit-fill-available</value>
             </class>
         </classes>
     </message>
@@ -226,8 +226,8 @@
                 <value>fit-content</value>
             </class>
             <class extends="true">
-                <name>test</name>
-                <value>30%</value>
+                <name>fill-available</name>
+                <value>-webkit-fill-available</value>
             </class>
         </classes>
     </message>
@@ -256,8 +256,8 @@
                 <value>fit-content</value>
             </class>
             <class extends="true">
-                <name>test</name>
-                <value>30%</value>
+                <name>fill-available</name>
+                <value>-webkit-fill-available</value>
             </class>
         </classes>
     </message>
@@ -286,8 +286,8 @@
                 <value>fit-content</value>
             </class>
             <class extends="true">
-                <name>test</name>
-                <value>30%</value>
+                <name>fill-available</name>
+                <value>-webkit-fill-available</value>
             </class>
         </classes>
     </message>
@@ -369,8 +369,8 @@
                 <value>65ch</value>
             </class>
             <class extends="true">
-                <name>test</name>
-                <value>30%</value>
+                <name>fill-available</name>
+                <value>-webkit-fill-available</value>
             </class>
         </classes>
     </message>
@@ -403,8 +403,8 @@
                 <value>fit-content</value>
             </class>
             <class extends="true">
-                <name>test</name>
-                <value>30%</value>
+                <name>fill-available</name>
+                <value>-webkit-fill-available</value>
             </class>
         </classes>
     </message>

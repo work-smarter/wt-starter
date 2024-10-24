@@ -22,7 +22,8 @@ private:
 
     Wt::WContainerWidget *button_btn_group_wrapper_;
 
-    Wt::WString radio_checkbox_btn_styles_;
+    int selected_folder_id_ = 0;
+    int selected_file_id_ = 0;
 
     void createFoldersMenu();
     void createFolderDisplay(int folder_id);
